@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo product list</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <style>
+        .item-product {
+            text-align: center;
+            margin: 2px;
+            margin-top: 10px;
+            -webkit-box-shadow: 1px -4px 24px 0px rgba(230, 230, 230, 0.4);
+            -moz-box-shadow: 1px -4px 24px 0px rgba(230, 230, 230, 0.4);
+            box-shadow: 1px -4px 24px 0px rgba(230, 230, 230, 0.4);
+        }
+
+        .item-product__inner {
+            border: 1px solid transparent;
+            padding: 5px;
+        }
+
+        .item-product__inner:hover {
+            border: 1px solid gray;
+        }
+
+        .item-product__image {
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        .item-product__image img {
+            max-width: 210px;
+            height: 210px;
+        }
+
+        .item-product__title,
+        .item-product__price,
+        .item-product__action {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .item-product__title {
+            font-size: 1.8rem;
+            font-style: italic;
+        }
+
+        .item-product__price span {
+            color: red;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Products</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <section>
+            <h1>Demo products list</h1>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">Information paging</div>
+                <div class="panel-body">
+                    <p class="label label-warning">Total products: <span th:text="${paginableItem.getTotalProducts()}"></span></p>
+                    <p class="label label-warning">Page size now: <span th:text="${paginableItem.getPageSize()}"></span></p>
+                    <p class="label label-warning">Page number now: <span th:text="${paginableItem.getPageNumber()}"></span></p>
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">List products</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="list-products">
+
+                            <div class="col-md-3 col-sm-4 col-xs-6" th:each="product : ${paginableItem.getListData()}">
+                                <div class="item-product">
+                                    <div class="item-product__inner">
+                                        <div class="item-product__image">
+                                            <a class="item-product__img__link" href="#">
+                                                <img th:src="${product.getImage()}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__title">
+                                            <span th:text="${product.getName()}"></span>
+                                        </div>
+                                        <div class="item-product__price">
+                                            <span th:text="${product.getShortDesc()}"></span>
+                                        </div>
+                                        <div class="item-product__action">
+                                            <button class="btn btn-success">Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="container text-center">
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Product for Mac</a></li>
+                        <li><a href="#">Product for Windows</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Web analytics</a></li>
+                        <li><a href="#">Presentations</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Product Help</a></li>
+                        <li><a href="#">Developer API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="/">© 2013 Company Name.</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

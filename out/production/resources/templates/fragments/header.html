@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="header_info (vm)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a th:href="@{/}"><img class="img-responsive"
+                                       th:src="${vm.getLogo().getLogoUrl()}"
+                                       th:alt="${vm.getLogo().getLogoAltText()}"></a>
+            </div>
+            <div class="col-md-8">
+                <h1 th:text="${vm.getLogo().getCompanyName()}"></h1>
+            </div>
+        </div>
+
+        <div class="spr-top-nav">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button"
+                                class="navbar-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" th:href="@{/}">
+                            <span th:text="${vm.getLogo().getCompanyBrand()}"></span></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+
+                            <th:block th:each="menuItem : ${vm.getListHrMenuItems()}">
+
+                                <li th:if="${menuItem.getChildren().size() == 0}"><a th:href="${menuItem.getLink()}"
+                                                                                     th:text="${menuItem.getText()}"></a>
+                                </li>
+                                <li class="dropdown" th:unless="${menuItem.getChildren().size() == 0}">
+                                    <a th:href="${menuItem.getLink()}" class="dropdown-toggle" data-toggle="dropdown"
+                                       role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span th:text="${menuItem.getText()}"></span> <span class="caret"></span></a>
+
+                                    <ul class="dropdown-menu">
+                                        <li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"
+                                                                                           th:text="${child.getText()}"></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </th:block>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

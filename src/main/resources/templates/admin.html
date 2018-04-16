@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin insert products list</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Products</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/admin">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <section>
+            <h1>Admin - products page</h1>
+            <div class="label-success" style="padding: 10px !important; color: #fff;">
+                <span th:text="${vm.getMessageTotalProducts()}"></span>
+            </div>
+            <p style="margin-top: 10px;">
+                <button class="btn btn-primary" id="btn-new-product">Insert new product</button>
+            </p>
+
+            <div class="table-list-product">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Short desc</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr th:each="product : ${vm.getListPagingProducts()}">
+                            <td>
+                                <div class="td-image">
+                                    <a th:href="@{'product/detail/' + ${product.getId()}}"><img th:src="${product.getImage()}" alt=""></a>
+                                </div>
+                            </td>
+                            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
+                            <td><span th:text="${product.getCategory().getName()}"></span></td>
+                            <td><span th:text="${product.getShortDesc()}"></span></td>
+                            <td>
+                                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
+                    <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                        <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                            <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                        </li>
+                        <li th:unless="${indexPage == vm.getCurrentPage()}">
+                            <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+
+            <p style="margin-top: 10px;">
+                <a th:href="@{/}" class="btn btn-primary">Back to index</a>
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="container text-center">
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Product for Mac</a></li>
+                        <li><a href="#">Product for Windows</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Web analytics</a></li>
+                        <li><a href="#">Presentations</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Product Help</a></li>
+                        <li><a href="#">Developer API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="/">© 2013 Company Name.</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-create-product" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Product info</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="img-select-block margin-bottom-15">
+                        <label>Product image</label><br/>
+                        <img id="preview-product-img" th:src="@{/img/default-img.jpg}" />
+                        <input type='file' id="input-select-img-product" />
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Product name:</label>
+                        <input type="text" class="form-control" id="input-product-name">
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label for="product-category">Category:</label>
+                        <select class="form-control" id="product-category">
+                            <option th:each="category : ${vm.getListCategories()}"
+                                    th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Product description:</label>
+                        <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Product created date:</label>
+                        <div class='input-group date' id='datepicker-created-date-product'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-default btn-save-product">Save product</button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/vi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+</body>
+</html>
