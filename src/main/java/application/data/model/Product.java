@@ -20,10 +20,10 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "short_desc")
+    @Column(name = "shortdesc")
     private String shortDesc;
 
-    @Column(name = "created_date")
+    @Column(name = "createddate")
     private Date createdDate;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)

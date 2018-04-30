@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="fragments/header :: header-css">
 
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <!--<div th:replace="fragments/header :: header-css"></div>-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+
 
     <title>Home page</title>
 </head>
@@ -130,9 +129,9 @@
 
 </div>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<footer th:include="fragments/footer :: footer"></footer>
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
 
 </body>

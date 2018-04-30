@@ -18,7 +18,7 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "short_desc")
+    @Column(name = "shortdesc")
     private String desc;
 
     public int getId() {

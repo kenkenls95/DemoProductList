@@ -40,62 +40,6 @@ public class HomeController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 
-    //@GetMapping(path="admin")
-    @RequestMapping(path = "admin", method = RequestMethod.GET)
-    public String admin(Model model, @RequestParam(value="pageNumber", required=false) Integer pageNumber) {
-
-        int pageSize = Constant.DEFAULT_PAGE_SIZE;
-
-        AdminVM vm = new AdminVM();
-        long totalProducts = productService.getTotalProducts();
-
-        vm.setMessageTotalProducts("Total existed products: " + totalProducts);
-
-        if(pageNumber == null) {
-            pageNumber = 1;
-        }
-
-        try {
-            PaginableItemList<Product> paginableItemList = productService.getListProducts(Constant.DEFAULT_PAGE_SIZE,
-                    pageNumber - 1);
-
-            List<Product> listProducts = paginableItemList.getListData();
-            ArrayList<ProductVM> listProductVMs = new ArrayList<>();
-            ModelMapper modelMapper = new ModelMapper();
-            for(Product product : listProducts) {
-                ProductVM productVM = modelMapper.map(product, ProductVM.class);
-                listProductVMs.add(productVM);
-            }
-            vm.setListPagingProducts(listProductVMs);
-
-            int totalPages = 0;
-            if(paginableItemList.getTotalProducts() % pageSize == 0) {
-                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize);
-            } else {
-                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize) + 1;
-            }
-
-            vm.setTotalPagingItems(totalPages);
-            vm.setCurrentPage(pageNumber);
-
-            //TODO: get list categories
-            List<Category> listCategories = categoryService.getListAllCategories();
-            ArrayList<CategoryDataModel> dataModelArrayList = new ArrayList<>();
-            for (Category cat :
-                    listCategories) {
-                dataModelArrayList.add(modelMapper.map(cat, CategoryDataModel.class));
-            }
-            vm.setListCategories(dataModelArrayList);
-
-        } catch (Exception e) {
-
-        }
-
-        model.addAttribute("vm", vm);
-
-        return "admin";
-    }
-
     @GetMapping(path="/list-products")
     public String index(Model model,
                         @RequestParam(value="pageSize", required=false) 
@@ -172,4 +116,19 @@ public class HomeController extends BaseController {
         return "index";
     }
 
+
+    @GetMapping("/about")
+    public String about() {
+        return "/about";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "/login";
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
+    }
 }
