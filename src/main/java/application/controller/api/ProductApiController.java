@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -87,6 +88,24 @@ public class ProductApiController {
         return result;
     }
 
+    @GetMapping("/findbyname/{productName}")
+    public BaseApiResult listproductbyname(@PathVariable String productName) {
+        DataApiResult result = new DataApiResult();
+        try{
+            List<Product> existProduct = productService.findbyName(productName);
+            if(existProduct == null) {
+                result.setSuccess(false);
+                result.setMessage("Can't find this product");
+            } else {
+                result.setSuccess(true);
+                }
+                result.setData(existProduct);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
 
     @PostMapping("/fake-products")
     public BaseApiResult fakeProducts() {
@@ -94,13 +113,14 @@ public class ProductApiController {
         Random random = new Random();
         BaseApiResult result = new BaseApiResult();
 
-        for(int i = 1; i <= 10; ++i) {
+        for(int i = 1; i <= 100; ++i) {
             Product p = new Product();
             p.setCreatedDate(new Date());
             p.setName("Product " + i);
             p.setShortDesc("Description for product " + i);
             p.setImage(images[random.nextInt(images.length)]);
             p.setCategory(categoryService.getOne(1));
+            p.setAmount(random.nextInt(100));
             listProducts.add(p);
         }
 
@@ -153,6 +173,7 @@ public class ProductApiController {
                     existProduct.setName(product.getName());
                     existProduct.setCreatedDate(product.getCreatedDate());
                     existProduct.setShortDesc(product.getShortDesc());
+                    existProduct.setAmount(product.getAmount());
                     existProduct.setCategory(categoryService.getOne(product.getCategoryId()));
                     productService.updateProduct(existProduct);
                     result.setSuccess(true);

@@ -81,9 +81,9 @@ public class HomeController extends BaseController {
         this.setLayoutHeaderVM(vm);
 
         ArrayList<BannerVM> listBanners = new ArrayList<>();
-        listBanners.add(new BannerVM("https://www.w3schools.com/bootstrap/la.jpg", "Los Angeles"));
-        listBanners.add(new BannerVM("https://www.w3schools.com/bootstrap/chicago.jpg", "Chicago"));
-        listBanners.add(new BannerVM("https://www.w3schools.com/bootstrap/ny.jpg", "New York"));
+        listBanners.add(new BannerVM("http://www.creavini.it/wp-content/uploads/2017/05/uva.png", "Nho Mỹ"));
+        listBanners.add(new BannerVM("https://edeka-tank.de/wp-content/uploads/2017/01/Fotolia_43618946_Tomaten_mood.jpg", "Cà Chua"));
+        listBanners.add(new BannerVM("https://dalat.net.vn/images/uploads/gia-dau-tay-da-lat-2.jpg", "Dâu Tây"));
 
         ArrayList<MenuItemVM> listVtMenuItems = new ArrayList<>();
         listVtMenuItems.add(new MenuItemVM("Menu aside 01", "/"));
@@ -130,5 +130,10 @@ public class HomeController extends BaseController {
     @GetMapping("/403")
     public String error403() {
         return "/error/403";
+    }
+
+    @GetMapping("/user")
+    public String user(){
+        return "/user";
     }
 }

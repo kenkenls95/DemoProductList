@@ -10,7 +10,16 @@ public class ProductVM {
     private String name;
     private String image;
     private String shortDesc;
+    private int amount;
     private CategoryDataModel category;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;

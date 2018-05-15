@@ -45,7 +45,8 @@
 
 .item-product__title,
 .item-product__price,
-.item-product__action {
+.item-product__action,
+.item-product__amount {
     text-align: center;
     margin-top: 8px;
 }

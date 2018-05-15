@@ -30,6 +30,7 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Short desc</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -44,6 +45,7 @@
                             <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
                             <td><span th:text="${product.getCategory().getName()}"></span></td>
                             <td><span th:text="${product.getShortDesc()}"></span></td>
+                            <td><span th:text="${product.getAmount()}"></span></td>
                             <td>
                                 <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -107,6 +109,11 @@
                     <div class="form-group margin-bottom-15">
                         <label>Product description:</label>
                         <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                    </div>
+
+                    <div class="form-group margin-bottom-15">
+                        <label>Product amount:</label>
+                        <input type="number" class="form-control" id="input-product-amount"></input>
                     </div>
 
                     <div class="form-group">

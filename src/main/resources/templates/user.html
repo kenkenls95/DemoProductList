@@ -1,12 +1,14 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="fragments/header :: header-css"/>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đăng nhập</title>
 </head>
 <body>
-
-<div th:replace="fragments/header :: header"/>
-
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
 
     <div class="starter-template">
@@ -20,8 +22,6 @@
     </div>
 
 </div>
-<!-- /.container -->
-<div th:replace="fragments/footer :: footer"/>
-
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

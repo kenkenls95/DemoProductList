@@ -39,6 +39,7 @@ $(document).ready(function () {
         $('#preview-product-img').attr('src', '/img/default-img.jpg');
         $('#input-product-name').val("");
         $('#input-product-desc').val("");
+        $("#input-product-amount").val("");
         $("#product-category").val("1");
 
         $("#modal-create-product").modal();
@@ -54,6 +55,7 @@ $(document).ready(function () {
                 dataProduct.image = res.data.data.image;
                 $("#input-product-name").val(res.data.data.name);
                 $("#input-product-desc").val(res.data.data.shortDesc);
+                $("#input-product-amount").val(res.data.data.amount);
                 $('#preview-product-img').attr('src', dataProduct.image);
                 $("#product-category").val(res.data.data.category.id);
 
@@ -82,6 +84,7 @@ $(document).ready(function () {
 
         dataProduct.name = $('#input-product-name').val();
         dataProduct.shortDesc = $('#input-product-desc').val();
+        dataProduct.amount = $("#input-product-amount").val();
         dataProduct.createdDate = createdDate;
         dataProduct.categoryId = $("#product-category").val();
 

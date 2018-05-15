@@ -59,10 +59,19 @@ public class ProductDetailModel {
         this.category = category;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     private int id;
     private String name;
     private String image;
     private String shortDesc;
+    private int amount;
 
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date createdDate;

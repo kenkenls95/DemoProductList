@@ -54,6 +54,14 @@ public class ProductService {
         return productRepository.findOne(productId);
     }
 
+//    public List<String> find(String productname){
+//        return productRepository.find(productname);
+//    }
+
+    public List<Product> findbyName(String productname){
+        return productRepository.findByNameContaining(productname);
+    }
+
     public boolean updateProduct(Product product) {
         try {
             productRepository.save(product);

@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="fragments/header :: header-css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin insert products list</title>
-
-    <div th:replace="fragments/header :: header-css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
 
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Products</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li class="active"><a href="/admin">Admin</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container">
 
@@ -43,6 +30,7 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Short desc</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -57,6 +45,7 @@
                             <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
                             <td><span th:text="${product.getCategory().getName()}"></span></td>
                             <td><span th:text="${product.getShortDesc()}"></span></td>
+                            <td><span th:text="${product.getAmount()}"></span></td>
                             <td>
                                 <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -87,48 +76,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
-    <div class="container text-center">
-        <hr />
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="col-md-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Product for Mac</a></li>
-                        <li><a href="#">Product for Windows</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Web analytics</a></li>
-                        <li><a href="#">Presentations</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Product Help</a></li>
-                        <li><a href="#">Developer API</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="/">© 2013 Company Name.</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
     <div id="modal-create-product" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -164,6 +111,11 @@
                         <textarea type="text" class="form-control" id="input-product-desc"></textarea>
                     </div>
 
+                    <div class="form-group margin-bottom-15">
+                        <label>Product amount:</label>
+                        <input type="number" class="form-control" id="input-product-amount"></input>
+                    </div>
+
                     <div class="form-group">
                         <label>Product created date:</label>
                         <div class='input-group date' id='datepicker-created-date-product'>
@@ -187,7 +139,7 @@
 
 
 
-    <div th:replace="fragments/footer :: footer"/>
+    <footer th:include="fragments/footer :: footer"></footer>
 
     <script type="text/javascript" th:src="@{/js/admin.js}"></script>
 </body>

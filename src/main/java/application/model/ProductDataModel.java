@@ -12,10 +12,19 @@ public class ProductDataModel {
     private String name;
     private String image;
     private String shortDesc;
+    private int amount;
     private int categoryId;
 
     @JsonDeserialize(using = CustomDateDeserializer.class)
     private Date createdDate;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public String getName() {
         return name;

@@ -20,6 +20,9 @@ public class Product {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "amount")
+    private int amount;
+
     @Column(name = "shortdesc")
     private String shortDesc;
 
@@ -29,6 +32,14 @@ public class Product {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name="categoryid")
     private Category category;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;

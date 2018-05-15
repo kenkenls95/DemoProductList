@@ -31,7 +31,7 @@ public class AdminController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 
-    //@GetMapping(path="admin")
+
     @RequestMapping(path = "admin", method = RequestMethod.GET)
     public String admin(Model model, @RequestParam(value="pageNumber", required=false) Integer pageNumber) {
 

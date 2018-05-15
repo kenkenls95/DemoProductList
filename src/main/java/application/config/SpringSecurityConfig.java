@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -35,8 +36,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("-----configure(HttpSecurity http)");
 
         http.authorizeRequests()
-                .antMatchers("/","/about", "/register-user", "/words/indexes", "/words/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/","/about", "/register-user","/product/detail/**").permitAll()
+                .antMatchers("/admin/**","/user/**").hasAnyRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
@@ -50,13 +51,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        logger.info("-----configure(WebSecurity web)");
+        web.ignoring()
+                .antMatchers("/resources/**")
+                .antMatchers("/static/**")
+                .antMatchers("/publics/**")
+                .antMatchers(HttpMethod.POST, "/api/product/**");
+    }
+
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {
-//        logger.info("-----configure(WebSecurity web)");
-//        web.ignoring()
-//                .antMatchers("/resources/**")
-//                .antMatchers("/static/**")
-//                .antMatchers("/publics/**");
+//        web.ignoring().antMatchers(HttpMethod.POST, "/auth/**");
 //    }
 
     // create two users, admin and user
