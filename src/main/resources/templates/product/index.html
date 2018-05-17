@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="fragments/header :: header-css">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -11,25 +11,31 @@
 </head>
 <body>
 
-<div th:replace="fragments/header :: header_info (vm=${vm})"></div>
+<div th:replace="fragments/header :: header"></div>
+
 
 <div class="container">
-    <div class="row">
+    <div th:if="${vm != null}" class="row">
         <div class="col-sm-12 col-xs-12 col-md-4">
-            <img th:src="${vm.getInfo().getImage()}" alt="" class="img-responsive">
+            <img th:src="${vm.getImage()}" alt="" class="img-responsive">
         </div>
         <div class="col-sm-12 col-xs-12 col-md-8">
-            <h2 th:text="${vm.getInfo().getName()}"></h2>
+            <h2 th:text="${vm.getName()}"></h2>
             <h4>Description</h4>
-            <p th:text="${vm.getInfo().getShortDesc()}"></p>
+            <p th:text="${vm.getShortDesc()}"></p>
             <h4>Created date</h4>
-            <p th:text="${vm.getInfo().getCreatedDate().toString()}"></p>
+            <p th:text="${vm.getCreatedDate().toString()}"></p>
+            <h4>Amount</h4>
+            <p th:text="${vm.getAmount()}"></p>
         </div>
+    </div>
+    <div class="row" th:unless="${vm != null}">
+        <h2>Không có sản phẩm nào</h2>
+        <button class="btn btn-default"><a th:href="@{/}">Quay về trang chủ</a></button>
     </div>
 </div>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<footer th:include="fragments/footer :: footer"></footer>
 
 </body>
 </html>

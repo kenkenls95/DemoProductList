@@ -1,0 +1,1 @@
+web: java -jar target/DemoProductList-1.0-SNAPSHOT.jar

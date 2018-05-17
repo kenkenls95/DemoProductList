@@ -89,17 +89,38 @@ public class ProductApiController {
     }
 
     @GetMapping("/findbyname/{productName}")
-    public BaseApiResult listproductbyname(@PathVariable String productName) {
+    public BaseApiResult listProductByName(@PathVariable String productName) {
         DataApiResult result = new DataApiResult();
         try{
-            List<Product> existProduct = productService.findbyName(productName);
-            if(existProduct == null) {
+            Object existProduct = productService.findByName(productName);
+            ModelMapper modelMapper = new ModelMapper();
+            ProductDetailModel productDetailModel = modelMapper.map(existProduct,ProductDetailModel.class);
+            if(productDetailModel == null) {
                 result.setSuccess(false);
                 result.setMessage("Can't find this product");
             } else {
                 result.setSuccess(true);
                 }
-                result.setData(existProduct);
+                result.setData(productDetailModel);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
+
+    @GetMapping("/getallname")
+    public BaseApiResult getAllName() {
+        DataApiResult result = new DataApiResult();
+        try{
+            List<String> existName = productService.getAllName();
+            if(existName == null) {
+                result.setSuccess(false);
+                result.setMessage("Can't find this product");
+            } else {
+                result.setSuccess(true);
+            }
+            result.setData(existName);
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMessage(e.getMessage());

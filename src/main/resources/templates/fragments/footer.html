@@ -68,20 +68,35 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js"></script>
+
             <script>
-                $(document).ready(function () {
-                    switch ($('#role').text()){
-                        case "[ROLE_ADMIN]":
-                            $('#role').text("ROLE : Admin");
-                            $('#role').attr('href','/admin');
-                            break;
-                        case "[ROLE_USER]":
-                            $('#role').text("ROLE : User");
-                            $('#role').attr('href','/user');
-                            break;
-                    }
-                })
+                var ajax = new XMLHttpRequest();
+                ajax.open("GET", "http://localhost:8080/api/product/getallname", true);
+                ajax.onload = function() {
+                    var list = JSON.parse(ajax.responseText).data
+                    new Awesomplete(document.querySelector("#ajax-example input"),{ list: list });
+                };
+                ajax.send();
             </script>
+            <script>
+            $(document).ready(function () {
+            switch ($('#role').text()){
+            case "[ROLE_ADMIN]":
+            $('#role').text("ROLE : Admin");
+            $('#role').attr('href','/admin');
+            break;
+            case "[ROLE_USER]":
+            $('#role').text("ROLE : User");
+            $('#role').attr('href','/user');
+            break;
+            }
+            })
+            </script>
+            <script>
+
+            </script>
+
         </footer>
     </div>
 

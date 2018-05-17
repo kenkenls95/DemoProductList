@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
     <style>
         .carousel-inner > .item > img {
             width: 100%;
@@ -18,6 +19,59 @@
         .carousel {
             margin-bottom: 15px;
         }
+
+        /*.auto {*/
+            /*box-sizing: border-box;*/
+        /*}*/
+        /*body {*/
+            /*font: 16px Arial;*/
+        /*}*/
+        /*.autocomplete {*/
+            /*!*the container must be positioned relative:*!*/
+            /*position: relative;*/
+            /*display: inline-block;*/
+        /*}*/
+        /*input {*/
+            /*border: 1px solid transparent;*/
+            /*background-color: #f1f1f1;*/
+            /*padding: 10px;*/
+            /*font-size: 16px;*/
+        /*}*/
+        /*input[type=text] {*/
+            /*background-color: #f1f1f1;*/
+            /*width: 100%;*/
+        /*}*/
+        /*input[type=submit] {*/
+            /*background-color: DodgerBlue;*/
+            /*color: #fff;*/
+            /*cursor: pointer;*/
+        /*}*/
+        /*.autocomplete-items {*/
+            /*position: absolute;*/
+            /*border: 1px solid #d4d4d4;*/
+            /*border-bottom: none;*/
+            /*border-top: none;*/
+            /*z-index: 99;*/
+            /*!*position the autocomplete items to be the same width as the container:*!*/
+            /*top: 100%;*/
+            /*left: 0;*/
+            /*right: 0;*/
+        /*}*/
+        /*.autocomplete-items div {*/
+            /*padding: 10px;*/
+            /*cursor: pointer;*/
+            /*background-color: #fff;*/
+            /*border-bottom: 1px solid #d4d4d4;*/
+        /*}*/
+        /*.autocomplete-items div:hover {*/
+            /*!*when hovering an item:*!*/
+            /*background-color: #e9e9e9;*/
+        /*}*/
+        /*.autocomplete-active {*/
+            /*!*when navigating through the items using the arrow keys:*!*/
+            /*background-color: DodgerBlue !important;*/
+            /*color: #ffffff;*/
+        /*}*/
 
     </style>
 </head>
@@ -48,24 +102,29 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span sec:authentication="name"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="role" href="#"><span sec:authentication="principal.authorities"></span></a></li>
-                                <script>
-                                    $(document).ready(function () {
-                                        if($(".role") == "[ROLE_ADMIN]"){
-                                            $(".role").innerText = "ROLE : Admin"
-                                            $(".role").attr('href',"/admin")
-                                        }
-                                    })
-                                </script>
+
                                 <li class="divider"></li>
                                 <li><a th:href="@{/logout}">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form action="#" th:action="@{/product/search}" th:object="${product}" method="post" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm">
+                            <section id="ajax-example">
+                                <div class="awesomplete">
+                                    <input name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
+                                    <ul role="listbox" id="awesomplete_list_6" hidden="">
+                                        <li aria-selected="false" id="awesomplete_list_6_item_0"><mark>Ca</mark>nada</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_1"><mark>Ca</mark>meroon</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_2">Madagas<mark>ca</mark>r</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_3">New <mark>Ca</mark>ledonia</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_4">Central Afri<mark>ca</mark>n Republic</li>
+                                    </ul>
+                                    <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true" hidden="">No results found</span>
+                                </div>
+                            </section>
                         </div>
-                        <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                        <button type="submit" value="Submit" class="btn btn-default">Search</button>
                     </form>
                 </div>
             </div>

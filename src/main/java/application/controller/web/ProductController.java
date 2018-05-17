@@ -3,18 +3,18 @@ package application.controller.web;
 import application.data.model.Product;
 import application.data.service.ProductService;
 import application.model.ProductDetailModel;
-import application.viewmodel.productindex.ProductIndexVM;
+import application.model.ProductName;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
+
+import java.util.List;
 
 /**
  * Created by ManhNguyen on 1/30/18.
@@ -35,21 +35,29 @@ public class ProductController extends BaseController {
         System.out.println("-----------------------------------------");
         System.out.println(currentPageCookie);
 
-        ProductIndexVM vm = new ProductIndexVM();
 
         Product existProduct = productService.findOne(productId);
         if(existProduct != null) {
             ModelMapper modelMapper = new ModelMapper();
             ProductDetailModel productDetailModel = modelMapper.map(existProduct, ProductDetailModel.class);
-            vm.setInfo(productDetailModel);
 
-            this.setLayoutHeaderVM(vm);
-
-            model.addAttribute("vm", vm);
+            model.addAttribute("vm", productDetailModel);
             return "product/index";
         } else {
             throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
         }
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String saveStudent(@ModelAttribute ProductName productName, BindingResult errors, Model model) {
+        try {
+            Object existProduct =  productService.findByName(productName.getName());
+            ModelMapper modelMapper = new ModelMapper();
+            ProductDetailModel productDetailModel = modelMapper.map(existProduct, ProductDetailModel.class);
+            model.addAttribute("vm",productDetailModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "product/index";
+    }
 }
