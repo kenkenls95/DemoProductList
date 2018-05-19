@@ -1,6 +1,7 @@
 package application.data.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,18 @@ public class Category {
 
     @Column(name = "shortdesc")
     private String desc;
+
+    @Column(name = "parentid")
+    @Null
+    private int parentid;
+
+    public int getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
+    }
 
     public int getId() {
         return id;

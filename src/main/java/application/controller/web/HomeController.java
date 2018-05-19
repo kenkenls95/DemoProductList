@@ -1,12 +1,15 @@
 package application.controller.web;
 
-import application.constant.Constant;
+
+
 import application.data.model.Category;
 import application.data.model.PaginableItemList;
 import application.data.model.Product;
 import application.data.service.CategoryService;
 import application.data.service.ProductService;
 import application.model.CategoryDataModel;
+import application.model.CategoryDetailModel;
+import application.model.CategoryInfor;
 import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import application.viewmodel.homelanding.BannerVM;
@@ -21,10 +24,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
+
+import static application.constant.Constant.DEFAULT_PARENT_ID;
 
 /**
  * Created by ManhNguyen on 10/11/17.
@@ -80,21 +84,32 @@ public class HomeController extends BaseController {
 
         this.setLayoutHeaderVM(vm);
 
+        ModelMapper modelMapper = new ModelMapper();
+
+
         ArrayList<BannerVM> listBanners = new ArrayList<>();
+        listBanners.add(new BannerVM("https://media.static-adayroi.com/sys_master/h75/hac/15516679143454.jpg", "Tươi"));
         listBanners.add(new BannerVM("http://www.creavini.it/wp-content/uploads/2017/05/uva.png", "Nho Mỹ"));
         listBanners.add(new BannerVM("https://edeka-tank.de/wp-content/uploads/2017/01/Fotolia_43618946_Tomaten_mood.jpg", "Cà Chua"));
         listBanners.add(new BannerVM("https://dalat.net.vn/images/uploads/gia-dau-tay-da-lat-2.jpg", "Dâu Tây"));
 
         ArrayList<MenuItemVM> listVtMenuItems = new ArrayList<>();
-        listVtMenuItems.add(new MenuItemVM("Menu aside 01", "/"));
-        listVtMenuItems.add(new MenuItemVM("Menu aside 02", "/"));
-        listVtMenuItems.add(new MenuItemVM("Menu aside 03", "/"));
-        listVtMenuItems.add(new MenuItemVM("Menu aside 04", "/"));
-        listVtMenuItems.add(new MenuItemVM("Menu aside 05", "/"));
+        for(CategoryInfor cat : getCategories()){
+            listVtMenuItems.add(new MenuItemVM(cat.getParentname(),"/"));
+            ArrayList<CategoryDetailModel> categoryDetailModels = new ArrayList<>();
+            if(cat.getCategories() != null){
+                for(CategoryDetailModel categoryDetailModel : cat.getCategories()){
+                    categoryDetailModels.add(modelMapper.map(categoryDetailModel,CategoryDetailModel.class));
+                }
+                for(CategoryDetailModel categoryDetailModel : categoryDetailModels){
+                    listVtMenuItems.get(cat.getParentid() - DEFAULT_PARENT_ID).getChildren().add(new MenuItemVM(categoryDetailModel.getName(),"/"));
+                }
+            }
+        }
+
 
         PaginableItemList<Product> paginableItemListHot = productService.getListProducts(8, 0);
         ArrayList<ProductVM> listHotProductVMs = new ArrayList<>();
-        ModelMapper modelMapper = new ModelMapper();
         for(Product product : paginableItemListHot.getListData()) {
             ProductVM productVM = modelMapper.map(product, ProductVM.class);
             listHotProductVMs.add(productVM);
@@ -136,4 +151,48 @@ public class HomeController extends BaseController {
     public String user(){
         return "/user";
     }
+
+
+    public ArrayList<CategoryInfor> getCategories(){
+        ModelMapper modelMapper = new ModelMapper();
+        ArrayList<CategoryInfor> categoryInforArrayList = new ArrayList<>();
+        try {
+            List<Category> categoryList = categoryService.fillAll();
+            ArrayList<CategoryDetailModel> categoryDetailModelArrayList = new ArrayList<>();
+            for(Category cat : categoryList){
+                categoryDetailModelArrayList.add(modelMapper.map(cat,CategoryDetailModel.class));
+            }
+            for (CategoryDetailModel cat : categoryDetailModelArrayList){
+                CategoryInfor categoryInfor = new CategoryInfor();
+                if(getChil(cat.getId()).size() > 0){
+                    categoryInfor.setCategories(getChil(cat.getId()));
+                    categoryInfor.setParentname(cat.getName());
+                    categoryInfor.setParentid(cat.getId());
+                    categoryInforArrayList.add(categoryInfor);
+                }else if(getChil(cat.getId()).size() == 0 && cat.getParentid() == 0) {
+                    categoryInfor.setCategories(null);
+                    categoryInfor.setParentname(cat.getName());
+                    categoryInfor.setParentid(cat.getId());
+                    categoryInforArrayList.add(categoryInfor);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categoryInforArrayList;
+    }
+
+
+    public ArrayList<CategoryDetailModel> getChil(int id){
+        List<Object[]> list = categoryService.findByParentid(id);
+        ArrayList<CategoryDetailModel> categoryDetailModels = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        for(Object cat : list){
+            categoryDetailModels.add(modelMapper.map(cat,CategoryDetailModel.class));
+        }
+        return categoryDetailModels;
+    }
+
+
 }

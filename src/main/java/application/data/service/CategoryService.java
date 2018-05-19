@@ -31,6 +31,13 @@ public class CategoryService {
         }
     }
 
+    public List<Category> fillAll(){
+        return categoryRepository.findAll();
+    }
+
+    public List<Object[]> findByParentid(int id){
+        return categoryRepository.findCategoryByParentid(id);
+    }
     public Category getOne(int categoryId) {
         return categoryRepository.getOne(categoryId);
     }
