@@ -36,12 +36,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("-----configure(HttpSecurity http)");
 
         http.authorizeRequests()
-                .antMatchers("/","/about", "/register-user","/product/detail/**","/api/product/**","/api/category/**","/product/search/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/","/about","/rules", "/register-user","/product/**","/api/product/**","/api/category/**","/category/**").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/admin").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
@@ -58,6 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**")
                 .antMatchers("/static/**")
                 .antMatchers("/publics/**")
+                .antMatchers("/img/**")
                 .antMatchers(HttpMethod.POST, "/api/product/**");
     }
 

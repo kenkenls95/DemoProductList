@@ -102,7 +102,7 @@ public class HomeController extends BaseController {
                     categoryDetailModels.add(modelMapper.map(categoryDetailModel,CategoryDetailModel.class));
                 }
                 for(CategoryDetailModel categoryDetailModel : categoryDetailModels){
-                    listVtMenuItems.get(cat.getParentid() - DEFAULT_PARENT_ID).getChildren().add(new MenuItemVM(categoryDetailModel.getName(),"/"));
+                    listVtMenuItems.get(cat.getParentid() - DEFAULT_PARENT_ID).getChildren().add(new MenuItemVM(categoryDetailModel.getName(),"/category/detail/"+categoryDetailModel.getId()));
                 }
             }
         }
@@ -150,6 +150,11 @@ public class HomeController extends BaseController {
     @GetMapping("/user")
     public String user(){
         return "/user";
+    }
+
+    @GetMapping("/rules")
+    public String rules(){
+        return "/rules";
     }
 
 

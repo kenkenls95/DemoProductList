@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/policy.css}">
+
+    <title>Điều khoản và dịch vụ</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header_top"></div>
+<div th:replace="fragments/header :: header"></div>
+<div class="policy container">
+    <h2>Chính sách giao hàng</h2>
+    <h3>I. QUY ĐỊNH PHẠM VI GIAO HÀNG</h3>
+    <p>KC Shopping phục vụ giao hàng cho Khách hàng tại các khu vực sau (*):</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Loại hàng</th>
+                <th>Phạm vi áp dụng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Bình thường</td>
+                <td rowspan="2">Toàn quốc</td>
+            </tr>
+            <tr>
+                <td>Cồng kềnh (không lắp đặt)</td>
+            </tr>
+            <tr>
+                <td>Cồng kềnh (có lắp đặt)</td>
+                <td>Hà Nội, Hồ Chí Minh, Hải Phòng, Việt Trì, Biên Hòa, Nha Trang, Đà Nẵng, Cần Thơ (**)</td>
+            </tr>
+            <tr>
+                <td>Tươi sống</td>
+                <td>Trong phạm vi bán kính 5km từ siêu thị Vinmart phục vụ online</td>
+            </tr>
+            <tr>
+                <td>Dịch vụ voucher giấy (***)</td>
+                <td>Hà Nội, Hồ Chí Minh (chỉ giao tuyến quận, không giao tuyến huyện)</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="ghi-chu distance-1">
+        <p>(*) Đơn hàng sẽ được giao tới tận nhà của khách hàng, ngoại trừ các trường hợp như khu vực văn phòng hạn chế ra vào, khu vực chung cư/cao tầng (chỉ phục vụ giao tại chân toà nhà,)</p>
+        <p>(**) Phụ thuộc vào phạm vi phục vụ của nhà cung cấp.</p>
+        <p>(***) Dịch vụ e-voucher: khách hàng nhận mã sử dụng qua tin nhắn/email sau khi thanh toán thành công.</p>
+    </div>
+    <h3>II. QUY ĐỊNH  KIỂM TRA HÀNG HOÁ KHI GIAO NHẬN</h3>
+    <p>Nhằm đáp ứng nhu cầu và bảo vệ tối đa quyền lợi khách hàng khi sử dụng dịch vụ, KC Shopping đã triển khai chính sách hỗ trợ việc xem và kiểm tra hàng hóa khi giao hàng. Khách hàng khi nhận phải kiểm tra sơ bộ và ký vào Danh sách giao hàng, đồng thời giữ lại Phiếu giao hàng đi kèm theo Sản Phẩm. Khi nhận hàng từ nhân viên giao nhận, Khách hàng có thể mở niêm phong thùng hàng của KC Shopping để kiểm tra hàng hóa (số lượng, màu sắc, tình trạng, chủng loại, kích cỡ…)</p>
+    <p>Lưu ý: việc kiểm tra sẽ không bao gồm mở seal (niêm phong) riêng của sản phẩm (gây ảnh hưởng đến tem dán niêm phong, bao bì sản phẩm,...) hay kiểm tra sâu (cắm điện, sử dụng thử, ghi chép dữ liệu,...).</p>
+    <p>Trong trường hợp đồng kiểm theo yêu cầu của Khách Hàng, nhân viên giao nhận sẽ ký xác nhận vào Phiếu giao hàng. Nếu nhân viên giao nhận không thực hiện theo yêu cầu của khách hàng thì khách hàng có thể từ chối nhận Sản Phẩm tại thời điểm đó. KC Shopping khuyến khích Khách Hàng sử dụng tối đa quyền lợi trên trước khi nhận hàng để được hỗ trợ tốt nhất trong mọi tình huống nếu phát sinh yêu cầu đổi trả.</p>
+    <h3>III. QUY ĐỊNH THỜI GIAN GIAO HÀNG</h3>
+    <h4>1. Thời gian phục vụ giao hàng:</h4>
+    <p class="distance-1">- Đối với thực phẩm tươi sống, voucher/giấy chứng nhận dịch vụ: phục vụ giao hàng 7 ngày trong tuần (trừ ngày Lễ, Tết).</p>
+    <p class="distance-1">- Đối với hàng hóa khác: phục vụ giao hàng từ thứ 2 đến thứ 7 (trừ ngày Lễ, Tết).</p>
+    <h4>2. Thời gian giao hàng:</h4>
+    <h5 class="distance-1">2.1 Thời gian giao hàng đối với từng loại hàng:</h5>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th rowspan="2">LOẠI HÀNG</th>
+                <th colspan="2">NHÀ CUNG CẤP CÙNG TỈNH, THÀNH PHỐ VỚI ĐỊA ĐIỂM GIAO HÀNG</th>
+                <th rowspan="2">NHÀ CUNG CẤP VÀ ĐỊA ĐIỂM GIAO HÀNG KHÁC TỈNH, THÀNH PHỐ</th>
+            </tr>
+            <tr>
+                <th>Giao hàng Nội thành (**)</th>
+                <th>Giao hàng Ngoại thành (**)</th>
+            </tr>
+            </thead>
+            <tbody align="center">
+            <tr>
+                <td>Bình thường</td>
+                <td width="230pt">1 - 2 ngày</td>
+                <td>2 - 4 ngày</td>
+                <td>2 - 5 ngày (*)</td>
+            </tr>
+            <tr>
+                <td>Cồng kềnh không lắp đặt</td>
+                <td>1 - 2 ngày</td>
+                <td>2 - 4 ngày</td>
+                <td>2 - 5 ngày</td>
+            </tr>
+            <tr>
+                <td>Cồng kềnh có lắp đặt</td>
+                <td>1 - 2 ngày</td>
+                <td>2 - 4 ngày</td>
+                <td>Chưa triển khai</td>
+            </tr>
+            <tr>
+                <td>Tươi sống</td>
+                <td>Giao hàng theo các khung 120 phút (chi tiết tại mục 2.2)</td>
+                <td>Chưa triển khai</td>
+                <td>Chưa triển khai</td>
+            </tr>
+            <tr>
+                <td>Dịch vụ voucher giấy</td>
+                <td>1 ngày</td>
+                <td>Chưa triển khai</td>
+                <td>Chưa triển khai</td>
+            </tr>
+            <tr>
+                <td>Dịch vụ e-voucher</td>
+                <td colspan="3">Nhận mã sử dụng qua tin nhắn/email ngay sau khi thanh toán thành công</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="ghi-chu distance-1">
+        <p>(*) Thời gian giao hàng đối với khu vực khác tỉnh/ thành phố có thể kéo dài từ 5 – 7 ngày, trong trường hợp hàng hóa nằm trong danh mục bị cấm vận chuyển bằng đường hàng không. Quý khách sẽ nhận được thông tin về thời gian hẹn sau trong quá trình đặt hàng trên website.</p>
+    </div>
+    <p>Danh mục hàng hóa cấm vận chuyển bằng đường hàng không được quy định:</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>TÊN HÀNG HOÁ</th>
+                <th>GHI CHÚ</th>
+            </tr>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Ắc quy (khối lượng trên 100gram hoặc thể tích trên 100ml)</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Pin, sạc dự phòng, bình xăng (gas), loa bluetooth, micro không dây (các sản phẩm sử dụng Pin), tinh dầu tràm…</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Kim loại (khối lượng trên 200gram)</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Dụng cụ chứa ga (bật lửa) có thể tích trên 50ml</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Các loại gel (kem dưỡng, mỹ phẩm, nước hoa) có thể tích trên 50ml</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Rượu, bia, chất có cồn thể tích trên 200ml</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Nước các loại - thể tích trên 500ml</td>
+                <td>Cấm vận chuyển đường hàng không</td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
+    <div class="ghi-chu distance-1">
+        <p> (**) Chi tiết phân nội thành, ngoại thành:</p>
+
+        <p class="bold">Tại Hà Nội:</p>
+
+        <p class="distance-2"><b>Khu vực nội thành:</b> quận Cầu Giấy, Hoàn Kiếm, Thanh Xuân, Ba Đình, Tây Hồ, Hai Bà Trưng, Đống Đa, Hoàng Mai, Long Biên, Hà Đông, Nam Từ Liêm và Bắc Từ Liêm.</p>
+
+        <p class="distance-2"><b>Khu vực ngoại thành:</b> huyện Thạch Thất, Ứng Hòa, Đan Phượng, Đông Anh, Gia Lâm, Hoài Đức, Sóc Sơn, Ba Vì, Chương Mỹ, Mê Linh, Mỹ Đức, Phúc Thọ, Phú Xuyên, Quốc Oai, Thanh Oai, Thường Tín, Thanh Trì, Sơn Tây.</p>
+
+        <p class="bold">Tại Tp. Hồ Chí Minh:</p>
+
+        <p class="distance-2"><b>Khu vực nội thành:</b> quận 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Tân Bình, Tân Phú, Phú Nhuận, Bình Thạnh, Gò Vấp, Thủ Đức, Bình Tân.</p>
+
+        <p class="distance-2"><b>Khu vực ngoại thành:</b> huyện Hóc Môn, Bình Chánh, Nhà Bè, Củ Chi, Cần Giờ.</p>
+
+        <p><b>Tại các tỉnh, thành phố khác:</b> tùy theo phạm vi phục vụ của đơn vị giao nhận.</p>
+    </div>
+    <h5 class="distance-1">2.2 Chi tiết khung giao hàng Thực phẩm tươi sống:</h5>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th colspan="2">Địa điểm giao hàng cùng tỉnh, thành phố với nhà cung cấp <br>
+                    <div class="ghi-chu">Giao hàng theo các khung 120 phút</div></th>
+            </tr>
+            <tr>
+                <th>THỜI ĐIỂM XÁC NHẬN ĐƠN HÀNG</th>
+                <th>THỜI ĐIỂM GIAO HÀNG</th>
+            </tr>
+            </thead>
+            <tbody align="center">
+            <tr>
+                <td>Từ 17:00 ngày hôm trước tới 9:00 hôm nay</td>
+                <td>Trước 11:00</td>
+            </tr>
+            <tr>
+                <td>Trước 11:00</td>
+                <td>Trước 13:00</td>
+            </tr>
+            <tr>
+                <td>Trước 13:00</td>
+                <td>Trước 15:00</td>
+            </tr>
+            <tr>
+                <td>Trước 15:00</td>
+                <td>Trước 17:00</td>
+            </tr>
+            <tr>
+                <td>Trước 17:00</td>
+                <td>Trước 20:00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>IV. QUY ĐỊNH PHÍ GIAO HÀNG</h3>
+    <h4>1. Phí giao hàng</h4>
+    <p>Phí giao hàng của đơn hàng = Phí giao hàng tiêu chuẩn + Phụ phí cồng kềnh (nếu có)</p>
+    <h4>2. Phí giao hàng tiêu chuẩn</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ĐỊA CHỈ NHẬN HÀNG (*)</th>
+                <th>PHÍ GIAO HÀNG TIÊU CHUẨN</th>
+                <th>GIÁ TRỊ ĐƠN HÀNG TỐI THIỂU ĐỂ ĐƯỢC MIỄN PHÍ GIAO HÀNG TIÊU CHUẨN</th>
+            </tr>
+            </thead>
+            <tbody  align="center">
+            <tr>
+                <td>Cùng tỉnh, thành phố với nhà cung cấp</td>
+                <td>35.000đ</td>
+                <td>Từ 200.000đ</td>
+            </tr>
+            <tr>
+                <td>Cùng miền với nhà cung cấp</td>
+                <td>45.000đ</td>
+                <td>Từ 500.000đ</td>
+            </tr>
+            <tr>
+                <td>Khác miền với nhà cung cấp</td>
+                <td>65.000đ</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Gồm cả Nội tỉnh và khác miền với nhà cung cấp</td>
+                <td>100.000đ</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Gồm cả Cùng miền liên tỉnh và khác miền với nhà cung cấp</td>
+                <td>110.000đ</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="ghi-chu distance-1">
+        <p>
+            (*) Chi tiết:</p>
+
+        <p><b>Các tỉnh miền Bắc bao gồm:</b> Hà Nội, Hải Phòng, Bắc Cạn, Bắc Giang, Bắc Ninh, Cao Bằng, Điện Biên, Hà Giang, Hà Nam, Hải Dương, Hòa Bình, Hưng Yên, Lai Châu, Lạng Sơn, Lào Cai, Nam Định, Nghệ An, Ninh Bình, Phú Thọ, Quảng Ninh, Sơn La, Thái Bình, Thái Nguyên, Thanh Hóa, Tuyên Quang, Vĩnh Phúc, Yên Bái.</p>
+
+        <p><b>Các tỉnh miền Trung bao gồm:</b> Đà Nẵng, Bình Định, Gia Lai, Hà Tĩnh, Huế, Khánh Hòa, Kon Tum, Phú Yên, Quảng Bình, Quảng Nam, Quảng Ngãi, Quảng Trị.</p>
+
+        <p><b>Các tỉnh miền Nam bao gồm:</b> Hồ Chí Minh, An Giang, Bạc Liêu, Bến Tre, Bình Dương, Bình Phước, Bình Thuận, Cà Mau, Cần Thơ, Đăk Lak, Đăk Nông, Đồng Nai, Đồng Tháp, Hậu Giang, Kiên Giang, Lâm Đồng, Long An, Ninh Thuận, Sóc Trăng, Tây Ninh, Tiền Giang, Trà Vinh, Vĩnh Long, Vũng Tàu.</p>
+    </div>
+    <h4>3. Phụ phí cồng kềnh (áp dụng cho dịch vụ giao hàng của KC Shopping)</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ĐỊA CHỈ NHẬN HÀNG (**)</th>
+                <th>TRÊN 2 KG (*)</th>
+            </tr>
+            </thead>
+            <tbody align="center">
+            <tr>
+                <td>Trung tâm tỉnh, thành phố cùng với nhà cung cấp</td>
+                <td>Miễn phí</td>
+            </tr>
+            <tr>
+                <td>Ngoại thành tỉnh, thành phố với nhà cung cấp</td>
+                <td rowspan="2">6.500đ cho mỗi kg phụ trội</td>
+            </tr>
+            <tr>
+                <td>Cùng miền với nhà cung cấp</td>
+            </tr>
+            <tr>
+                <td>Khác miền với nhà cung cấp</td>
+                <td>15.900đ cho mỗi kg phụ trội</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="ghi-chu distance-1">
+        <p>
+            (*) Trọng lượng để tính phụ phí cồng kềnh tính bằng giá trị lớn hơn giữa trọng lượng thể tích quy đổi và khối lượng thực tế của sản phẩm, trong đó:</p>
+
+        <p>Trọng lượng thể tích quy đổi = dài x rộng x cao / 6000 (kg) – kích thước tính theo đơn vị cm</p>
+
+        <p>Phụ phí chỉ áp dụng với sản phẩm bình thường hoặc cồng kềnh, có tổng trọng lượng theo từng miền vượt 2kg. Tổng trọng lượng phụ trội sẽ được tính theo block 1kg.</p>
+
+        <p>Trường hợp đơn hàng bao gồm sản phẩm cùng miền và khác miền với nhà cung cấp, phí được tính bằng tổng phụ phí cùng miền cộng khác miền.</p>
+
+        <p>Phụ phí cồng kềnh không áp dụng trong trường hợp nhà cung cấp tự giao hàng.</p>
+
+        <p>(**) Nội thành, ngoại thành của các tỉnh, thành phố được quy định tại mục III - 2.1.
+        </p>
+    </div>
+    <footer th:include="fragments/footer :: footer"></footer>
+</div>
+</body>
+</html>

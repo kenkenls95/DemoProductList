@@ -17,4 +17,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     List<Object[]> findCategoryByParentid(@Param("parentid") int parentid);
 
     List<Category> findAll();
+
+    @Query("select u from tbl_category u where u.id = :id")
+    Category findById(@Param("id") int id);
 }

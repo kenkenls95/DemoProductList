@@ -133,6 +133,7 @@ public class ProductApiController {
         ArrayList<Product> listProducts= new ArrayList<>();
         Random random = new Random();
         BaseApiResult result = new BaseApiResult();
+        int list[] = {1,2,3,4,5,6,7};
 
         for(int i = 1; i <= 100; ++i) {
             Product p = new Product();
@@ -140,7 +141,8 @@ public class ProductApiController {
             p.setName("Product " + i);
             p.setShortDesc("Description for product " + i);
             p.setImage(images[random.nextInt(images.length)]);
-            p.setCategory(categoryService.getOne(1));
+            p.setCategory(categoryService.getOne(list[random.nextInt(list.length)]));
+            p.setPrice(random.nextInt(100));
             p.setAmount(random.nextInt(100));
             listProducts.add(p);
         }

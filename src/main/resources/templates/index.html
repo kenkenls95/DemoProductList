@@ -17,7 +17,7 @@
 <div th:replace="fragments/header :: header"></div>
 <div th:replace="fragments/header :: header_banner"></div>
 <div class="container">
-    <div class="spr-banner">
+    <div class="spr-banner hidden-xs">
         <div id="bannerSlider" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -76,6 +76,24 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <p>
+                                    <a class="list-group-item" th:if="${menuItem.getChildren().size() == 0}" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <span th:href="${menuItem.getLink()}"
+                                              th:text="${menuItem.getText()}"></span>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="list-group-item" th:unless="${menuItem.getChildren().size() == 0}" data-toggle="collapse" th:href="${'#collapse'+menuItem.getText()}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <span th:href="${menuItem.getLink()}"></span>
+                                        <span th:text="${menuItem.getText()}"></span> <span class="caret"></span>
+                                    </a>
+                                </p>
+                                <div th:each="child : ${menuItem.getChildren()}" class="collapse" th:id="${'collapse'+menuItem.getText()}">
+                                    <div th:href="${child.getLink()}"
+                                         th:text="${child.getText()}" class="card card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                    </div>
+                                </div>
 
                                 <!--<div id="accordion">-->
                                     <!--<div class="card">-->
@@ -119,7 +137,7 @@
                                 <div class="item-product">
                                     <div class="item-product__inner">
                                         <div class="item-product__image">
-                                            <a class="item-product__img__link" th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
                                                 <img th:src="${product.getImage()}" alt="">
                                             </a>
                                         </div>

@@ -11,6 +11,7 @@ public class ProductVM {
     private String image;
     private String shortDesc;
     private int amount;
+
     private CategoryDataModel category;
 
     public int getAmount() {

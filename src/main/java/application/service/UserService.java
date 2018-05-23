@@ -9,6 +9,8 @@ import application.data.model.UserRole;
 import application.data.repository.IRoleRepository;
 import application.data.repository.IUserRepository;
 import application.data.repository.IUserRoleRepository;
+import application.model.UserRoleModel;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,5 +103,11 @@ public class UserService {
             return (listUserRoles.stream().filter(userRole -> userRole.getRoleId() == role.getId()).findFirst().orElse(null) != null);
         }).collect(Collectors.toList());
     }
+
+//    public String findRolesOfUser(String userid){
+//        ModelMapper modelMapper = new ModelMapper();
+//        UserRoleModel userRoleModel = modelMapper.map(userRoleRepository.findRolesOfUser(userid),UserRoleModel.class);
+//        return roleRepository.getRole(userRoleModel.getUserid());
+//    }
 }
 

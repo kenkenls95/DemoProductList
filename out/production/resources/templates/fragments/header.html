@@ -10,183 +10,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
+        <link rel="stylesheet" th:href="@{/css/header-footer.css}">
     <style>
-        .carousel-inner > .item > img {
-            width: 100%;
-            height: 300px;
-        }
-        .inline {
-            float: left;
-            font-size: 16px;
-            text-align: center;
-            margin-right: 20px;
-        }
-        .inline i {
-            background: #eee;
-            padding: 15px;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 19px;
-            width: 45px;
-            height: 45px;
-            margin-bottom: 10px
-        }
-        .inline span {
-            font-weight: 700;
-            color: #666;
-        }
-        .top-cart-row-container i {
-            font-size: 50px;
-        }
-        .banner-top.row {
-            margin: 10px 0;
-        }
-        .banner-top img {
-            max-width: 100%;
-            height: auto;
-        }
-        header .top-cart-row .top-cart-holder {
-            position: relative;
-            display: inline-block;
-            vertical-align: top;
-        }
-        header .top-cart-row .top-cart-holder .checkout a {
-            display: inline-block;
-        }
-        header .top-cart-row .top-cart-holder .dropdown-menu {
-            width: 332px;
-            left: -170px;
-            top: 65px;
-            padding: 16px 0 0 0;
-        }
-        header .top-cart-row .top-cart-holder li {
-            border-bottom: 1px solid #e0e0e0;
-        }
-        header .top-cart-row .top-cart-holder .basket-item {
-            padding: 11px 28px;
-            position: relative;
-        }
-        header .top-cart-row .top-cart-holder .basket-item .thumb {
-            border: 1px solid #e0e0e0;
-            text-align: center;
-            display: inline-block;
-            vertical-align: top;
-        }
-        header .top-cart-row .top-cart-holder .basket-item .title {
-            font-weight: 100;
-            line-height: 26px;
-        }
-        header .top-cart-row .top-cart-holder .basket-item .price {
-            font-weight: 700 !important;
-            font-weight: 800;
-        }
-        header .top-cart-row .top-cart-holder .basket-item .close-btn {
-            display: inline-block;
-            position: absolute;
-            right: 8%;
-            top: 50%;
-        }
-        header .top-cart-row .top-cart-holder .basket-item .close-btn:after {
-            color: #3d3d3d;
-            content: "\f00d";
-            font-family: fontawesome;
-        }
-        header .top-cart-row .top-cart-holder .basket-item-count {
-            position: relative;
-            display: inline-block;
-            vertical-align: top;
-        }
-        header .top-cart-row .top-cart-holder .basket-item-count .count {
-            position: absolute;
-            color: #fff;
-            top: 5px;
-            right: 12px;
-            border-radius: 100px;
-            width: 21px;
-            height: 21px;
-            line-height: 21px;
-            font-size: 12px;
-            font-weight: bold;
-            text-align: center;
-        }
-        header .top-cart-row .top-cart-holder .dropdown-toggle {
-            display: block;
-            padding: 0;
-        }
-        header .top-cart-row .top-cart-holder .dropdown-toggle .lbl {
-            font-size: 14px;
-            line-height: 21px;
-            color: #3d3d3d;
-            display: block;
-        }
-        header .top-cart-row .top-cart-holder .dropdown-toggle .total-price {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        header .top-cart-row .top-cart-holder .dropdown-toggle:after {
-            display: none;
-        }
-        header .top-cart-row .top-cart-holder .total-price-basket {
-            margin: 0 0 0 5px;
-            display: inline-block;
-            vertical-align: top;
-            text-transform: capitalize;
-        }
-        .carousel {
-        }
-
-        /*.auto {*/
-            /*box-sizing: border-box;*/
-        /*}*/
-        /*body {*/
-            /*font: 16px Arial;*/
-        /*}*/
-        /*.autocomplete {*/
-            /*!*the container must be positioned relative:*!*/
-            /*position: relative;*/
-            /*display: inline-block;*/
-        /*}*/
-        /*input {*/
-            /*border: 1px solid transparent;*/
-            /*background-color: #f1f1f1;*/
-            /*padding: 10px;*/
-            /*font-size: 16px;*/
-        /*}*/
-        /*input[type=text] {*/
-            /*background-color: #f1f1f1;*/
-            /*width: 100%;*/
-        /*}*/
-        /*input[type=submit] {*/
-            /*background-color: DodgerBlue;*/
-            /*color: #fff;*/
-            /*cursor: pointer;*/
-        /*}*/
-        /*.autocomplete-items {*/
-            /*position: absolute;*/
-            /*border: 1px solid #d4d4d4;*/
-            /*border-bottom: none;*/
-            /*border-top: none;*/
-            /*z-index: 99;*/
-            /*!*position the autocomplete items to be the same width as the container:*!*/
-            /*top: 100%;*/
-            /*left: 0;*/
-            /*right: 0;*/
-        /*}*/
-        /*.autocomplete-items div {*/
-            /*padding: 10px;*/
-            /*cursor: pointer;*/
-            /*background-color: #fff;*/
-            /*border-bottom: 1px solid #d4d4d4;*/
-        /*}*/
-        /*.autocomplete-items div:hover {*/
-            /*!*when hovering an item:*!*/
-            /*background-color: #e9e9e9;*/
-        /*}*/
-        /*.autocomplete-active {*/
-            /*!*when navigating through the items using the arrow keys:*!*/
-            /*background-color: DodgerBlue !important;*/
-            /*color: #ffffff;*/
-        /*}*/
 
     </style>
 </head>
@@ -228,7 +53,7 @@
                         <div class="form-group">
                             <section id="ajax-example">
                                 <div class="awesomplete">
-                                    <input name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
+                                    <input placeholder="Tìm kiếm" name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
                                     <ul role="listbox" id="awesomplete_list_6" hidden="">
                                         <li aria-selected="false" id="awesomplete_list_6_item_0"><mark>Ca</mark>nada</li>
                                         <li aria-selected="false" id="awesomplete_list_6_item_1"><mark>Ca</mark>meroon</li>
@@ -240,7 +65,7 @@
                                 </div>
                             </section>
                         </div>
-                        <button type="submit" value="Submit" class="btn btn-default">Search</button>
+                        <button type="submit" value="Submit" class="btn btn-default">Tìm kiếm</button>
                     </form>
                 </div>
             </div>
@@ -251,7 +76,9 @@
 <div th:fragment="header_banner">
     <div class="container">
         <div class="banner-top row">
-            <img src="https://media.static-adayroi.com/sys_master/h0c/hfc/15518136893470.jpg" alt="Banner">
+            <a th:href="@{~/rules}">
+                <img src="https://media.static-adayroi.com/sys_master/h0c/hfc/15518136893470.jpg" alt="Chính sách giao hàng">
+            </a>
         </div>
     </div>
 </div>
@@ -263,7 +90,7 @@
 
             <div class="logo">
                 <a th:href="@{/}">
-                    <img alt="logo" src="https://speckyboy.com/wp-content/uploads/2010/11/Image-15.jpg" width="233" height="54">
+                    <img alt="logo" th:src="@{/img/logo-shop.png}" width="233" height="54">
                 </a>
             </div>
         </div>
@@ -279,96 +106,51 @@
             </div><!-- /.contact-row -->
 
         <div class="col-xs-12 col-md-3 top-cart-row no-margin">
-            <div class="top-cart-row-container" style="text-align: right;">
-                <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-                <div class="top-cart-holder dropdown animate-dropdown">
-
-                    <div class="basket">
-
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <div class="basket-item-count">
-                                <span class="count">3</span>
-                                <img src="https://i.imgur.com/vv1vpps.png" alt="" />
+            <div id='cart_popup'>
+                <div class='cart_popup_detail'>
+                    <ul>
+                        <li>
+                            <h2>1 sản phẩm mới được thêm vào giỏ hàng của bạn</h2>
+                            <div class="product-li">
+                                <div class="product-imgx">
+                                    <img src="http://suanff.com/upload/2017/08/04/product/dau-tay-uc.jpg" alt="Dâu tây">
+                                </div>
+                                <div class="product-infox">
+                                    <div class="product-title-x">
+                                        <h3>Dâu tây Thái Lan</h3>
+                                    </div>
+                                    <div class="product-label">
+                                        Thuộc: <a href="">Dâu tây</a>
+                                    </div>
+                                    <div class="product-prize-x">
+                                        100.000 đ
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="total-price-basket">
-                                <span class="lbl">giỏ hàng:</span>
-                                <span class="total-price">
-                        <span class="value">150k VNĐ</span>
-                    </span>
+                        </li>
+                        <li>
+                            <div class="product-2-title">
+                                <h3>Giỏ hàng của tôi</h3><span>(3 sản phẩm)</span>
+                                <a href="#close" class="closex"></a>
                             </div>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img alt="" src="assets/images/products/product-small-01.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title">Thanh Long Thái Lan</div>
-                                            <div class="price">50.000 VNĐ</div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" href="#"></a>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img alt="" src="assets/images/products/product-small-01.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title">Bưởi diễn</div>
-                                            <div class="price">50.000 VNĐ</div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" href="#"></a>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img alt="" src="assets/images/products/product-small-01.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title">Nho da xanh</div>
-                                            <div class="price">50.000 VNĐ</div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" href="#"></a>
-                                </div>
-                            </li>
-
-
-                            <li class="checkout">
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-6">
-                                            <a href="cart.html" class="le-button inverse">Xem giỏ</a>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6">
-                                            <a href="checkout.html" class="le-button">Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div><!-- /.basket -->
-                </div><!-- /.top-cart-holder -->
-            </div><!-- /.top-cart-row-container -->
+                            <div class="product-2-noti">
+                                <p class="text-1">Tạm tính</p>
+                                <p class="text-2">300.000 đ</p>
+                            </div>
+                            <div class="prize-total">
+                                <p class="text-3">Tổng cộng</p>
+                                <p class="text-prize">300.000 đ</p>
+                                <span class="text-vat">Đã bao gồm VAT (nếu có)</span>
+                            </div>
+                            <div class="cart-checkout">
+                                <a href="" class="cart-1">Giỏ hàng</a>
+                                <a href="" class="checkout-1">Thanh toán</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#cart_popup" class="check">Thêm giỏ hàng</a>
         </div>
 
     </div>

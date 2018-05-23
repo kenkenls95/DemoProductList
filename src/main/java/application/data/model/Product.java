@@ -29,6 +29,10 @@ public class Product {
     @Column(name = "createddate")
     private Date createdDate;
 
+    @Column(name = "price")
+    private int price;
+
+
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name="categoryid")
     private Category category;
@@ -87,5 +91,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
