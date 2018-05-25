@@ -81,13 +81,16 @@ dependencies {
     compile group: 'org.springframework.social', name: 'spring-social-web', version: '1.1.4.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.social/spring-social-facebook
-    compile group: 'org.springframework.social', name: 'spring-social-facebook', version: '1.1.1.RELEASE'
+    compile group: 'org.springframework.social', name: 'spring-social-facebook', version: '2.0.3.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.social/spring-social-google
     compile group: 'org.springframework.social', name: 'spring-social-google', version: '1.0.0.RELEASE'
 
     // https://mvnrepository.com/artifact/commons-validator/commons-validator
     compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
 
 

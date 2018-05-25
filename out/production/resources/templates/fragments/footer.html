@@ -5,8 +5,8 @@
 </head>
 <body>
 <div th:fragment="footer">
-
-    <div class="footer container" style="margin-top: 100px">
+<div class="footer-surround container-fluid">
+    <div class="footer container">
         <div class="shop-footer row">
             <div class="footer-logo col-md-3">
                 <img th:src="@{/img/logo-shop.png}" alt="KC Shopping">
@@ -68,15 +68,18 @@
             <script>
             $(document).ready(function () {
             switch ($('#role').text()){
-            case "[ROLE_ADMIN]":
+            case "admin":
             $('#role').text("ROLE : Admin");
             $('#role').attr('href','/admin');
             $('#role-menu').append("<a href=\"http://kienvt.herokuapp.com/remote\">Quản lý vườn</a>")
             break;
-            case "[ROLE_USER]":
+            case "user":
             $('#role').text("ROLE : User");
             $('#role').attr('href','/user');
             break;
+                default:
+                    $('#role').text("ROLE : User")
+                    $('#role').attr('href','/user')
             }
             })
             </script>
@@ -86,7 +89,7 @@
 
         </footer>
     </div>
-
+</div>
 </div>
 </body>
 </html>

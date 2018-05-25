@@ -41,7 +41,7 @@
                         <li sec:authorize="isAuthenticated()" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span sec:authentication="name"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a id="role" href="#"><span sec:authentication="principal.authorities"></span></a></li>
+                                <li><a id="role" href="#"><span sec:authentication="name"></span></a></li>
                                 <li id="role-menu"></li>
                                 <li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>
                                 <li class="divider"></li>
@@ -84,28 +84,30 @@
 </div>
 
 <div th:fragment="header_top">
-    <div class="container no-padding" style="margin: 30px auto;">
+    <div class="surrounding-header container-fluid">
+        <div class="container no-padding">
 
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 
             <div class="logo">
                 <a th:href="@{/}">
-                    <img alt="logo" th:src="@{/img/logo-shop.png}" width="233" height="54">
+                    <img alt="logo" th:src="@{/img/logo-shop.png}">
                 </a>
             </div>
         </div>
 
-        <div class="col-xs-12 col-md-6 top-search-holder no-margin">
-            <div class="contact-row">
-                <div class="phone inline">
-                    <i class="fa fa-phone"></i> <br/><span>(+84) 967 664 259</span>
+        <div class="col-xs-12 col-md-9 top-search-holder no-margin">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="phone inline">
+                        <i class="fa fa-phone"></i> <br/><span>(+84) 967 664 259</span>
+                    </div>
+                    <div class="contact inline">
+                        <i class="fa fa-envelope"></i> <br/><span>contact@project.com</span>
+                    </div>
                 </div>
-                <div class="contact inline">
-                    <i class="fa fa-envelope"></i> <br/><span>contact@project.com</span>
-                </div>
-            </div><!-- /.contact-row -->
 
-        <div class="col-xs-12 col-md-3 top-cart-row no-margin">
+        <div class="col-xs-12 col-md-4 top-cart-row no-margin">
             <div id='cart_popup'>
                 <div class='cart_popup_detail'>
                     <ul>
@@ -150,11 +152,12 @@
                     </ul>
                 </div>
             </div>
-            <a href="#cart_popup" class="check">Thêm giỏ hàng</a>
+            <a href="#cart_popup" class="check"></a>
         </div>
-
+            </div>
     </div>
 </div>
+    </div>
 </div>
 <!--<div th:fragment="header_info (vm)">-->
     <!--<div class="container">-->
@@ -170,7 +173,7 @@
         <!--</div>-->
 
         <!--<div class="spr-top-nav">-->
-            <!--<nav class="navbar navbar-default">-->
+            <!--<nav class="navbar navbar-inverse">-->
                 <!--<div class="container-fluid">-->
                     <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
                     <!--<div class="navbar-header">-->
