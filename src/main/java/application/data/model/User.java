@@ -26,10 +26,13 @@ public class User {
     @Transient
     private String password;
 
+    @Column(name = "imageurl")
+    private String imageurl;
+
     public User() {
     }
 
-    public User(String username, String fullname, String email, String passwordHashed, Date createdDate, Date updatedDate, String password) {
+    public User(String username, String fullname, String email, String passwordHashed, Date createdDate, Date updatedDate, String password, String imageurl) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
@@ -37,6 +40,15 @@ public class User {
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.password = password;
+        this.imageurl = imageurl;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public int getId() {

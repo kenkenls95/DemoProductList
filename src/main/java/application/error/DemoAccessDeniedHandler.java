@@ -28,6 +28,7 @@ public class DemoAccessDeniedHandler implements AccessDeniedHandler {
 
         if (auth != null) {
             logger.info("User '" + auth.getName()
+                    +"' with roleName '" + auth.getAuthorities()
                     + "' attempted to access the protected URL: "
                     + httpServletRequest.getRequestURI());
         }

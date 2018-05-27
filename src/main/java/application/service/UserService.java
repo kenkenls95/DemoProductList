@@ -55,6 +55,7 @@ public class UserService {
             user.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
             user.setCreatedDate(new Date());
             user.setUpdatedDate(new Date());
+            user.setImageurl(null);
 
             // save user
             userRepository.save(user);
@@ -72,6 +73,10 @@ public class UserService {
             logger.info("Exception on registerNewUser: " + ex.getMessage());
             return StatusRegisterUserEnum.Error_OnSystem;
         }
+    }
+
+    public String getImage(String username){
+        return userRepository.getImgByUserName(username);
     }
 
     public List<Role> getListRole() {

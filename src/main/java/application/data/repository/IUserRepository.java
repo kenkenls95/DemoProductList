@@ -16,5 +16,8 @@ public interface IUserRepository extends CrudRepository<User, Integer> {
     @Query("select u from tbl_user u where u.username = :username")
     Iterable<User> findByUsername(@Param("username") String username);
 
+    @Query("select p.imageurl from tbl_user p where p.username =:username")
+    String getImgByUserName(@Param("username") String username);
+
 }
 

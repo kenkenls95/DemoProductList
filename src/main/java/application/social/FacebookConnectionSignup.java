@@ -1,6 +1,7 @@
 package application.social;
 
 import application.constant.RoleIdConstant;
+import application.constant.StatusRegisterUserEnum;
 import application.constant.StatusRoleConstant;
 import application.data.model.User;
 import application.data.model.UserRole;
@@ -12,8 +13,8 @@ import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.stream.StreamSupport;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 @Service
 public class FacebookConnectionSignup implements ConnectionSignUp {
@@ -27,17 +28,39 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
     @Override
     public String execute(Connection<?> connection) {
         User user = new User();
-        user.setUsername(connection.getDisplayName());
-        user.setPassword(randomAlphabetic(8));
-        user.setCreatedDate(new Date());
-        user.setUpdatedDate(new Date());
-        userRepository.save(user);
-        UserRole userRole = new UserRole();
-        userRole.setRoleId(RoleIdConstant.Role_User);
-        userRole.setUserId(user.getId());
-        userRole.setStatus(StatusRoleConstant.ActiveStatus);
+        try {
+            if(findUserByUsername(connection.getDisplayName()) != null) {
+                return connection.getDisplayName();
+            }else {
 
-        userRoleRepository.save(userRole);
-        return user.getUsername();
+                user.setUsername(connection.getDisplayName());
+                user.setPassword(null);
+                user.setCreatedDate(new Date());
+                user.setUpdatedDate(null);
+                user.setImageurl(connection.getImageUrl());
+                userRepository.save(user);
+                UserRole userRole = new UserRole();
+                userRole.setRoleId(RoleIdConstant.Role_User);
+                userRole.setUserId(user.getId());
+                userRole.setStatus(StatusRoleConstant.ActiveStatus);
+
+                userRoleRepository.save(userRole);
+            }
+            return user.getUsername();
+        } catch (Exception e) {
+            return connection.getDisplayName();
+        }
+    }
+
+    public User findUserByEmail(String email) {
+        return StreamSupport
+                .stream(userRepository.findByEmail(email).spliterator(), false)
+                .findFirst().orElse(null);
+    }
+
+    public User findUserByUsername(String username) {
+        return StreamSupport
+                .stream(userRepository.findByUsername(username).spliterator(), false)
+                .findFirst().orElse(null);
     }
 }

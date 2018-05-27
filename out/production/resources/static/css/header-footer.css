@@ -448,3 +448,9 @@ a.check:before {
 .top-cart-row {
     text-align: right;
 }
+
+.user-logo {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+}

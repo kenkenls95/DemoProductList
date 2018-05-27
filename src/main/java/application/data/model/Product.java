@@ -1,7 +1,9 @@
 package application.data.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ManhNguyen on 10/11/17.
@@ -36,6 +38,7 @@ public class Product {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name="categoryid")
     private Category category;
+
 
     public int getAmount() {
         return amount;
@@ -100,4 +103,5 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
 }

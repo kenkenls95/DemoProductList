@@ -22,12 +22,6 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" th:href="@{/}">Trang Chủ</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,9 +33,9 @@
                         <li><a th:href="@{/register-user}">Đăng Kí</a></li>
                         <li><a th:href="@{/login}">Đăng Nhập</a></li>
                         <li sec:authorize="isAuthenticated()" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span sec:authentication="name"></span> <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i><img class="user-logo" th:src="@{img/default-user.png}" alt=""></i><span class="user-name" sec:authentication="name"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a id="role" href="#"><span sec:authentication="name"></span></a></li>
+                                <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
                                 <li id="role-menu"></li>
                                 <li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>
                                 <li class="divider"></li>

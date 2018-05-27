@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
@@ -60,6 +59,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public CategoryService getCategoryService() {
         return new CategoryService();
     }
+
 
     @Bean(name = "passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {

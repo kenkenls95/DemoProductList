@@ -56,6 +56,24 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js"></script>
 
+            <script type="text/javascript">
+                if (window.location.hash && window.location.hash == '#_=_') {
+                    if (window.history && history.pushState) {
+                        window.history.pushState("", document.title, window.location.pathname);
+                    } else {
+                        // Prevent scrolling by storing the page's current scroll offset
+                        var scroll = {
+                            top: document.body.scrollTop,
+                            left: document.body.scrollLeft
+                        };
+                        window.location.hash = '';
+                        // Restore the scroll offset, should be flicker free
+                        document.body.scrollTop = scroll.top;
+                        document.body.scrollLeft = scroll.left;
+                    }
+                }
+            </script>
+
             <script>
                 var ajax = new XMLHttpRequest();
                 ajax.open("GET", "http://localhost:8080/api/product/getallname", true);
@@ -68,19 +86,20 @@
             <script>
             $(document).ready(function () {
             switch ($('#role').text()){
-            case "admin":
-            $('#role').text("ROLE : Admin");
+            case "[ROLE_ADMIN]":
+            $('#role').text("Trang ADMIN");
             $('#role').attr('href','/admin');
             $('#role-menu').append("<a href=\"http://kienvt.herokuapp.com/remote\">Quản lý vườn</a>")
             break;
-            case "user":
-            $('#role').text("ROLE : User");
-            $('#role').attr('href','/user');
-            break;
                 default:
-                    $('#role').text("ROLE : User")
+                    $('#role').text("Lịch sử mua hàng")
                     $('#role').attr('href','/user')
             }
+                $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
+                    if(data.data != null){
+                        $('.user-logo').attr('src',data.data)
+                    }
+                });
             })
             </script>
             <script>

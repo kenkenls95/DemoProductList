@@ -82,7 +82,7 @@ public class HomeController extends BaseController {
 
         HomeLandingVM vm = new HomeLandingVM();
 
-        this.setLayoutHeaderVM(vm);
+//        this.setLayoutHeaderVM(vm);
 
         ModelMapper modelMapper = new ModelMapper();
 
@@ -155,6 +155,11 @@ public class HomeController extends BaseController {
     @GetMapping("/rules")
     public String rules(){
         return "/rules";
+    }
+
+    @GetMapping("/#_=_")
+    public String signup(){
+        return "index";
     }
 
 

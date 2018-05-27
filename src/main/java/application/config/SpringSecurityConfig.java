@@ -89,7 +89,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("/publics/**")
                 .antMatchers("/img/**")
-                .antMatchers(HttpMethod.POST, "/api/product/**");
+                .antMatchers(HttpMethod.POST, "/api/**");
     }
 
 //    @Override
