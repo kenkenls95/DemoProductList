@@ -107,14 +107,17 @@ a.footer-google:hover:before {
     padding-top: 12px;
 }
 .logo img {
-    width: 100%!important;
-    height: 100%!important;
+    width: 280px;
+    height: 108px;
 }
 .inline {
     float: left;
     font-size: 16px;
     text-align: center;
     margin-right: 30px;
+}
+.contact.inline {
+    margin-right: 0;
 }
 .inline i {
     background: #eee;
@@ -230,6 +233,9 @@ header .top-cart-row .top-cart-holder .total-price-basket {
     display: inline-block;
     vertical-align: top;
     text-transform: capitalize;
+}
+nav a.dropdown-toggle {
+    padding: 7px!important;
 }
 .carousel {
 }
@@ -453,4 +459,19 @@ a.check:before {
     width: 25px;
     height: 25px;
     margin: 5px;
+}
+@media all and (max-width: 900px){
+    .logo {
+        text-align: center;
+    }
+}
+@media all and (max-width: 503px) {
+    .bonus-info {
+        display: none;
+    }
+}
+@media all and (max-width: 392px) {
+    .logo {
+        display: none;
+    }
 }

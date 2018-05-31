@@ -24,7 +24,7 @@
             </p>
 
             <div class="table-list-product">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="myTable">
                     <thead>
                     <tr>
                         <th>Image</th>
@@ -59,16 +59,16 @@
 
                     </tbody>
                 </table>
-                    <ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">
-                    <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
-                        <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
-                            <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
-                        </li>
-                        <li th:unless="${indexPage == vm.getCurrentPage()}">
-                            <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
-                        </li>
-                    </th:block>
-                </ul>
+                <!--<ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">-->
+                    <!--<th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">-->
+                        <!--<li class="active" th:if="${indexPage == vm.getCurrentPage()}">-->
+                            <!--<a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>-->
+                        <!--</li>-->
+                        <!--<li th:unless="${indexPage == vm.getCurrentPage()}">-->
+                            <!--<a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>-->
+                        <!--</li>-->
+                    <!--</th:block>-->
+                <!--</ul>-->
             </div>
 
             <p style="margin-top: 10px;">

@@ -64,6 +64,14 @@ public class ProductService {
         return productRepository.getAllName();
     }
 
+    public ArrayList<Product> getAllPros(){
+        return productRepository.getAllProducts();
+    }
+
+    public Product findById(int id){
+        return productRepository.findById(id);
+    }
+
     public boolean updateProduct(Product product) {
         try {
             productRepository.save(product);

@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--<div th:replace="fragments/header :: header-css"></div>-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
-
-
     <title>Home page</title>
 </head>
 <body>
@@ -144,11 +142,14 @@
                                         <div class="item-product__title">
                                             <span th:text="${product.getName()}"></span>
                                         </div>
-                                        <div class="item-product__price">
+                                        <div class="item-product__desc">
                                             <span th:text="${product.getShortDesc()}"></span>
                                         </div>
                                         <div class="item-product__amount">
                                             <span th:text="${product.getAmount()}"></span>
+                                        </div>
+                                        <div class="item-product__price">
+                                            <span th:text="${product.getPrice()}"></span>
                                         </div>
                                         <div class="item-product__action">
                                             <button class="btn btn-success">Add to cart</button>
@@ -175,7 +176,7 @@
                                         <div class="item-product__title">
                                             <span th:text="${product.getName()}"></span>
                                         </div>
-                                        <div class="item-product__price">
+                                        <div class="item-product__desc">
                                             <span th:text="${product.getShortDesc()}"></span>
                                         </div>
                                         <div class="item-product__price">

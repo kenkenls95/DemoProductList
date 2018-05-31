@@ -39,6 +39,9 @@ public class Product {
     @JoinColumn(name="categoryid")
     private Category category;
 
+//    @OneToMany(mappedBy = "product")
+//    private List<OrderProduct> orderProducts= new ArrayList<OrderProduct>();
+
 
     public int getAmount() {
         return amount;

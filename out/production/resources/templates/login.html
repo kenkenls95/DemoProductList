@@ -6,7 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng nhập</title>
+
 </head>
+<link rel="stylesheet" th:href="@{/css/login.css}">
 <body>
 <div th:replace="fragments/header :: header_top"></div>
     <div th:replace="fragments/header :: header"></div>
@@ -48,10 +50,20 @@
                         </div>
                     </fieldset>
                 </form>
-                <form th:action="@{~/signin/facebook}" method="post">
-                    <input type="hidden" name="scope" value="public_profile" />
-                    <input style="margin-top: 15px" type="submit" value="Login using Facebook"/>
-                </form>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form th:action="@{~/signin/facebook}" method="post">
+                            <input type="hidden" name="scope" value="public_profile" />
+                            <input class="login-social facebook-login" type="submit" value="Login using Facebook"/>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <form th:action="@{~/signin/facebook}" method="post">
+                            <input type="hidden" name="scope" value="public_profile" />
+                            <input class="login-social google-login" type="submit" value="Login using Google"/>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 

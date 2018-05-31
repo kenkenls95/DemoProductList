@@ -55,6 +55,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js"></script>
+            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
             <script type="text/javascript">
                 if (window.location.hash && window.location.hash == '#_=_') {
@@ -89,7 +90,7 @@
             case "[ROLE_ADMIN]":
             $('#role').text("Trang ADMIN");
             $('#role').attr('href','/admin');
-            $('#role-menu').append("<a href=\"http://kienvt.herokuapp.com/remote\">Quản lý vườn</a>")
+            $('#role-menu').append("<a href='remote'>Quản lý vườn</a>")
             break;
                 default:
                     $('#role').text("Lịch sử mua hàng")

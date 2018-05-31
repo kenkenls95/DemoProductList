@@ -7,10 +7,8 @@ import application.data.model.PaginableItemList;
 import application.data.model.Product;
 import application.data.service.CategoryService;
 import application.data.service.ProductService;
-import application.model.CategoryDataModel;
 import application.model.CategoryDetailModel;
 import application.model.CategoryInfor;
-import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import application.viewmodel.homelanding.BannerVM;
 import application.viewmodel.homelanding.HomeLandingVM;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,6 +157,26 @@ public class HomeController extends BaseController {
     @GetMapping("/#_=_")
     public String signup(){
         return "index";
+    }
+
+    @GetMapping("/remote")
+    public String remote(){
+        return "garden/remote";
+    }
+
+    @GetMapping("/remote/temp")
+    public String temp(){
+        return "garden/temp";
+    }
+
+    @GetMapping("/remote/hum")
+    public String hum(){
+        return "garden/hum";
+    }
+
+    @GetMapping("/remote/soil")
+    public String soil(){
+        return "garden/soil";
     }
 
 

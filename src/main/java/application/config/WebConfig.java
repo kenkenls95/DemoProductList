@@ -1,6 +1,7 @@
 package application.config;
 
 import application.data.service.CategoryService;
+import application.data.service.OrderService;
 import application.data.service.ProductService;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.apache.logging.log4j.LogManager;
@@ -58,6 +59,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CategoryService getCategoryService() {
         return new CategoryService();
+    }
+
+    @Bean
+    public OrderService getOrderService(){
+        return new OrderService();
     }
 
 

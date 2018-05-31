@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         <link rel="stylesheet" th:href="@{/css/header-footer.css}">
     <style>
 
@@ -22,6 +23,12 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" th:href="@{/}">Trang Chủ</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,7 +88,7 @@
     <div class="surrounding-header container-fluid">
         <div class="container no-padding">
 
-        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 
             <div class="logo">
                 <a th:href="@{/}">
@@ -90,9 +97,9 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-md-9 top-search-holder no-margin">
+        <div class="col-xs-12 col-md-9 col-sm-12 top-search-holder no-margin">
             <div class="row">
-                <div class="col-md-6 col-md-offset-2">
+                <div class="col-md-6 col-md-offset-2 col-sm-6 col-xs-10 bonus-info">
                     <div class="phone inline">
                         <i class="fa fa-phone"></i> <br/><span>(+84) 967 664 259</span>
                     </div>
@@ -101,7 +108,7 @@
                     </div>
                 </div>
 
-        <div class="col-xs-12 col-md-4 top-cart-row no-margin">
+        <div class="col-xs-2 col-md-4 col-sm-6 top-cart-row no-margin">
             <div id='cart_popup'>
                 <div class='cart_popup_detail'>
                     <ul>

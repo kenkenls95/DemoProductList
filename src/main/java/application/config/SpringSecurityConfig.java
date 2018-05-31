@@ -66,9 +66,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("-----configure(HttpSecurity http)");
 
         http.authorizeRequests()
-                .antMatchers("/","/about","/rules", "/register-user","/product/**","/api/**","/category/**","/signin/**","/signup/**").permitAll()
+                .antMatchers("/","/about","/rules", "/register-user","/product/**","/api/**","/category/**","/signin/**","/signup/**","/link/**").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER")
-                .antMatchers("/admin").hasAnyRole("ADMIN")
+                .antMatchers("/admin","/remote/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/")
@@ -89,13 +89,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("/publics/**")
                 .antMatchers("/img/**")
+                .antMatchers("/uploaded/**")
                 .antMatchers(HttpMethod.POST, "/api/**");
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.POST, "/auth/**");
-//    }
 
     // create two users, admin and user
     @Autowired
