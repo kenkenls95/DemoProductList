@@ -7,6 +7,22 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <title>Category index</title>
 </head>
+<style>
+    .item-product__inner {
+        text-align: center;
+        margin: 10px 0;
+    }
+    .item-product__price {
+        font-size: 12px;
+    }
+    .item-product__amount {
+        color: red;
+        font-weight: bold;
+    }
+    .item-product__amount:after {
+        content: 'VND';
+    }
+</style>
 <body>
 <div th:replace="fragments/header :: header_top"></div>
 <div th:replace="fragments/header :: header"></div>

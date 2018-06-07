@@ -4,7 +4,11 @@
     <list default="true" id="f76aa271-641b-4bae-827f-5470d2ec204d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/application/config/SpringSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/config/SpringSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -75,24 +79,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="136" column="93" selection-start-line="136" selection-start-column="93" selection-end-line="136" selection-end-column="93" />
-              <folding>
-                <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="208">
+              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <file leaf-file-name="WebConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/config/WebConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+            <state relative-caret-position="408">
+              <caret line="102" column="52" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpringSecurityConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/config/SpringSecurityConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-34">
+              <caret line="68" column="162" selection-start-line="68" selection-start-column="162" selection-end-line="68" selection-end-column="162" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list_bycategory.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,7 +121,7 @@
       <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
+            <state relative-caret-position="1326">
               <caret line="101" column="139" selection-start-line="101" selection-start-column="139" selection-end-line="101" selection-end-column="139" />
             </state>
           </provider>
@@ -109,7 +130,7 @@
       <file leaf-file-name="MenuItemVM.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="323">
               <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
               <folding>
                 <element signature="e#261#262#0" expanded="true" />
@@ -124,17 +145,17 @@
       <file leaf-file-name="CategoryController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/CategoryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-end-line="32" />
+            <state relative-caret-position="357">
+              <caret line="31" column="13" selection-start-line="31" selection-end-line="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryInfor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/application/model/CategoryInfor.java">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="276">
+              <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
             </state>
           </provider>
         </entry>
@@ -142,8 +163,8 @@
       <file leaf-file-name="CategoryApiController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/api/CategoryApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="34" column="76" lean-forward="true" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
+            <state relative-caret-position="357">
+              <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -153,27 +174,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="181" column="1" selection-start-line="181" selection-start-column="1" selection-end-line="181" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="52" column="68" selection-start-line="52" selection-start-column="68" selection-end-line="52" selection-end-column="68" />
-              <folding>
-                <element signature="e#613#1019#0" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -633,7 +633,6 @@
         <option value="$PROJECT_DIR$/src/main/java/application/model/ListProductModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/data/repository/OrderProductRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/data/service/OrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/application/config/SpringSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controller/web/RemoteController.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controller/web/BaseController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/garden/remote.html" />
@@ -665,12 +664,13 @@
         <option value="$PROJECT_DIR$/src/main/java/application/model/OrderModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controller/api/OrderApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/model/CategoryProductModel.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/user.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/user.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
         <option value="$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/application/config/SpringSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
       </list>
     </option>
@@ -697,7 +697,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1366" />
     <option name="height" value="768" />
   </component>
@@ -711,6 +711,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -987,7 +988,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1684,11 +1684,12 @@
       <workItem from="1528342970664" duration="1406000" />
       <workItem from="1528344868231" duration="10067000" />
       <workItem from="1528371263865" duration="3135000" />
+      <workItem from="1528383804495" duration="3793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="538117000" />
+    <option name="totallyTimeSpent" value="541910000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1724,7 +1725,7 @@
       <window_info anchor="bottom" id="Run" order="12" sideWeight="0.49848714" weight="0.2970297" />
       <window_info anchor="bottom" id="Spring" order="2" weight="0.32838285" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.6370887" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.30484116" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.30937973" />
       <window_info anchor="right" id="Bean Validation" order="5" weight="0.32980332" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Gradle" order="6" weight="0.19288956" />
@@ -1768,7 +1769,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/viewmodel/user/UserVM.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="83">
@@ -1898,13 +1898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/config/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1859">
@@ -1994,20 +1987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#154#155#0" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#271#272#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-            <element signature="e#338#339#0" expanded="true" />
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2015,13 +1994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#825#826#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2036,16 +2008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2072,29 +2034,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
+        <state relative-caret-position="884">
           <caret line="52" column="68" selection-start-line="52" selection-start-column="68" selection-end-line="52" selection-end-column="68" />
-          <folding>
-            <element signature="e#613#1019#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="1190">
           <caret line="136" column="93" selection-start-line="136" selection-start-column="93" selection-end-line="136" selection-end-column="93" />
           <folding>
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="181" column="1" selection-start-line="181" selection-start-column="1" selection-end-line="181" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -2107,15 +2059,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/api/CategoryApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="34" column="76" lean-forward="true" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
+        <state relative-caret-position="357">
+          <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/CategoryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-end-line="32" />
+        <state relative-caret-position="357">
+          <caret line="31" column="13" selection-start-line="31" selection-end-line="32" />
         </state>
       </provider>
     </entry>
@@ -2128,7 +2080,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="323">
           <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
           <folding>
             <element signature="e#261#262#0" expanded="true" />
@@ -2141,15 +2093,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
+        <state relative-caret-position="1326">
           <caret line="101" column="139" selection-start-line="101" selection-start-column="139" selection-end-line="101" selection-end-column="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/config/SpringSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="68" column="162" selection-start-line="68" selection-start-column="162" selection-end-line="68" selection-end-column="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/config/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="102" column="52" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+        <state relative-caret-position="208">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
         </state>
       </provider>
     </entry>

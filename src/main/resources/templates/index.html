@@ -9,6 +9,34 @@
     <title>Home page</title>
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .item-product__price:after {
+        content: 'VND';
+        color: red;
+        font-weight: bold;
+    }
+    a.minus, a.add {
+        color: #444;
+        font-weight: 400;
+        background: #eee;
+        width: 35px;
+        height: 35px;
+        display: inline-block;
+        line-height: 35px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .item-product__amount p {
+        margin: 13px 0;
+    }
+    .item-product__amount input {
+        text-align: center;
+        border: none;
+        font-size: 15px;
+        width: 15%;
+    }
+</style>
 <body>
 
 <div th:replace="fragments/header :: header_top"></div>
@@ -103,6 +131,11 @@
                                             <span th:text="${product.getShortDesc()}"></span>
                                         </div>
                                         <div class="item-product__amount">
+                                            <p>
+                                                <a id="minus1" class="minus"><i class="fa fa-minus"></i></a>
+                                                <input id="qty1" type="text" value="1" class="qty"/>
+                                                <a id="add1" class="add"><i class="fa fa-plus"></i></a>
+                                            </p>
                                             <span th:text="${product.getAmount()}"></span>
                                         </div>
                                         <div class="item-product__price">
@@ -157,6 +190,24 @@
 <footer th:include="fragments/footer :: footer"></footer>
 
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
-
+<script>
+    // Increase and decrease value in product
+    $(function () {
+        $('.add').on('click',function(){
+            var $qty=$(this).closest('p').find('.qty');
+            var currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal)) {
+                $qty.val(currentVal + 1);
+            }
+        });
+        $('.minus').on('click',function(){
+            var $qty=$(this).closest('p').find('.qty');
+            var currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal) && currentVal > 0) {
+                $qty.val(currentVal - 1);
+            }
+        });
+    });
+</script>
 </body>
 </html>
