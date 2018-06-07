@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-public class UserController extends BaseController {
+public class UserController{
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -40,6 +40,11 @@ public class UserController extends BaseController {
         StatusRegisterUserEnum statusRegisterUserEnum = userService.registerNewUser(user);
         logger.info(statusRegisterUserEnum.toString());
         return "redirect:/";
+    }
+
+    @GetMapping("/user")
+    public String user(){
+        return "/user";
     }
 
 }

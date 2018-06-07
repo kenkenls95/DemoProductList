@@ -13,6 +13,8 @@ public class User {
     private String username;
     private String fullname;
     private String email;
+    private String gender;
+    private String address;
 
     @Column(name = "passwordhashed")
     private String passwordHashed;
@@ -32,15 +34,33 @@ public class User {
     public User() {
     }
 
-    public User(String username, String fullname, String email, String passwordHashed, Date createdDate, Date updatedDate, String password, String imageurl) {
+    public User(String username, String fullname, String email, String gender, String address, String passwordHashed, Date createdDate, Date updatedDate, String password, String imageurl) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
+        this.gender = gender;
+        this.address = address;
         this.passwordHashed = passwordHashed;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.password = password;
         this.imageurl = imageurl;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getImageurl() {

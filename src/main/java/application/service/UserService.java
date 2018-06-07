@@ -53,6 +53,8 @@ public class UserService {
             user.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
             user.setCreatedDate(new Date());
             user.setUpdatedDate(new Date());
+            user.setAddress(user.getAddress());
+            user.setGender("Male");
             user.setImageurl(null);
 
             // save user
@@ -76,6 +78,21 @@ public class UserService {
     public String getImage(String username){
         return userRepository.getImgByUserName(username);
     }
+
+    public User findOne(int id){
+        return userRepository.findOne(id);
+    }
+
+    public boolean updateUser(User user) {
+        try {
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
+
 
     public List<Role> getListRole() {
         return StreamSupport

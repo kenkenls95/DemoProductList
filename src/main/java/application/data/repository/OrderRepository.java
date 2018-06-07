@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface OrderRepository extends JpaRepository<Order,Integer> {
 
-    @Query("select o.id,o.userid,o.created_date,o.address from tbl_order o where o.userid =:id")
+    @Query("select o from tbl_order o where o.userid =:id")
     ArrayList<Object> getOrderByUser(@Param("id")int id);
 
 }

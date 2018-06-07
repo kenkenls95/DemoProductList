@@ -33,7 +33,8 @@ import static application.constant.Constant.DEFAULT_PARENT_ID;
 
 @Controller
 @RequestMapping(path="/")
-public class HomeController extends BaseController {
+@CrossOrigin
+public class HomeController{
 
     @Autowired
     private ProductService productService;
@@ -71,8 +72,7 @@ public class HomeController extends BaseController {
                           @RequestHeader("User-Agent") String userAgent,
                           HttpServletRequest request) {
 
-        response.addCookie(new Cookie("current-page",
-                "Cookie From Java code - Home landing"));
+        response.addCookie(new Cookie("Order",null));
         System.out.println("====================");
         System.out.println(userAgent);
         System.out.println("IP: " + request.getRemoteAddr());
@@ -92,14 +92,14 @@ public class HomeController extends BaseController {
 
         ArrayList<MenuItemVM> listVtMenuItems = new ArrayList<>();
         for(CategoryInfor cat : getCategories()){
-            listVtMenuItems.add(new MenuItemVM(cat.getParentname(),"/"));
             ArrayList<CategoryDetailModel> categoryDetailModels = new ArrayList<>();
+            listVtMenuItems.add(new MenuItemVM(cat.getParentid(),cat.getParentname(),"/"));
             if(cat.getCategories() != null){
                 for(CategoryDetailModel categoryDetailModel : cat.getCategories()){
                     categoryDetailModels.add(modelMapper.map(categoryDetailModel,CategoryDetailModel.class));
                 }
                 for(CategoryDetailModel categoryDetailModel : categoryDetailModels){
-                    listVtMenuItems.get(cat.getParentid() - DEFAULT_PARENT_ID).getChildren().add(new MenuItemVM(categoryDetailModel.getName(),"/category/detail/"+categoryDetailModel.getId()));
+                    listVtMenuItems.get(cat.getParentid() - DEFAULT_PARENT_ID).getChildren().add(new MenuItemVM(categoryDetailModel.getId(),categoryDetailModel.getName(),"/category/detail/"+categoryDetailModel.getId()));
                 }
             }
         }
@@ -142,11 +142,6 @@ public class HomeController extends BaseController {
     @GetMapping("/403")
     public String error403() {
         return "/error/403";
-    }
-
-    @GetMapping("/user")
-    public String user(){
-        return "/user";
     }
 
     @GetMapping("/rules")

@@ -12,9 +12,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         <link rel="stylesheet" th:href="@{/css/header-footer.css}">
-    <style>
-
-    </style>
 </head>
 <body>
 
@@ -40,7 +37,7 @@
                         <li><a th:href="@{/register-user}">Đăng Kí</a></li>
                         <li><a th:href="@{/login}">Đăng Nhập</a></li>
                         <li sec:authorize="isAuthenticated()" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i><img class="user-logo" th:src="@{img/default-user.png}" alt=""></i><span class="user-name" sec:authentication="name"></span> <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i><img class="user-logo" src="/link/1528177697-default-user.png" alt=""></i><span class="user-name" sec:authentication="name"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
                                 <li id="role-menu"></li>
@@ -108,53 +105,58 @@
                     </div>
                 </div>
 
-        <div class="col-xs-2 col-md-4 col-sm-6 top-cart-row no-margin">
-            <div id='cart_popup'>
-                <div class='cart_popup_detail'>
-                    <ul>
-                        <li>
-                            <h2>1 sản phẩm mới được thêm vào giỏ hàng của bạn</h2>
-                            <div class="product-li">
-                                <div class="product-imgx">
-                                    <img src="http://suanff.com/upload/2017/08/04/product/dau-tay-uc.jpg" alt="Dâu tây">
+                <div class="col-xs-2 col-md-4 col-sm-6 top-cart-row no-margin">
+                    <!-- Button trigger modal -->
+                    <a class="check" data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer">
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title text-center" id="exampleModalLongTitle">Giỏ hàng</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="product-infox">
-                                    <div class="product-title-x">
-                                        <h3>Dâu tây Thái Lan</h3>
-                                    </div>
-                                    <div class="product-label">
-                                        Thuộc: <a href="">Dâu tây</a>
-                                    </div>
-                                    <div class="product-prize-x">
-                                        100.000 đ
-                                    </div>
+                                <div class="modal-body">
+                                    <!--<div class="row">-->
+                                            <div class="order-img">
+                                                <img src="http://img.khoahoc.tv/photos/image/052013/10/trai-cay.jpg" alt="">
+                                            </div>
+                                            <div class="order-detail">
+                                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">-->
+                                                    <div class="order-quantity">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                                                  <span class="glyphicon glyphicon-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                <!--</div>-->
+                                                <div class="order-price">
+
+                                                </div>
+                                            </div>
+                                    <!--</div>-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Thanh toán</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                 </div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="product-2-title">
-                                <h3>Giỏ hàng của tôi</h3><span>(3 sản phẩm)</span>
-                                <a href="#close" class="closex"></a>
-                            </div>
-                            <div class="product-2-noti">
-                                <p class="text-1">Tạm tính</p>
-                                <p class="text-2">300.000 đ</p>
-                            </div>
-                            <div class="prize-total">
-                                <p class="text-3">Tổng cộng</p>
-                                <p class="text-prize">300.000 đ</p>
-                                <span class="text-vat">Đã bao gồm VAT (nếu có)</span>
-                            </div>
-                            <div class="cart-checkout">
-                                <a href="" class="cart-1">Giỏ hàng</a>
-                                <a href="" class="checkout-1">Thanh toán</a>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <a href="#cart_popup" class="check"></a>
-        </div>
             </div>
     </div>
 </div>

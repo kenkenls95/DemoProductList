@@ -39,31 +39,18 @@
                             <input type="password" name="password" id="password" class="form-control input-lg"
                                    placeholder="Password" required="true"/>
                         </div>
-
-                        <div class="row submit">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
-                            </div>
-                            <!--<div class="col-xs-6 col-sm-6 col-md-6">-->
-                                <!--<button class="btn-block btn-lg btn" style="background: #FF4632"><a href="" style="color: #fff;"><i class="fa fa-google"></i> Sign In with Google</a></button>-->
-                            <!--</div>-->
-                        </div>
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In"/>
                     </fieldset>
                 </form>
-                <div class="row">
-                    <div class="col-lg-6">
                         <form th:action="@{~/signin/facebook}" method="post">
-                            <input type="hidden" name="scope" value="public_profile" />
-                            <input class="login-social facebook-login" type="submit" value="Login using Facebook"/>
+                            <input class="login-social facebook-login btn btn-lg btn-primary btn-block" type="submit" value="Sign in with FACEBOOK"/>
                         </form>
-                    </div>
-                    <div class="col-lg-6">
-                        <form th:action="@{~/signin/facebook}" method="post">
-                            <input type="hidden" name="scope" value="public_profile" />
-                            <input class="login-social google-login" type="submit" value="Login using Google"/>
-                        </form>
-                    </div>
-                </div>
+                    <!--<div class="col-lg-6">-->
+                        <!--<form th:action="@{~/signin/facebook}" method="post">-->
+                            <!--<input type="hidden" name="scope" value="public_profile" />-->
+                            <!--<input class="login-social google-login" type="submit" value="Login using Google"/>-->
+                        <!--</form>-->
+                    <!--</div>-->
             </div>
         </div>
 

@@ -475,3 +475,9 @@ a.check:before {
         display: none;
     }
 }
+
+.order-img img{
+    width: 150px;
+    height: 150px;
+    left: 15px;
+}

@@ -1,20 +1,42 @@
 package application.model;
 
-import application.extension.CustomDateDeserializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class UserDetailModel {
     private int id;
     private String username;
     private String fullname;
     private String email;
+    private String imageurl;
     private String password;
-    @JsonDeserialize(using = CustomDateDeserializer.class)
+    private String gender;
+    private String address;
     private Date createdDate;
-    @JsonDeserialize(using = CustomDateDeserializer.class)
-    private Date updateDate;
+    private Date updatedDate;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
 
     public int getId() {
         return id;
@@ -64,11 +86,11 @@ public class UserDetailModel {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

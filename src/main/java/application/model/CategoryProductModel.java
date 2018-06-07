@@ -1,6 +1,5 @@
 package application.model;
 
-import application.data.model.Product;
 
 import java.util.ArrayList;
 

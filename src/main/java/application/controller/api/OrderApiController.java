@@ -27,12 +27,17 @@ public class OrderApiController {
     @GetMapping("/user/{id}")
     public BaseApiResult getOrderByUser(@PathVariable int id){
         DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper = new ModelMapper();
 
         try {
             ArrayList<Object> objects = new ArrayList<>();
+            ArrayList<OrderModel> orderModels = new ArrayList<>();
             objects = orderService.getOrderByUser(id);
+            for(Object o : objects){
+                orderModels.add(modelMapper.map(o,OrderModel.class));
+            }
             result.setMessage("success");
-            result.setData(objects);
+            result.setData(orderModels);
             result.setSuccess(true);
         } catch (Exception e) {
             result.setData(null);

@@ -92,11 +92,17 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
-    // https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner
-    compile group: 'com.github.jsimone', name: 'webapp-runner', version: '7.0.22.1'
+//    // https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner
+//    compile group: 'com.github.jsimone', name: 'webapp-runner', version: '7.0.22.1'
+//
+//// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
+//    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.23'
 
-// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
-    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.23'
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 
 
 

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--<div th:replace="fragments/header :: header-css"></div>-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <title>Home page</title>
 </head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 <body>
 
 <div th:replace="fragments/header :: header_top"></div>
@@ -53,74 +53,31 @@
     <div class="main-content">
 
         <div class="row">
-            <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="col-md-3 col-sm-4 col-xs-12 ">
                 <div class="panel panel-success">
                     <div class="panel-heading">Menu</div>
                     <div class="panel-body">
                         <div class="list-group">
+                            <div class="accordion vertical">
                             <th:block th:each="menuItem : ${vm.getListVtMenuItemsAside()}">
 
-                                <li class="list-group-item" th:if="${menuItem.getChildren().size() == 0}"><a th:href="${menuItem.getLink()}"
-                                                                                     th:text="${menuItem.getText()}"></a>
-                                </li>
-                                <li class="dropdown list-group-item " th:unless="${menuItem.getChildren().size() == 0}">
-                                    <a th:href="${menuItem.getLink()}" class="dropdown-toggle" data-toggle="dropdown"
-                                       role="button" aria-haspopup="true" aria-expanded="false">
-                                        <span th:text="${menuItem.getText()}"></span> <span class="caret"></span></a>
+                                    <li th:id="${menuItem.getLink()}" th:if="${menuItem.getChildren().size() == 0}">
+                                        <h2><a th:href="${'#'+menuItem.getLink()}"
+                                               th:text="${menuItem.getText()}"></a></h2>
+                                    </li>
+                                    <li th:id="${menuItem.getLink()}"  th:unless="${menuItem.getChildren().size() == 0}">
+                                        <h2><a th:href="${'#'+menuItem.getLink()}"></a>
+                                            <span th:text="${menuItem.getText()}"></span> <span class="caret"></span>
+                                        </h2>
+                                        <ul class="submenu">
+                                            <li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"
+                                                                                               th:text="${child.getText()}"></a></li>
+                                        </ul>
+                                    </li>
 
-                                    <ul class="dropdown-menu">
-                                        <li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"
-                                                                                           th:text="${child.getText()}"></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!--<p>-->
-                                    <!--<a class="list-group-item" th:if="${menuItem.getChildren().size() == 0}" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">-->
-                                        <!--<span th:href="${menuItem.getLink()}"-->
-                                              <!--th:text="${menuItem.getText()}"></span>-->
-                                    <!--</a>-->
-                                <!--</p>-->
-                                <!--<p>-->
-                                    <!--<a class="list-group-item" th:unless="${menuItem.getChildren().size() == 0}" data-toggle="collapse" th:href="${'#collapse'+menuItem.getText()}" role="button" aria-expanded="false" aria-controls="collapseExample">-->
-                                        <!--<span th:href="${menuItem.getLink()}"></span>-->
-                                        <!--<span th:text="${menuItem.getText()}"></span> <span class="caret"></span>-->
-                                    <!--</a>-->
-                                <!--</p>-->
-                                <!--<div th:each="child : ${menuItem.getChildren()}" class="collapse" th:id="${'collapse'+menuItem.getText()}">-->
-                                    <!--<div th:href="${child.getLink()}"-->
-                                         <!--th:text="${child.getText()}" class="card card-body">-->
-                                        <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
-                                    <!--</div>-->
-                                <!--</div>-->
 
-                                <!--<div id="accordion">-->
-                                    <!--<div class="card">-->
-                                        <!--<div class="card-header" id="headingTwo">-->
-                                            <!--<h5 class="mb-0">-->
-                                                <!--<div th:if="${menuItem.getChildren().size() == 0}">-->
-                                                    <!--<button th:href="${menuItem.getLink()}"-->
-                                                            <!--th:text="${menuItem.getText()}" class="btn btn-link collapsed" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">-->
-                                                    <!--</button>-->
-                                                <!--</div>-->
-                                                <!--<div th:unless="${menuItem.getChildren().size() == 0}">-->
-                                                    <!--<button th:href="${menuItem.getLink()}" class="btn btn-link collapsed" data-toggle="collapse" data-target="" th:text="${menuItem.getText()}" aria-expanded="false" aria-controls="collapseTwo">-->
-                                                        <!--<span th:text="${menuItem.getText()}"></span> <span class="caret"></span>-->
-                                                    <!--</button>-->
-                                                <!--</div>-->
-                                            <!--</h5>-->
-                                        <!--</div>-->
-                                        <!--<div th:each="child : ${menuItem.getChildren()}" id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">-->
-                                            <!--<div th:href="${child.getLink()}"-->
-                                                 <!--th:text="${child.getText()}" class="card-body">-->
-                                                <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
-                                <!--</div>-->
                             </th:block>
-
-
+                            </div>
                         </div>
                     </div>
                 </div>

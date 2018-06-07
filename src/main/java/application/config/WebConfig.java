@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
@@ -73,6 +74,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return encoder;
     }
 
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://kienvt.herokuapp.com")
+                .allowedMethods("PUT", "DELETE","POST","GET")
+                .allowedHeaders("Access-Control-Allow-Headers","Origin , X-Requested-With ,"+
+                "Content-Type , Accept")
+                .allowCredentials(false).maxAge(3600);
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         logger.debug("run addResourceHandlers");
@@ -87,6 +99,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                         "classpath:/static/img/",
                         "classpath:/static/css/",
                         "classpath:/static/js/");
+
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     @Bean

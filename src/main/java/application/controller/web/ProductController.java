@@ -32,14 +32,7 @@ public class ProductController extends BaseController {
     private CategoryService categoryService;
 
     @GetMapping("/detail/{productId}")
-    public String index(Model model, @PathVariable int productId,
-                        @CookieValue(value = "current-page", defaultValue = "")
-                                String currentPageCookie) {
-
-        System.out.println("-----------------------------------------");
-        System.out.println(currentPageCookie);
-
-
+    public String index(Model model, @PathVariable int productId) {
         Product existProduct = productService.findOne(productId);
         if(existProduct != null) {
             ModelMapper modelMapper = new ModelMapper();

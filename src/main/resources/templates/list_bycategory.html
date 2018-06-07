@@ -14,6 +14,7 @@
 
 <div class="container">
     <div th:if="${vm != null}" class="row">
+        <h2 style="margin : 15px; margin-bottom: 50px;">Các sản phẩm có cùng <span th:text="${vm.getName()}"></span></h2>
         <div class="col-md-3 col-sm-4 col-xs-6" th:each="product : ${vm.getProducts()}">
             <div class="item-product">
                 <div class="item-product__inner">

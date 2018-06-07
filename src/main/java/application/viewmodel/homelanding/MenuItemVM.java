@@ -7,12 +7,22 @@ import java.util.List;
  * Created by ManhNguyen on 1/17/18.
  */
 public class MenuItemVM {
+    private int id;
     private String text;
     private String link;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private List<MenuItemVM> children;
 
-    public MenuItemVM(String text, String link) {
+    public MenuItemVM(int id,String text, String link) {
+        this.id = id;
         this.text = text;
         this.link = link;
         children = new ArrayList<>();
