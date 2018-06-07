@@ -2,61 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f76aa271-641b-4bae-827f-5470d2ec204d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_core_8_5_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_tomcat_annotations_api_8_5_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/demo_product_list_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/demo_product_list_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/demo_product_list_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/demo_product_list_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/config/WebConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/controller/api/OrderApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/controller/api/OrderApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/controller/api/UserApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/controller/api/UserApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/controller/web/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/controller/web/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/controller/web/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/controller/web/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/controller/web/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/controller/web/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/data/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/data/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/data/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/data/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/data/repository/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/data/repository/OrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/model/CategoryProductModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/model/CategoryProductModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/model/UserDetailModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/model/UserDetailModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/application/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/application/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/static/css/header-footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/static/css/header-footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/fragments/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/list_bycategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/list_bycategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/product/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/product/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/api/CategoryApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/api/CategoryApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/api/OrderApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/api/OrderApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/api/UserApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/api/UserApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/web/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/web/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/controller/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controller/web/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/data/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/data/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/data/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/data/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/data/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/data/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/model/CategoryProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/model/CategoryProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/model/UserDetailModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/model/UserDetailModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/header-footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/header-footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list_bycategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -140,19 +88,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="67" />
+            <state relative-caret-position="272">
+              <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-401">
+            <state relative-caret-position="58">
               <caret line="101" column="139" selection-start-line="101" selection-start-column="139" selection-end-line="101" selection-end-column="139" />
             </state>
           </provider>
@@ -721,9 +669,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/js/user.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/user.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
       </list>
     </option>
   </component>
@@ -749,7 +697,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="width" value="1366" />
     <option name="height" value="768" />
   </component>
@@ -1735,12 +1683,12 @@
       <workItem from="1528342692635" duration="51000" />
       <workItem from="1528342970664" duration="1406000" />
       <workItem from="1528344868231" duration="10067000" />
-      <workItem from="1528371263865" duration="1931000" />
+      <workItem from="1528371263865" duration="3135000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="536913000" />
+    <option name="totallyTimeSpent" value="538117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1753,7 +1701,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="8" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5015129" side_tool="true" weight="0.25577557" />
@@ -1774,7 +1721,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="9" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="bottom" id="Run" order="12" sideWeight="0.49848714" visible="true" weight="0.2970297" />
+      <window_info anchor="bottom" id="Run" order="12" sideWeight="0.49848714" weight="0.2970297" />
       <window_info anchor="bottom" id="Spring" order="2" weight="0.32838285" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.6370887" />
       <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.30484116" />
@@ -2179,13 +2126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/viewmodel/homelanding/MenuItemVM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -2201,8 +2141,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/controller/web/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-401">
+        <state relative-caret-position="58">
           <caret line="101" column="139" selection-start-line="101" selection-start-column="139" selection-end-line="101" selection-end-column="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
         </state>
       </provider>
     </entry>

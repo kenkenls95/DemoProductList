@@ -61,14 +61,14 @@
                             <div class="accordion vertical">
                             <th:block th:each="menuItem : ${vm.getListVtMenuItemsAside()}">
 
-                                    <li th:id="${menuItem.getId()}" th:if="${menuItem.getChildren().size() == 0}">
-                                        <h2><a th:href="${'#'+menuItem.getId()}"
-                                               th:text="${menuItem.getText()}"></a></h2>
+                                    <li th:if="${menuItem.getChildren().size() == 0}">
+                                        <a th:href="${'#'+menuItem.getId()}"
+                                               th:text="${menuItem.getText()}"></a>
                                     </li>
                                     <li th:id="${menuItem.getId()}"  th:unless="${menuItem.getChildren().size() == 0}">
-                                        <h2><a th:href="${'#'+menuItem.getId()}"></a>
+                                        <a th:href="${'#'+menuItem.getId()}">
                                             <span th:text="${menuItem.getText()}"></span> <span class="caret"></span>
-                                        </h2>
+                                        </a>
                                         <ul class="submenu">
                                             <li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"
                                                                                                th:text="${child.getText()}"></a></li>
