@@ -8,9 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ManhNguyen on 3/30/18.
- */
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query("select u from tbl_category u where u.parentid = :parentid")

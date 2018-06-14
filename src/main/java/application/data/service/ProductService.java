@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
 @Service
 public class ProductService {
 

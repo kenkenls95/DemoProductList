@@ -16,9 +16,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 
-/**
- * Created by ManhNguyen on 3/1/18.
- */
 @Service
 public class FileStorageService {
 

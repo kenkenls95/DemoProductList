@@ -2,6 +2,7 @@ package application.config;
 
 import application.social.FacebookConnectionSignup;
 import application.social.FacebookSignInAdapter;
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+import java.util.Arrays;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
@@ -61,13 +68,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 new FacebookSignInAdapter());
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         logger.info("-----configure(HttpSecurity http)");
 
-        http.authorizeRequests()
-                .antMatchers("/","/about","/rules", "/register-user","/product/**","/api/**","/category/**","/signin/**","/signup/**","/link/**","/swagger-ui.html").permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER")
+        http.cors().and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/","/about","/rules", "/register-user","/product/**","/api/**","/category/**","/signin/**","/signup/**","/link/**","/swagger-ui.html","/user/**").permitAll()
+                .antMatchers().hasAnyRole("USER")
                 .antMatchers("/admin","/remote/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -76,10 +87,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
                 .permitAll()
-                .and().csrf()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -89,11 +100,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("/publics/**")
                 .antMatchers("/img/**")
-                .antMatchers("/uploaded/**")
-                .antMatchers(HttpMethod.POST, "/api/**");
+                .antMatchers("/uploaded/**");
+//                .antMatchers(HttpMethod.POST, "/api/**");
     }
 
-    // create two users, admin and user
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         logger.info("-----configureGlobal(AuthenticationManagerBuilder auth)");

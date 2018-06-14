@@ -3,9 +3,6 @@ package application.data.model;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
 @Entity(name = "tbl_product")
 public class Product {
 

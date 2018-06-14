@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +56,11 @@ public class UserService {
             user.setUpdatedDate(new Date());
             user.setAddress(user.getAddress());
             user.setGender("Male");
-            user.setImageurl(null);
+            if(user.getImageurl() == null){
+                user.setImageurl("/link/1528177697-default-user.png");
+            }else{
+                user.setImageurl(user.getImageurl());
+            }
 
             // save user
             userRepository.save(user);
@@ -129,5 +134,42 @@ public class UserService {
 //        UserRoleModel userRoleModel = modelMapper.map(userRoleRepository.findRolesOfUser(userid),UserRoleModel.class);
 //        return roleRepository.getRole(userRoleModel.getUserid());
 //    }
+
+    public String findRoleName(int userId){
+        return roleRepository.findRoleById(userRoleRepository.findRoleIdByUserId(userId).getRoleId()).getRoleName();
+    }
+
+    public ArrayList<UserRole> getUserRole(){
+        return userRoleRepository.getUserRole();
+    }
+
+    public User findUserById(int id){
+        return userRepository.findUserById(id);
+    }
+
+    public Role findRoleById(int id){
+        return roleRepository.findRoleById(id);
+    }
+
+    public UserRole findUserRole(int id){
+        return userRoleRepository.findRoleIdByUserId(id);
+    }
+
+    public boolean updateRole(int userId){
+        try {
+            UserRole userRole = new UserRole();
+            userRole = userRoleRepository.findRoleIdByUserId(userId);
+            if(userRole.getRoleId() == RoleIdConstant.Role_Admin){
+                userRole.setRoleId(RoleIdConstant.Role_User);
+            }else if(userRole.getRoleId() == RoleIdConstant.Role_User){
+                userRole.setRoleId(RoleIdConstant.Role_Admin);
+            }
+            userRoleRepository.save(userRole);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
 }
 

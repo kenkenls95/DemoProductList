@@ -37,3 +37,8 @@
     opacity: 0;
     cursor: pointer;
 }
+
+#preview-product-img {
+    height: 180px;
+    width: 180px;
+}

@@ -5,9 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 
-/**
- * Created by ManhNguyen on 3/1/18.
- */
 public class ProductDataModel {
     private String name;
     private String image;

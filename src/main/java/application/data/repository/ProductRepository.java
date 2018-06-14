@@ -8,9 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select count(p.id) from tbl_product p")

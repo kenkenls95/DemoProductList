@@ -1,8 +1,5 @@
 package application.model;
 
-/**
- * Created by ManhNguyen on 3/30/18.
- */
 public class CategoryDataModel {
     private int id;
     private String name;

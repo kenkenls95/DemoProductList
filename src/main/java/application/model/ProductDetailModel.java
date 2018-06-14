@@ -5,9 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 
-/**
- * Created by ManhNguyen on 3/13/18.
- */
 public class ProductDetailModel {
 
 

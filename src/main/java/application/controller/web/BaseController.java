@@ -6,9 +6,6 @@ import application.viewmodel.homelanding.MenuItemVM;
 
 import java.util.ArrayList;
 
-/**
- * Created by ManhNguyen on 1/30/18.
- */
 public abstract class BaseController {
 
 //    public void setLayoutHeaderVM(LayoutHeaderVM vm) {

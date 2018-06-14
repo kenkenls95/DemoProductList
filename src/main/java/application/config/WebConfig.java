@@ -23,11 +23,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-
-/**
- * Created by ManhNguyen on 1/17/18.
- */
-
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -81,7 +76,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .allowedOrigins("http://kienvt.herokuapp.com")
                 .allowedMethods("PUT", "DELETE","POST","GET")
                 .allowedHeaders("Access-Control-Allow-Headers","Origin , X-Requested-With ,"+
-                "Content-Type , Accept")
+                "Content-Type , Accept,Access-Control-Allow-Origin")
                 .allowCredentials(false).maxAge(3600);
     }
 

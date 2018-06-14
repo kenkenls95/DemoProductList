@@ -17,9 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by ManhNguyen on 3/1/18.
- */
 @RestController
 @RequestMapping("/api/product")
 public class ProductApiController {

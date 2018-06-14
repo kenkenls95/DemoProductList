@@ -1,10 +1,8 @@
 package application.controller.web;
 
-import application.data.model.Category;
 import application.data.model.Product;
 import application.data.service.CategoryService;
 import application.data.service.ProductService;
-import application.model.CategoryProductModel;
 import application.model.ProductDetailModel;
 import application.model.ProductName;
 import org.modelmapper.ModelMapper;
@@ -15,11 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
-
-
-/**
- * Created by ManhNguyen on 1/30/18.
- */
 
 @Controller
 @RequestMapping(path="/product")

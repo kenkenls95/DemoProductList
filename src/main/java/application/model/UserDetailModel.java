@@ -9,10 +9,19 @@ public class UserDetailModel {
     private String email;
     private String imageurl;
     private String password;
+    private String oldpassword;
     private String gender;
     private String address;
     private Date createdDate;
     private Date updatedDate;
+
+    public String getOldpassword() {
+        return oldpassword;
+    }
+
+    public void setOldpassword(String oldpassword) {
+        this.oldpassword = oldpassword;
+    }
 
     public String getGender() {
         return gender;

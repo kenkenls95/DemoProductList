@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ManhNguyen on 3/30/18.
- */
 @Service
 public class CategoryService {
 

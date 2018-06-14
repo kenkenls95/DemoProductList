@@ -56,7 +56,8 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js"></script>
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.js"></script>
             <script type="text/javascript">
                 if (window.location.hash && window.location.hash == '#_=_') {
                     if (window.history && history.pushState) {
@@ -91,17 +92,17 @@
                         $('.user-logo').attr('src',data.data)
                     }
                 });
-
-                switch ($('#role').text()){
+            switch ($('#role').text()){
             case "[ROLE_ADMIN]":
-            $('#role').text("Trang ADMIN");
-            $('#role').attr('href','/admin');
-            $('#role-menu').append("<a href='remote'>Quản lý vườn</a>")
+                $('#role').text("Trang ADMIN");
+                $('#role').attr('href','/admin');
+                $('#role-menu').append("<a href='remote'>Quản lý vườn</a>")
+                $('#role-menu').append("<a href='user'>Thông tin admin</a>")
             break;
             case "[ROLE_USER]":
                     $('#role').text("Thông tin khách hàng")
                     $('#role').attr('href','/user')
-                    // $('#role-menu').append("<a href='detail/user'>Thông tin người dùng</a>")
+                    $('#role-menu').append("<a href='rules'>Chính sách giao hàng</a>")
             break;
             }
             })

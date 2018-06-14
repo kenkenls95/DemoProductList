@@ -1,13 +1,16 @@
 package application.controller.api;
 
+import application.constant.RoleIdConstant;
 import application.data.model.User;
-import application.model.BaseApiResult;
-import application.model.DataApiResult;
-import application.model.UserDetailModel;
+import application.data.model.UserRole;
+import application.model.*;
 import application.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/user")
@@ -15,6 +18,49 @@ public class UserApiController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @GetMapping("/alluser")
+    public BaseApiResult getUserRole(){
+        DataApiResult result = new DataApiResult();
+        try {
+            ArrayList<UserRole> userRoles = new ArrayList<>();
+            ArrayList<UserRoleDataModel> userRoleDataModels = new ArrayList<>();
+            userRoles = userService.getUserRole();
+            for(UserRole u : userRoles){
+                userRoleDataModels.add(new UserRoleDataModel(u.getId(),userService.findUserById(u.getUserId()),userService.findRoleById(u.getRoleId())));
+            }
+            result.setData(userRoleDataModels);
+            result.setMessage("success");
+            result.setSuccess(true);
+        } catch (Exception e) {
+            result.setData(null);
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
+
+    @PostMapping("/update-role/")
+    public BaseApiResult updateRole(@RequestBody UserDataModel userDataModel){
+        DataApiResult result = new DataApiResult();
+        try {
+            if(userService.updateRole(userDataModel.getUserId())){
+                result.setMessage("success");
+                result.setSuccess(true);
+                result.setData(null);
+            }
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+            result.setData(null);
+        }
+
+        return result;
+    }
+
 
     @GetMapping("/img/{userName}")
     public BaseApiResult getImg(@PathVariable String userName){
@@ -39,7 +85,9 @@ public class UserApiController {
         try {
             UserDetailModel u = new UserDetailModel();
             u = modelMapper.map(userService.findUserByUsername(username),UserDetailModel.class);
-            result.setMessage("success");
+
+            result.setMessage(userService.findRoleName(u.getId()));
+
             result.setData(u);
             result.setSuccess(true);
         } catch (Exception e) {
@@ -59,10 +107,22 @@ public class UserApiController {
             if(!"".equals(user.getUsername()) && !"".equals(user.getFullname())
                     && !"".equals(user.getEmail())) {
                 User existUser = userService.findOne(id);
-                if(existUser== null) {
+                if(existUser == null) {
                     result.setSuccess(false);
                     result.setMessage("Invalid model");
-                } else {
+                } else if (passwordEncoder.matches(user.getOldpassword(),existUser.getPasswordHashed())) {
+                        existUser.setUsername(user.getUsername());
+                        existUser.setFullname(user.getFullname());
+                        existUser.setGender(user.getGender());
+                        existUser.setAddress(user.getAddress());
+                        existUser.setEmail(user.getEmail());
+                        existUser.setImageurl(user.getImageurl());
+                        existUser.setUpdatedDate(user.getUpdatedDate());
+                        existUser.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
+                        userService.updateUser(existUser);
+                        result.setSuccess(true);
+                        result.setMessage("Update user successfully");
+                } else if("".equals(user.getOldpassword()) && "".equals(user.getPassword())){
                     existUser.setUsername(user.getUsername());
                     existUser.setFullname(user.getFullname());
                     existUser.setGender(user.getGender());
@@ -73,10 +133,10 @@ public class UserApiController {
                     userService.updateUser(existUser);
                     result.setSuccess(true);
                     result.setMessage("Update user successfully");
+                }else {
+                    result.setSuccess(false);
+                    result.setMessage("Wrong password");
                 }
-            } else {
-                result.setSuccess(false);
-                result.setMessage("Invalid model");
             }
         } catch (Exception e) {
             result.setSuccess(false);

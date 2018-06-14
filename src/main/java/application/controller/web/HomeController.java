@@ -27,10 +27,6 @@ import java.util.List;
 
 import static application.constant.Constant.DEFAULT_PARENT_ID;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
-
 @Controller
 @RequestMapping(path="/")
 @CrossOrigin
@@ -76,6 +72,13 @@ public class HomeController{
         System.out.println("====================");
         System.out.println(userAgent);
         System.out.println("IP: " + request.getRemoteAddr());
+
+//        Cookie cookie[] = request.getCookies();
+//
+//        for(Cookie c : cookie){
+//            c.getName();
+//            c.getValue();
+//        }
 
         HomeLandingVM vm = new HomeLandingVM();
 

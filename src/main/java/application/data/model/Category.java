@@ -5,9 +5,6 @@ import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ManhNguyen on 3/30/18.
- */
 @Entity(name = "tbl_category")
 public class Category {
 

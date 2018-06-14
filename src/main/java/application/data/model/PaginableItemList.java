@@ -2,9 +2,6 @@ package application.data.model;
 
 import java.util.List;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
 public class PaginableItemList<T> {
     private int pageSize;
     private int pageNumber;

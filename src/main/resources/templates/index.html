@@ -10,33 +10,7 @@
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    .item-product__price:after {
-        content: 'VND';
-        color: red;
-        font-weight: bold;
-    }
-    a.minus, a.add {
-        color: #444;
-        font-weight: 400;
-        background: #eee;
-        width: 35px;
-        height: 35px;
-        display: inline-block;
-        line-height: 35px;
-        text-align: center;
-        cursor: pointer;
-    }
-    .item-product__amount p {
-        margin: 13px 0;
-    }
-    .item-product__amount input {
-        text-align: center;
-        border: none;
-        font-size: 15px;
-        width: 15%;
-    }
-</style>
+
 <body>
 
 <div th:replace="fragments/header :: header_top"></div>
@@ -86,26 +60,35 @@
                     <div class="panel-heading">Menu</div>
                     <div class="panel-body">
                         <div class="list-group">
-                            <div class="accordion vertical">
+                            <ul id="left-menu">
                             <th:block th:each="menuItem : ${vm.getListVtMenuItemsAside()}">
 
-                                    <li th:if="${menuItem.getChildren().size() == 0}">
-                                        <a th:href="${'#'+menuItem.getId()}"
-                                               th:text="${menuItem.getText()}"></a>
-                                    </li>
-                                    <li th:id="${menuItem.getId()}"  th:unless="${menuItem.getChildren().size() == 0}">
-                                        <a th:href="${'#'+menuItem.getId()}">
-                                            <span th:text="${menuItem.getText()}"></span> <span class="caret"></span>
-                                        </a>
-                                        <ul class="submenu">
+                                    <!--<li th:if="${menuItem.getChildren().size() == 0}">-->
+                                        <!--<a th:href="${'/category/detail/'+menuItem.getId()}"-->
+                                               <!--th:text="${menuItem.getText()}"></a>-->
+                                    <!--</li>-->
+                                    <!--<li th:id="${menuItem.getId()}"  th:unless="${menuItem.getChildren().size() == 0}">-->
+                                        <!--<a th:href="${'#'+menuItem.getId()}">-->
+                                            <!--<span th:text="${menuItem.getText()}"></span> <span class="caret"></span>-->
+                                        <!--</a>-->
+                                        <!--<ul class="submenu">-->
+                                            <!--<li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"-->
+                                                                                               <!--th:text="${child.getText()}"></a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+
+                                    <li th:unless="${menuItem.getChildren().size() == 0}">
+                                        <a ><span th:text="${menuItem.getText()}"></span> <span class="caret"></span></a>
+                                        <ul class="sub-menu">
                                             <li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"
                                                                                                th:text="${child.getText()}"></a></li>
                                         </ul>
                                     </li>
-
-
+                                    <li th:if="${menuItem.getChildren().size() == 0}">
+                                        <a th:href="${'/category/detail/'+menuItem.getId()}" th:text="${menuItem.getText()}"></a>
+                                    </li>
                             </th:block>
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -127,19 +110,19 @@
                                         <div class="item-product__title">
                                             <span th:text="${product.getName()}"></span>
                                         </div>
-                                        <div class="item-product__desc">
-                                            <span th:text="${product.getShortDesc()}"></span>
-                                        </div>
+                                        <!--<div class="item-product__desc">-->
+                                            <!--<span th:text="${product.getShortDesc()}"></span>-->
+                                        <!--</div>-->
                                         <div class="item-product__amount">
                                             <p>
                                                 <a id="minus1" class="minus"><i class="fa fa-minus"></i></a>
                                                 <input id="qty1" type="text" value="1" class="qty"/>
                                                 <a id="add1" class="add"><i class="fa fa-plus"></i></a>
                                             </p>
-                                            <span th:text="${product.getAmount()}"></span>
+                                            <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span th:text="${product.getPrice()}"></span>
+                                            <span th:text="${product.getPrice()}"></span><span> VND</span>
                                         </div>
                                         <div class="item-product__action">
                                             <button class="btn btn-success">Add to cart</button>
@@ -159,18 +142,26 @@
                                 <div class="item-product">
                                     <div class="item-product__inner">
                                         <div class="item-product__image">
-                                            <a class="item-product__img__link" th:href="@{'product/detail/' + ${product.getId()}}">
+                                            <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
                                                 <img th:src="${product.getImage()}" alt="">
                                             </a>
                                         </div>
                                         <div class="item-product__title">
                                             <span th:text="${product.getName()}"></span>
                                         </div>
-                                        <div class="item-product__desc">
-                                            <span th:text="${product.getShortDesc()}"></span>
+                                        <!--<div class="item-product__desc">-->
+                                            <!--<span th:text="${product.getShortDesc()}"></span>-->
+                                        <!--</div>-->
+                                        <div class="item-product__amount">
+                                            <p>
+                                                <a id="minus1" class="minus"><i class="fa fa-minus"></i></a>
+                                                <input id="qty1" type="text" value="1" class="qty"/>
+                                                <a id="add1" class="add"><i class="fa fa-plus"></i></a>
+                                            </p>
+                                            <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span th:text="${product.getAmount()}"></span>
+                                            <span th:text="${product.getPrice()}"></span><span> VND</span>
                                         </div>
                                         <div class="item-product__action">
                                             <button class="btn btn-success">Add to cart</button>
@@ -188,26 +179,6 @@
 </div>
 
 <footer th:include="fragments/footer :: footer"></footer>
-
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
-<script>
-    // Increase and decrease value in product
-    $(function () {
-        $('.add').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal)) {
-                $qty.val(currentVal + 1);
-            }
-        });
-        $('.minus').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal) && currentVal > 0) {
-                $qty.val(currentVal - 1);
-            }
-        });
-    });
-</script>
 </body>
 </html>

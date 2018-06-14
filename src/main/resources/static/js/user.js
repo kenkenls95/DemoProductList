@@ -21,11 +21,108 @@ $(document).ready(function () {
                     document.getElementById("other").checked = true;
                 break;
             }
-
-            $.get("http://"+window.location.host+"/api/order/user/"+ data.data.id, function(res, req){
-                var i = 1;
-                for(var order of res.data){
-                    $('#table > tbody').append(`<tr>
+            if(data.message == "ROLE_ADMIN"){
+                $('#content').append(`
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>Quản lý tài khoản</h3>
+                        <table class="table table-bordered table-hover" id="tableuser">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Tài Khoản</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                `)
+                $.get("http://"+window.location.host+"/api/user/alluser", function(res, req){
+                    for(var user of res.data){
+                        if(user.user != null){
+                            $('#tableuser > tbody').append(`
+                              <tr>
+                                    <td>${user.id}</td>
+                                    <td>${user.user.username}</td>
+                                    <td>${user.role.description}</td>
+                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button></td>
+                              </tr>  
+                            `)
+                            $('#tableuser').DataTable();
+                            $('.btn-edit-role').on('click',function () {
+                                var id = $(this).data("id")
+                                console.log(id)
+                                swal({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    type: 'warning',
+                                    showCancelButton: true
+                                }).then(function(result) {
+                                    if (result.value) {
+                                        NProgress.start();
+                                        axios.post("/api/user/update-role/", {
+                                            userId : id
+                                        }).then(function(res){
+                                            NProgress.done();
+                                            if(res.data.success) {
+                                                swal(
+                                                    'Good job!',
+                                                    res.data.message,
+                                                    'success'
+                                                ).then(function() {
+                                                    location.reload();
+                                                });
+                                            } else {
+                                                swal(
+                                                    'Error',
+                                                    res.data.message,
+                                                    'error'
+                                                );
+                                            }
+                                        }, function(err){
+                                            NProgress.done();
+                                            swal(
+                                                'Error',
+                                                'Some error when saving product',
+                                                'error'
+                                            );
+                                        })
+                                    }
+                                })
+                            })
+                        }
+                    }
+                }
+                )
+            }else {
+                $('#content').append(`
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>Lịch sử mua hàng</h3>
+            
+                        <table class="table table-bordered table-hover" id="table" style="margin-top: 15px;">
+                            <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số hóa đơn</th>
+                                <th>Ngày tạo</th>
+                                <th>Địa chỉ</th>
+                                <th>Trạng thái</th>
+                                <th>Xem chi tiết</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                `)
+                $.get("http://"+window.location.host+"/api/order/user/"+ data.data.id, function(res, req){
+                    var i = 1;
+                    for(var order of res.data){
+                        $('#table > tbody').append(`<tr>
 						<td>${i}</td>
 			            <td>${order.id}</td>
 			            <td>${order.createdDate}</td>
@@ -36,42 +133,44 @@ $(document).ready(function () {
                           Xem chi tiết
                         </button></td>
 			            </tr>`)
-                    i++;
-                }
-                $('#table').DataTable();
+                        i++;
+                    }
+                    $('#table').DataTable();
 
-                $(".btn-detail-bill").on("click", function () {
-                    var pdInfo = $(this).data("bill");
-                    $('#table-detail > tbody').html("")
-                    NProgress.start();
-                    axios.get("/api/order/detail/" + pdInfo).then(function(res){
-                        NProgress.done();
-                        if(res.data.success) {
-                            $('#name').text(data.data.username)
-                            $('#diachi').text(data.data.address)
-                            $('#diachiemail').text(data.data.email)
-                            $('#ngaylap').text(data.data.createdDate)
-                            var j =1;
-                            var sum =0;
-                            for(var pro of res.data.data.products){
-                                $('#table-detail > tbody').append(`<tr>
+                    $(".btn-detail-bill").on("click", function () {
+                        var pdInfo = $(this).data("bill");
+                        $('#table-detail > tbody').html("")
+                        NProgress.start();
+                        axios.get("/api/order/detail/" + pdInfo).then(function(res){
+                            NProgress.done();
+                            if(res.data.success) {
+                                $('#name').text(data.data.username)
+                                $('#diachi').text(data.data.address)
+                                $('#diachiemail').text(data.data.email)
+                                $('#ngaylap').text(data.data.createdDate)
+                                var j =1;
+                                var sum =0;
+                                for(var pro of res.data.data.products){
+                                    $('#table-detail > tbody').append(`<tr>
                                 <td>${j}</td>
                                 <td>${pro.product.name}</td>
                                 <td>${pro.orderquantity}</td>
                                 <td>${pro.orderprice}</td>
                                 <td class="money">${pro.orderquantity*pro.orderprice}</td>
                                 </tr>`)
-                                sum += pro.orderquantity*pro.orderprice;
-                                j++;
+                                    sum += pro.orderquantity*pro.orderprice;
+                                    j++;
+                                }
+                                $('#sum').text(sum)
+                                $('#modal-create-bill').modal()
                             }
-                            $('#sum').text(sum)
-                            $('#modal-create-bill').modal()
-                        }
-                    }, function(err){
-                        NProgress.done();
-                    })
-                });
-            })
+                        }, function(err){
+                            NProgress.done();
+                        })
+                    });
+                })
+            }
+
         }
     })
 
@@ -101,10 +200,9 @@ $(document).ready(function () {
         })
     });
 
-    // $('#datepicker-created-date-product').datetimepicker();
-
     $(".btn-save-user").on("click", function () {
-        if($("#username").val() === "" || $("#fullname").val() === "" || dataUser.imageurl === undefined || $("#address").val() === ""||$("#email").val() === "" ) {
+        if($("#username").val() === "" || $("#fullname").val() === "" || dataUser.imageurl === undefined || $("#address").val() === ""||$("#email").val() === ""
+         ) {
             swal(
                 'Error',
                 'You need to fill all values',
@@ -112,16 +210,14 @@ $(document).ready(function () {
             );
             return;
         }
-        // var createdDate = null;
-        // if($("#datepicker-created-date-product").data("DateTimePicker").date()) {
-        //     createdDate = $("#datepicker-created-date-product").data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
-        // }
 
         dataUser.username = $('#username').val()
         dataUser.fullname = $('#fullname').val()
         dataUser.email = $('#email').val()
         dataUser.address = $('#address').val()
         dataUser.updatedDate = new Date().toJSON()
+        dataUser.oldpassword = $('#old-password').val()
+        dataUser.password = $('#new-password').val()
         if(document.getElementById("male").checked){
             dataUser.gender = "Male"
         }

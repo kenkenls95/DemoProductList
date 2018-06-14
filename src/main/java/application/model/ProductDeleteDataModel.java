@@ -1,8 +1,6 @@
 package application.model;
 
-/**
- * Created by ManhNguyen on 3/11/18.
- */
+
 public class ProductDeleteDataModel {
     private int productId;
 

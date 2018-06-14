@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by ManhNguyen on 3/1/18.
- */
-
 @Controller
 @RequestMapping("/link/")
 public class LinkController {

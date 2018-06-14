@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     for(var i =0 ; i<1;i++){
         // $(location).attr('href')+
-        $.get("http://kienvt.herokuapp.com/remote/api/getLed", function(data, status){
+        $.get("http://localhost:5000/remote/api/getLed", function(data, status){
 
             $(".switch > input")[0].checked = readData(data.led1);
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
         }else{
             led4 =0;
         }
-        var linkPost = "http://kienvt.herokuapp.com/remote/api/doLed";
+        var linkPost = "http://localhost:5000/remote/api/doLed";
         var status = {};
         status.led = [];
         status.led[0]= led1;
@@ -85,7 +85,7 @@ $(document).ready(function(){
             showCancelButton: true
         }).then(function(result){
             if(result.value){
-                $.post("http://kienvt.herokuapp.com/remote/api/remove",
+                $.post("http://localhost:5000/remote/api/remove",
                     {
                         "remove":true
                     },

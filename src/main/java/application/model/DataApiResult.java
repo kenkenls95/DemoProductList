@@ -1,8 +1,6 @@
 package application.model;
 
-/**
- * Created by ManhNguyen on 3/12/18.
- */
+
 public class DataApiResult extends BaseApiResult {
     private Object data;
 

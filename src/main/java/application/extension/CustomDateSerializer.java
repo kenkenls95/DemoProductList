@@ -10,9 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by ManhNguyen on 3/13/18.
- */
 public class CustomDateSerializer extends JsonSerializer<Date> {
 
     @Override
