@@ -62,21 +62,6 @@
                         <div class="list-group">
                             <ul id="left-menu">
                             <th:block th:each="menuItem : ${vm.getListVtMenuItemsAside()}">
-
-                                    <!--<li th:if="${menuItem.getChildren().size() == 0}">-->
-                                        <!--<a th:href="${'/category/detail/'+menuItem.getId()}"-->
-                                               <!--th:text="${menuItem.getText()}"></a>-->
-                                    <!--</li>-->
-                                    <!--<li th:id="${menuItem.getId()}"  th:unless="${menuItem.getChildren().size() == 0}">-->
-                                        <!--<a th:href="${'#'+menuItem.getId()}">-->
-                                            <!--<span th:text="${menuItem.getText()}"></span> <span class="caret"></span>-->
-                                        <!--</a>-->
-                                        <!--<ul class="submenu">-->
-                                            <!--<li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"-->
-                                                                                               <!--th:text="${child.getText()}"></a></li>-->
-                                        <!--</ul>-->
-                                    <!--</li>-->
-
                                     <li th:unless="${menuItem.getChildren().size() == 0}">
                                         <a ><span th:text="${menuItem.getText()}"></span> <span class="caret"></span></a>
                                         <ul class="sub-menu">

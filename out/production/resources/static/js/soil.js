@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var temperature =0
     function get_element() {
-        $.post( "http://localhost:5000/lastsoil", function(res) {
+        $.post( "http://localhost:5000/environment/soilmoisture/lastsoil", function(res) {
             temperature = res[0].value;
         });
     }
@@ -20,7 +20,7 @@ $(document).ready(function () {
             g1.refresh(temperature);
         }, 1000);
     };
-    setInterval(get_element,10000);
+    setInterval(get_element,1);
 
     $.get("http://localhost:5000/environment/getsoil", function(res, req){
         if(res.success){
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 $('#tablesoil > tbody').append(`
                     <tr>
                         <th>${temp.id}</th>
-                        <th>${temp.value + " *C"}</th>
+                        <th>${temp.value + " %"}</th>
                         <th>${temp.date}</th>
                         <th class="status">${temp.status}</th>
                     </tr>
@@ -44,4 +44,9 @@ $(document).ready(function () {
             }
         }
     })
+
+    $("#left-menu > li > a").click(function () {
+        $('ul.sub-menu').not($(this).siblings()).slideUp();
+        $(this).siblings("ul.sub-menu").slideToggle();
+    });
 })

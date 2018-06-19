@@ -162,66 +162,30 @@
 </div>
     </div>
 </div>
-<!--<div th:fragment="header_info (vm)">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-4">-->
-                <!--<a th:href="@{/}"><img class="img-responsive"-->
-                                       <!--th:src="${vm.getLogo().getLogoUrl()}"-->
-                                       <!--th:alt="${vm.getLogo().getLogoAltText()}"></a>-->
-            <!--</div>-->
-            <!--<div class="col-md-8">-->
-                <!--<h1 th:text="${vm.getLogo().getCompanyName()}"></h1>-->
-            <!--</div>-->
-        <!--</div>-->
 
-        <!--<div class="spr-top-nav">-->
-            <!--<nav class="navbar navbar-inverse">-->
-                <!--<div class="container-fluid">-->
-                    <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-                    <!--<div class="navbar-header">-->
-                        <!--<button type="button"-->
-                                <!--class="navbar-toggle collapsed"-->
-                                <!--data-toggle="collapse"-->
-                                <!--data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                            <!--<span class="sr-only">Toggle navigation</span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                            <!--<span class="icon-bar"></span>-->
-                        <!--</button>-->
-                        <!--<a class="navbar-brand" th:href="@{/}">-->
-                            <!--<span th:text="${vm.getLogo().getCompanyBrand()}"></span></a>-->
-                    <!--</div>-->
-
-                    <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-                    <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-                        <!--<ul class="nav navbar-nav">-->
-
-                            <!--<th:block th:each="menuItem : ${vm.getListHrMenuItems()}">-->
-
-                                <!--<li th:if="${menuItem.getChildren().size() == 0}"><a th:href="${menuItem.getLink()}"-->
-                                                                                     <!--th:text="${menuItem.getText()}"></a>-->
-                                <!--</li>-->
-                                <!--<li class="dropdown" th:unless="${menuItem.getChildren().size() == 0}">-->
-                                    <!--<a th:href="${menuItem.getLink()}" class="dropdown-toggle" data-toggle="dropdown"-->
-                                       <!--role="button" aria-haspopup="true" aria-expanded="false">-->
-                                        <!--<span th:text="${menuItem.getText()}"></span> <span class="caret"></span></a>-->
-
-                                    <!--<ul class="dropdown-menu">-->
-                                        <!--<li th:each="child : ${menuItem.getChildren()}"><a th:href="${child.getLink()}"-->
-                                                                                           <!--th:text="${child.getText()}"></a>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</li>-->
-
-                            <!--</th:block>-->
-                        <!--</ul>-->
-                    <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-                <!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
-            <!--</nav>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div th:fragment="menu_aside">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <div class="list-group">
+                    <ul id="left-menu">
+                        <li>
+                            <a href="/remote">Điều khiển thiết bị</a>
+                        </li>
+                        <li>
+                            <a><span>Môi trường</span><span class="caret"></span></a>
+                            <ul class="sub-menu">
+                                <li><a href="/remote/temp">Nhiệt độ</a></li>
+                                <li><a href="/remote/hum">Độ ẩm</a></li>
+                                <li><a href="/remote/soil">Độ ẩm đất</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

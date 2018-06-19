@@ -2,9 +2,9 @@
 $(document).ready(function(){
     function readData (data){
         if(data == 1){
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
     }
 
@@ -28,24 +28,24 @@ $(document).ready(function(){
 
     $(".send").click(function(){
         if($(".switch > input")[0].checked){
-            led1 =1;
-        }else{
             led1 =0;
+        }else{
+            led1 =1;
         }
         if($(".switch > input")[1].checked){
-            led2 =1;
-        }else{
             led2 =0;
+        }else{
+            led2 =1;
         }
         if($(".switch > input")[2].checked){
-            led3 =1;
-        }else{
             led3 =0;
+        }else{
+            led3 =1;
         }
         if($(".switch > input")[3].checked){
-            led4 =1;
-        }else{
             led4 =0;
+        }else{
+            led4 =1;
         }
         var linkPost = "http://localhost:5000/remote/api/doLed";
         var status = {};
@@ -111,6 +111,10 @@ $(document).ready(function(){
 
     });
 
+    $("#left-menu > li > a").click(function () {
+        $('ul.sub-menu').not($(this).siblings()).slideUp();
+        $(this).siblings("ul.sub-menu").slideToggle();
+    });
 
 
 });

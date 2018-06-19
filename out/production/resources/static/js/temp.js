@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var temperature =0
     function get_element() {
-        $.post( "http://localhost:5000/lasttemp", function(res) {
+        $.post( "http://localhost:5000/environment/temperature/lasttemp", function(res) {
             temperature = res[0].value;
         });
     }
@@ -20,7 +20,7 @@ $(document).ready(function () {
             g1.refresh(temperature);
         }, 1000);
     };
-    setInterval(get_element,10000);
+    setInterval(get_element,1);
 
     $.get("http://localhost:5000/environment/gettemp", function(res, req){
         if(res.success){
@@ -33,15 +33,19 @@ $(document).ready(function () {
                         <th class="status">${temp.status}</th>
                     </tr>
                 `)
+                function newDate() {
+                    
+                }
             }
+
             $('#tabletemp').DataTable();
-            if($('.status').val() == 0){
-                $('.status').text("Device is not ready")
-                $('.status').css("color","red")
-            }else{
-                $('.status').text("Device is ready")
-                $('.status').css("color","blue")
-            }
         }
+
+
     })
+
+    $("#left-menu > li > a").click(function () {
+        $('ul.sub-menu').not($(this).siblings()).slideUp();
+        $(this).siblings("ul.sub-menu").slideToggle();
+    });
 })

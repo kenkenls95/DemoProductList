@@ -215,7 +215,7 @@ a.minus, a.add {
     transition: all 0.4s ease;
 }
 #left-menu a:hover {
-    color: red;
+    background: #9ae2b5;
 }
 #left-menu li {
     list-style: none;
@@ -240,4 +240,8 @@ a.minus, a.add {
 }
 .sub-menu li {
     border: none!important;
+}
+
+.sub-menu li a {
+    margin-left: 15px;
 }
