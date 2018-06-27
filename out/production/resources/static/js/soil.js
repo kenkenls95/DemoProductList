@@ -24,24 +24,23 @@ $(document).ready(function () {
 
     $.get("http://localhost:5000/environment/getsoil", function(res, req){
         if(res.success){
-            for(var temp of res.data ){
+            for(var soil of res.data ){
+                var datetime
+                var day
+                var time
+                datetime = soil.date.split(".")
+                datetime = datetime[0].split("T")
+                day = datetime[0].split("-")
+                time = datetime[1]
                 $('#tablesoil > tbody').append(`
                     <tr>
-                        <th>${temp.id}</th>
-                        <th>${temp.value + " %"}</th>
-                        <th>${temp.date}</th>
-                        <th class="status">${temp.status}</th>
+                        <th>${soil.id}</th>
+                        <th>${soil.value + " %"}</th>
+                        <th>${day[0]+'/'+day[1]+'/'+day[2]} ${time+'s'}</th>
                     </tr>
                 `)
             }
             $('#tablesoil').DataTable();
-            if($('.status').val() == 0){
-                $('.status').text("Device is not ready")
-                $('.status').css("color","red")
-            }else{
-                $('.status').text("Device is ready")
-                $('.status').css("color","blue")
-            }
         }
     })
 

@@ -110,7 +110,7 @@
                                             <span th:text="${product.getPrice()}"></span><span> VND</span>
                                         </div>
                                         <div class="item-product__action">
-                                            <button class="btn btn-success">Add to cart</button>
+                                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                                             <span th:text="${product.getPrice()}"></span><span> VND</span>
                                         </div>
                                         <div class="item-product__action">
-                                            <button class="btn btn-success">Add to cart</button>
+                                            <button class="btn btn-success btn-shopping">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -165,5 +165,39 @@
 
 <footer th:include="fragments/footer :: footer"></footer>
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script>
+    $(document).ready(function () {
+        $(".btn-shopping").click(function () {
+            var quantity = 0;
+            var order
+            var id = $(this).data("id");
+            var $qty = $(this).closest('.item-product__inner').find('.qty');
+            if(id == $(this).val()) {
+                if(quantity != 0) {
+                    quantity += parseInt($qty.val());
+                } else {
+                    quantity = parseInt($qty.val());
+                }
+            }
+            else {
+                quantity = parseInt($qty.val());
+            }
+            order = "{"+"\""+id+"\""+":"+quantity+"}"
+            setCookie("Order", order,7)
+            console.log(JSON.parse(order))
+            alert(document.cookie);
+        });
+        function update(id,qty) {
+            var cart = JSON.parse(document.cookie)
+            
+        }
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    })
+</script>
 </body>
 </html>

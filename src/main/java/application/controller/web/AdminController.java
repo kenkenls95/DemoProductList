@@ -1,14 +1,11 @@
 package application.controller.web;
 
 
-import application.constant.Constant;
 import application.data.model.Category;
-import application.data.model.PaginableItemList;
 import application.data.model.Product;
 import application.data.service.CategoryService;
 import application.data.service.ProductService;
 import application.model.CategoryDataModel;
-import application.model.ProductDetailModel;
 import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
@@ -17,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +111,6 @@ public class AdminController extends BaseController {
 
         model.addAttribute("vm", vm);
 
-        return "admin";
+        return "admin/admin";
     }
 }

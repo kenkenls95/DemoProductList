@@ -19,6 +19,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select u from tbl_product u where u.name = :name")
     Object findByName(@Param("name") String name);
 
+    ArrayList<Product> findByNameContaining(@Param("name") String name);
+
     @Query("select p from tbl_product p")
     ArrayList<Product> getAllProducts();
 

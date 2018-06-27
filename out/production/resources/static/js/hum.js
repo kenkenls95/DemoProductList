@@ -25,14 +25,22 @@ $(document).ready(function () {
     $.get("http://localhost:5000/environment/gethum", function(res, req){
         if(res.success){
             for(var hum of res.data ){
+                var datetime
+                var day
+                var time
+                datetime = hum.date.split(".")
+                datetime = datetime[0].split("T")
+                day = datetime[0].split("-")
+                time = datetime[1]
                 $('#tablehum > tbody').append(`
                     <tr>
                         <th>${hum.id}</th>
                         <th>${hum.value + " %"}</th>
-                        <th>${hum.date}</th>
+                        <th>${day[0]+'/'+day[1]+'/'+day[2]} ${time+'s'}</th>
                         <th class="status">${hum.status}</th>
                     </tr>
                 `)
+
             }
             $('#tablehum').DataTable();
 

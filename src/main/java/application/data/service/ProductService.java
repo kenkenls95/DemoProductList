@@ -53,7 +53,11 @@ public class ProductService {
         return productRepository.findOne(productId);
     }
 
-    public Object findByName(String username) {
+    public ArrayList<Product> findByNameContaining(String username) {
+        return productRepository.findByNameContaining(username);
+    }
+
+    public Object findByName(String username){
         return productRepository.findByName(username);
     }
 
