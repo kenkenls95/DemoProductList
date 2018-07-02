@@ -64,13 +64,6 @@ public class ProductDetailModel {
         this.amount = amount;
     }
 
-    private int id;
-    private String name;
-    private String image;
-    private String shortDesc;
-    private int amount;
-    private int price;
-
     public int getPrice() {
         return price;
     }
@@ -78,6 +71,14 @@ public class ProductDetailModel {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    private int id;
+    private String name;
+    private String image;
+    private String shortDesc;
+    private int amount;
+
+    private int price;
 
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date createdDate;

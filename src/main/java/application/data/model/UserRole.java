@@ -9,7 +9,7 @@ public class UserRole {
     private int id;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @Column(name = "role_id")
     private int roleId;
@@ -19,7 +19,7 @@ public class UserRole {
     public UserRole() {
     }
 
-    public UserRole(int userId, int roleId, int status) {
+    public UserRole(String userId, int roleId, int status) {
         this.userId = userId;
         this.roleId = roleId;
         this.status = status;
@@ -33,11 +33,11 @@ public class UserRole {
         this.id = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

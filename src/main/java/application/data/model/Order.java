@@ -1,17 +1,18 @@
 package application.data.model;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "tbl_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int userid;
+    private String userid;
+    private String userguild;
     private Date created_date;
+    private Date updated_date;
+
 //    private int statusid;
     private String address;
 //
@@ -22,6 +23,14 @@ public class Order {
     @JoinColumn(name="statusid")
     private OrderStatus orderStatus;
 
+    public Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(Date updated_date) {
+        this.updated_date = updated_date;
+    }
+
     public int getId() {
         return id;
     }
@@ -30,12 +39,20 @@ public class Order {
         this.id = id;
     }
 
-    public int getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
+    }
+
+    public String getUserguild() {
+        return userguild;
+    }
+
+    public void setUserguild(String userguild) {
+        this.userguild = userguild;
     }
 
     public Date getCreated_date() {

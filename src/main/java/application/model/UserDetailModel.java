@@ -3,7 +3,7 @@ package application.model;
 import java.sql.Date;
 
 public class UserDetailModel {
-    private int id;
+    private String id;
     private String username;
     private String fullname;
     private String email;
@@ -47,11 +47,11 @@ public class UserDetailModel {
         this.imageurl = imageurl;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -13,10 +13,10 @@ public interface IUserRoleRepository extends CrudRepository<UserRole, Integer> {
 
     @Transactional(readOnly = true)
     @Query("select u from tbl_userrole u where u.userId = :id")
-    Iterable<UserRole> findRolesOfUser(@Param("id") int userId);
+    Iterable<UserRole> findRolesOfUser(@Param("id") String userId);
 
     @Query("select r from tbl_userrole r where r.userId=:userId")
-    UserRole findRoleIdByUserId(@Param("userId") int userId);
+    UserRole findRoleIdByUserId(@Param("userId") String userId);
 
     @Query("select u from tbl_userrole u")
     ArrayList<UserRole> getUserRole();

@@ -25,7 +25,7 @@ public class OrderApiController {
 
 
     @GetMapping("/user/{id}")
-    public BaseApiResult getOrderByUser(@PathVariable int id){
+    public BaseApiResult getOrderByUser(@PathVariable String id){
         DataApiResult result = new DataApiResult();
         ModelMapper modelMapper = new ModelMapper();
 
@@ -57,10 +57,10 @@ public class OrderApiController {
             ArrayList<OrderProductDetailModel> orderProductDetailModels = new ArrayList<>();
             ArrayList<OrderProductDataModel> orderProductDataModels = new ArrayList<>();
             for(OrderProduct orderProduct : orderProducts){
-                orderProductDetailModels.add(new OrderProductDetailModel(orderProduct.getId(),orderProduct.getProductid(),orderProduct.getOrderprice(),orderProduct.getOrderquantity(),orderProduct.getCreated_date()));
+                orderProductDetailModels.add(new OrderProductDetailModel(orderProduct.getId(),orderProduct.getProductid(),orderProduct.getOrderprice(),orderProduct.getOrderquantity(),orderProduct.getCreated_date(),orderProduct.getUpdated_date()));
             }
             for(OrderProductDetailModel o : orderProductDetailModels){
-                orderProductDataModels.add(new OrderProductDataModel(modelMapper.map(productService.findById(o.getProductid()),ProductDetailModel.class),o.getOrderprice(),o.getOrderquantity(),o.getCreated_date()));
+                orderProductDataModels.add(new OrderProductDataModel(modelMapper.map(productService.findById(o.getProductid()),ProductDetailModel.class),o.getOrderprice(),o.getOrderquantity(),o.getCreated_date(),o.getUpdated_date()));
             }
 
             ListProductModel listProductModel = new ListProductModel();

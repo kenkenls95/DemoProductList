@@ -2,8 +2,10 @@ package application.controller.api;
 
 import application.constant.Constant;
 import application.data.model.Category;
+import application.data.model.OrderProduct;
 import application.data.model.Product;
 import application.data.service.CategoryService;
+import application.data.service.OrderService;
 import application.data.service.ProductService;
 import application.model.*;
 import application.viewmodel.common.ProductVM;
@@ -26,6 +28,9 @@ public class ProductApiController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private OrderService orderService;
 
     private String[] images = {
             "https://images-na.ssl-images-amazon.com/images/I/519rVW4jTIL._SL500_SS135_.jpg",
@@ -106,19 +111,21 @@ public class ProductApiController {
         return result;
     }
 
-    @GetMapping("/getallname")
+    @GetMapping("/getallproduct")
     public BaseApiResult getAllName() {
         DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper = new ModelMapper();
         try{
-            List<String> existName = productService.getAllName();
-            if(existName == null) {
-                result.setSuccess(false);
-                result.setMessage("Can't find this product");
-            } else {
-                result.setSuccess(true);
+            ArrayList<Product> products  = productService.getAllPros();
+            ArrayList<ProductSearchModel> productSearchModels = new ArrayList<>();
+            for (Product p : products){
+                productSearchModels.add(modelMapper.map(p,ProductSearchModel.class));
             }
-            result.setData(existName);
+            result.setSuccess(true);
+            result.setData(productSearchModels);
+            result.setMessage("'success");
         } catch (Exception e) {
+            result.setData(null);
             result.setSuccess(false);
             result.setMessage(e.getMessage());
         }
@@ -225,6 +232,37 @@ public class ProductApiController {
             result.setMessage(e.getMessage());
         }
 
+        return result;
+    }
+
+    @PostMapping("/update-orderproduct")
+    public BaseApiResult updateOrderProduct(@RequestBody OrderProductApiModel orderProductApiModel){
+        DataApiResult result = new DataApiResult();
+        try {
+            OrderProduct existOrderProduct = orderService.findOrderProduct(orderProductApiModel.getProductId(), orderProductApiModel.getOrderId());
+            if(existOrderProduct != null){
+                existOrderProduct.setOrderquantity(existOrderProduct.getOrderquantity() + orderProductApiModel.getOrderQuantity());
+                orderService.saveOrderProduct(existOrderProduct);
+                result.setSuccess(true);
+                result.setMessage("update success");
+                result.setData(existOrderProduct);
+            }else {
+                OrderProduct orderProduct = new OrderProduct();
+                orderProduct.setProductid(orderProductApiModel.getProductId());
+                orderProduct.setOrderquantity(orderProductApiModel.getOrderQuantity());
+                orderProduct.setOrderprice(orderProductApiModel.getOrderPrice());
+                orderProduct.setOrderid(orderProductApiModel.getOrderId());
+                orderProduct.setCreated_date(new Date());
+                orderService.saveOrderProduct(orderProduct);
+                result.setSuccess(true);
+                result.setMessage("success");
+                result.setData(orderProduct);
+            }
+        } catch (Exception e) {
+            result.setMessage(e.getMessage());
+            result.setData(null);
+            result.setSuccess(false);
+        }
         return result;
     }
 

@@ -13,8 +13,17 @@ public class OrderProduct {
     private long orderprice;
     private int orderquantity;
     private Date created_date;
+    private Date updated_date;
 
-//    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    public Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(Date updated_date) {
+        this.updated_date = updated_date;
+    }
+
+    //    @ManyToOne(optional = true, fetch = FetchType.LAZY)
 //    @JoinColumn(name="orderid")
 //    private Order order;
 //

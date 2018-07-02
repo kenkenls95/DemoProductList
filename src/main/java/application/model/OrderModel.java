@@ -1,15 +1,24 @@
 package application.model;
 
-import application.data.model.OrderStatus;
 
 import java.sql.Date;
 
 public class OrderModel {
     private int id;
-    private int userid;
+    private String userid;
+    private String userguild;
     private Date createdDate;
+    private Date updatedDate;
     private OrderStatusModel orderStatus;
     private String address;
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public int getId() {
         return id;
@@ -19,12 +28,20 @@ public class OrderModel {
         this.id = id;
     }
 
-    public int getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
+    }
+
+    public String getUserguild() {
+        return userguild;
+    }
+
+    public void setUserguild(String userguild) {
+        this.userguild = userguild;
     }
 
     public Date getCreatedDate() {

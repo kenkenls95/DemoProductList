@@ -61,9 +61,6 @@ public class ProductService {
         return productRepository.findByName(username);
     }
 
-    public List<String> getAllName(){
-        return productRepository.getAllName();
-    }
 
     public ArrayList<Product> getAllPros(){
         return productRepository.getAllProducts();

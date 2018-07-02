@@ -1,147 +1,177 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: header-css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin insert products list</title>
-
-</head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="admin/layout :: head"></head>-->
+<head th:include="fragments/header :: header-css"></head>
 <body>
-<div th:replace="fragments/header :: header_top"></div>
-<div th:replace="fragments/header :: header"></div>
+<div th:fragment="dashboard">
+<div id="wrapper">
 
-    <div class="container">
+	<nav th:replace="admin/layout :: sidebar"></nav>
 
-        <section>
-            <h1>Admin - products page</h1>
-            <div class="label-success" style="padding: 10px !important; color: #fff;">
-                <span th:text="${vm.getMessageTotalProducts()}"></span>
-            </div>
-            <p style="margin-top: 10px;">
-                <button class="btn btn-primary" id="btn-new-product">Insert new product</button>
-            </p>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header">Dashboard</h3>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
 
-            <div class="table-list-product">
-                <table class="table table-bordered table-hover" id="myTable">
-                    <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Short desc</th>
-                        <th>Amount</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+		<div class="row">
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-user fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge"><span th:text="${totalUsers}"></span></div>
+								<div>Khách hàng</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/admin/customer}">
+						<div class="panel-footer">
+							<span class="pull-left">Xem chi tiết</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-green">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-list-alt fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge"><span th:text="${totalCategories}"></span></div>
+								<div>Danh mục</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/admin/category}">
+						<div class="panel-footer">
+							<span class="pull-left">Xem chi tiết</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-yellow">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-money fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge"><span th:text="${totalProducts}"></span></div>
+								<div>Sản phẩm</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/admin/product}">
+						<div class="panel-footer">
+							<span class="pull-left">Xem chi tiết</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-red">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-shopping-cart fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge"><span th:text="${totalOrders}"></span></div>
+								<div>Đơn hàng</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/admin/order}">
+						<div class="panel-footer">
+							<span class="pull-left">Xem chi tiết</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
 
-                        <tr th:each="product : ${vm.getListPagingProducts()}">
-                            <td>
-                                <div class="td-image">
-                                    <a th:href="@{'product/detail/' + ${product.getId()}}"><img th:src="${product.getImage()}" alt=""></a>
-                                </div>
-                            </td>
-                            <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span th:text="${product.getName()}"></span></a></td>
-                            <td><span th:text="${product.getCategory().getName()}"></span></td>
-                            <td><span th:text="${product.getShortDesc()}"></span></td>
-                            <td><span th:text="${product.getAmount()}"></span></td>
-                            <td>
-                                <button class="btn btn-default btn-edit-product" th:attr="data-product=${product.getId()}">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn btn-default btn-delete-product" th:attr="data-product=${product.getId()}">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </td>
-                        </tr>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<i class="fa fa-bell fa-fw"></i> Đơn hàng mới nhất
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Mã ĐH</th>
+										<th>Khách hàng</th>
+										<th>Ngày đặt</th>
+										<th>Tổng giá trị</th>
+										<th>Tùy chọn</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!--<tr th:each="order : ${newestOrders}">-->
+										<!--<td th:text="${order.id}"></td>-->
+										<!--<td th:text="${order.user.name}"></td>-->
+										<!--<td th:text="${#dates.format(order.created, 'dd/MM/yyyy HH:mm')}"></td>-->
+										<!--<td th:text="${#numbers.formatInteger(order.total,3,'COMMA')}"></td>-->
+										<!--<td>-->
+		                                    <!--<div class="dropdown">-->
+		                                        <!--<button class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown">-->
+		                                            <!--Tùy chọn-->
+		                                            <!--<span class="caret"></span>-->
+		                                        <!--</button>-->
+		                                        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+		                                            <!--<li>-->
+		                                            	<!--<a th:href="@{/admin/order/{id}(id=${order.id})}">-->
+		                                            		<!--Xem đơn hàng-->
+		                                            	<!--</a>-->
+		                                            <!--</li>-->
+		                                            <!--<li>-->
+		                                            	<!--<a th:href="@{/admin/order/{id}/cancel(id=${order.id})}">-->
+		                                            		<!--Xóa đơn hàng-->
+		                                            	<!--</a>-->
+		                                            <!--</li>-->
+		                                        <!--</ul>-->
+		                                    <!--</div>-->
+		                                <!--</td>-->
+									<!--</tr>-->
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+						<a th:href="@{/admin/order}" class="btn btn-primary">Xem tất cả</a>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-8 -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
 
-                    </tbody>
-                </table>
-                <!--<ul class="pagination" th:if="${0 < vm.getTotalPagingItems()}">-->
-                    <!--<th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">-->
-                        <!--<li class="active" th:if="${indexPage == vm.getCurrentPage()}">-->
-                            <!--<a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>-->
-                        <!--</li>-->
-                        <!--<li th:unless="${indexPage == vm.getCurrentPage()}">-->
-                            <!--<a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>-->
-                        <!--</li>-->
-                    <!--</th:block>-->
-                <!--</ul>-->
-            </div>
-
-            <p style="margin-top: 10px;">
-                <a th:href="@{/}" class="btn btn-primary">Back to index</a>
-            </p>
-        </section>
-    </div>
-
-
-    <div id="modal-create-product" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Product info</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="img-select-block margin-bottom-15">
-                        <label>Product image</label><br/>
-                        <img id="preview-product-img" th:src="@{/img/default-img.jpg}" />
-                        <input type='file' id="input-select-img-product" />
-                    </div>
-
-                    <div class="form-group margin-bottom-15">
-                        <label>Product name:</label>
-                        <input type="text" class="form-control" id="input-product-name">
-                    </div>
-
-                    <div class="form-group margin-bottom-15">
-                        <label for="product-category">Category:</label>
-                        <select class="form-control" id="product-category">
-                            <option th:each="category : ${vm.getListCategories()}"
-                                    th:value="${category.getId()}" th:text="${category.getName()}"></option>
-                        </select>
-                    </div>
-
-                    <div class="form-group margin-bottom-15">
-                        <label>Product description:</label>
-                        <textarea type="text" class="form-control" id="input-product-desc"></textarea>
-                    </div>
-
-                    <div class="form-group margin-bottom-15">
-                        <label>Product amount:</label>
-                        <input type="number" class="form-control" id="input-product-amount"></input>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Product created date:</label>
-                        <div class='input-group date' id='datepicker-created-date-product'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-default btn-save-product">Save product</button>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
-    <footer th:include="fragments/footer :: footer"></footer>
-
-    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+</div>
+</div>
 </body>
 </html>

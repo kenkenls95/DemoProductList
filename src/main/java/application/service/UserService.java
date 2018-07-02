@@ -88,6 +88,11 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
+    public String findIdByUsername(String username){
+        User user = userRepository.findUserByUsername(username);
+        return user.getId();
+    }
+
     public boolean updateUser(User user) {
         try {
             userRepository.save(user);
@@ -118,7 +123,7 @@ public class UserService {
                 .findFirst().orElse(null);
     }
 
-    public List<Role> getActiveListRole(int userId) {
+    public List<Role> getActiveListRole(String userId) {
         List<UserRole> listUserRoles = StreamSupport
                 .stream(userRoleRepository.findRolesOfUser(userId).spliterator(), false).filter(
                         userRole -> userRole.getStatus() == StatusRoleConstant.ActiveStatus
@@ -135,7 +140,7 @@ public class UserService {
 //        return roleRepository.getRole(userRoleModel.getUserid());
 //    }
 
-    public String findRoleName(int userId){
+    public String findRoleName(String userId){
         return roleRepository.findRoleById(userRoleRepository.findRoleIdByUserId(userId).getRoleId()).getRoleName();
     }
 
@@ -143,7 +148,7 @@ public class UserService {
         return userRoleRepository.getUserRole();
     }
 
-    public User findUserById(int id){
+    public User findUserById(String id){
         return userRepository.findUserById(id);
     }
 
@@ -151,11 +156,11 @@ public class UserService {
         return roleRepository.findRoleById(id);
     }
 
-    public UserRole findUserRole(int id){
+    public UserRole findUserRole(String id){
         return userRoleRepository.findRoleIdByUserId(id);
     }
 
-    public boolean updateRole(int userId){
+    public boolean updateRole(String userId){
         try {
             UserRole userRole = new UserRole();
             userRole = userRoleRepository.findRoleIdByUserId(userId);

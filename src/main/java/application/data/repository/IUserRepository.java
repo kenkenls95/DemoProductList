@@ -20,7 +20,10 @@ public interface IUserRepository extends CrudRepository<User, Integer> {
     String getImgByUserName(@Param("username") String username);
 
     @Query("select u from tbl_user u where u.id = :id")
-    User findUserById(@Param("id") int id);
+    User findUserById(@Param("id") String id);
+
+    @Query("select u from tbl_user u where u.username = :username")
+    User findUserByUsername(@Param("username") String username);
 
 }
 

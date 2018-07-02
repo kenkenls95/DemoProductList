@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="header-css">
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" th:href="@{/css/header-footer.css}">
+</head>
+<body>
+
+<div th:fragment="header">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" th:href="@{/}">Trang Chủ</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{/contact}">Liên Hệ</a></li>
+                        <li><a th:href="@{/about}">Về Chúng Tôi</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="@{/register-user}">Đăng Kí</a></li>
+                        <li><a th:href="@{/login}">Đăng Nhập</a></li>
+                        <li sec:authorize="isAuthenticated()" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i><img class="user-logo" src="/link/1528177697-default-user.png" alt=""></i><span class="user-name" sec:authentication="name"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
+                                <li id="role-menu"></li>
+                                <!--<li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>-->
+                                <li class="divider"></li>
+                                <li><a th:href="@{/logout}">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form action="#" th:action="@{/product/search}" th:object="${product}" method="get" class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <section id="ajax-example">
+                                <div class="awesomplete">
+                                    <input placeholder="Tìm kiếm" name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
+                                    <ul role="listbox" id="awesomplete_list_6" hidden="">
+                                        <li aria-selected="false" id="awesomplete_list_6_item_0"><mark>Ca</mark>nada</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_1"><mark>Ca</mark>meroon</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_2">Madagas<mark>ca</mark>r</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_3">New <mark>Ca</mark>ledonia</li>
+                                        <li aria-selected="false" id="awesomplete_list_6_item_4">Central Afri<mark>ca</mark>n Republic</li>
+                                    </ul>
+                                    <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true" hidden="">No results found</span>
+                                </div>
+                            </section>
+                        </div>
+                        <button type="submit" value="Submit" class="btn btn-default">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</div>
+<div th:fragment="header_banner">
+    <div class="container">
+        <div class="banner-top row">
+            <a th:href="@{~/rules}">
+                <img src="https://media.static-adayroi.com/sys_master/h0c/hfc/15518136893470.jpg" alt="Chính sách giao hàng">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="header_top">
+    <div class="surrounding-header container-fluid">
+        <div class="container no-padding">
+
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img alt="logo" th:src="@{/img/logo-shop.png}">
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-9 col-sm-12 top-search-holder no-margin">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2 col-sm-6 col-xs-10 bonus-info">
+                    <div class="phone inline">
+                        <i class="fa fa-phone"></i> <br/><span>0922 441 388</span>
+                    </div>
+                    <div class="contact inline">
+                        <i class="fa fa-envelope"></i> <br/><span>KCShop@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-2 col-md-4 col-sm-6 top-cart-row no-margin">
+                    <!-- Button trigger modal -->
+                    <a class="check" data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer">
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title text-center" id="exampleModalLongTitle">Giỏ hàng</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--<div class="row">-->
+                                            <div class="order-img">
+                                                <img src="http://img.khoahoc.tv/photos/image/052013/10/trai-cay.jpg" alt="">
+                                            </div>
+                                            <div class="order-detail">
+                                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">-->
+                                                    <div class="order-quantity">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                                                  <span class="glyphicon glyphicon-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                <!--</div>-->
+                                                <div class="order-price">
+
+                                                </div>
+                                            </div>
+                                    <!--</div>-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Thanh toán</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+    </div>
+</div>
+
+<div th:fragment="menu_aside">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <div class="list-group">
+                    <ul id="left-menu">
+                        <li>
+                            <a href="/remote">Điều khiển thiết bị</a>
+                        </li>
+                        <li>
+                            <a><span>Môi trường</span><span class="caret"></span></a>
+                            <ul class="sub-menu">
+                                <li><a href="/remote/temp">Nhiệt độ</a></li>
+                                <li><a href="/remote/hum">Độ ẩm</a></li>
+                                <li><a href="/remote/soil">Độ ẩm đất</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

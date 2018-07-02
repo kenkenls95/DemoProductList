@@ -7,12 +7,22 @@ public class OrderProductDataModel {
     private long orderprice;
     private int orderquantity;
     private Date created_date;
+    private Date updated_date;
 
-    public OrderProductDataModel(Object product, long orderprice, int orderquantity, Date created_date) {
+    public OrderProductDataModel(Object product, long orderprice, int orderquantity, Date created_date, Date updated_date) {
         this.product = product;
         this.orderprice = orderprice;
         this.orderquantity = orderquantity;
         this.created_date = created_date;
+        this.updated_date = updated_date;
+    }
+
+    public Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(Date updated_date) {
+        this.updated_date = updated_date;
     }
 
     public Object getProduct() {
