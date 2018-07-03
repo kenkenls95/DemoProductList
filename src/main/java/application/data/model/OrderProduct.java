@@ -10,7 +10,7 @@ public class OrderProduct {
     private int id;
     private int productid;
     private int orderid;
-    private long orderprice;
+    private int orderprice;
     private int orderquantity;
     private Date created_date;
     private Date updated_date;
@@ -39,11 +39,11 @@ public class OrderProduct {
         this.id = id;
     }
 
-    public long getOrderprice() {
+    public int getOrderprice() {
         return orderprice;
     }
 
-    public void setOrderprice(long orderprice) {
+    public void setOrderprice(int orderprice) {
         this.orderprice = orderprice;
     }
 

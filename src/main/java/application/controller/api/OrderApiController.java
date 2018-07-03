@@ -6,10 +6,7 @@ import application.data.service.ProductService;
 import application.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -77,23 +74,25 @@ public class OrderApiController {
         return result;
     }
 
-//    @GetMapping("/top")
-//    public BaseApiResult getTopProduct(){
-//        DataApiResult result = new DataApiResult();
-//
-//        try {
-//            ArrayList<Object> objects = orderService.getProductTop();
-//
-//
-//            result.setMessage("success");
-//            result.setData(objects);
-//            result.setSuccess(true);
-//        } catch (Exception e) {
-//            result.setData(null);
-//            result.setSuccess(false);
-//            result.setMessage(e.getMessage());
-//        }
-//        return result;
-//    }
+    @PostMapping("/detail")
+    public BaseApiResult getOrderProduct(@RequestBody OrderDataModel orderDataModel ){
+        DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper =  new ModelMapper();
+        try {
+            ArrayList<OrderProduct> orderProducts = orderService.getAllByOrder(orderDataModel.getOrderId());
+            ArrayList<OrderProductDetailModel> orderProductDetailModels = new ArrayList<>();
+            for(OrderProduct o : orderProducts){
+                orderProductDetailModels.add(modelMapper.map(o, OrderProductDetailModel.class));
+            }
+            result.setData(orderProductDetailModels);
+            result.setSuccess(true);
+            result.setMessage("success");
+        } catch (Exception e) {
+            result.setData(null);
+            result.setMessage(e.getMessage());
+            result.setSuccess(false);
+        }
+        return result;
+    }
 
 }

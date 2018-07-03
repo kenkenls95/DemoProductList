@@ -2,10 +2,7 @@ package application.controller.web;
 
 
 
-import application.data.model.Category;
-import application.data.model.Order;
-import application.data.model.PaginableItemList;
-import application.data.model.Product;
+import application.data.model.*;
 import application.data.service.CategoryService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
@@ -92,7 +89,9 @@ public class HomeController{
 
         Cookie cookies[] = request.getCookies();
         boolean flag_user = true;
+        boolean flag_guild = true;
         String user_guild = "";
+        String user_id = "";
 
         if (cookies != null) {
             Arrays.stream(cookies)
@@ -101,14 +100,20 @@ public class HomeController{
             for(Cookie c : cookies){
                 if(c.getName().equals("User_Guild")){
                     if(c.getValue() != null){
-                        flag_user = false;
+                        flag_guild = false;
                         user_guild = c.getValue();
+                    }
+                }
+                if(c.getName().equals("User_Id")){
+                    if(c.getValue() != null){
+                        flag_user = false;
+                        user_id = c.getValue();
                     }
                 }
             }
         }
 
-        if(principal == null && flag_user ){
+        if(principal == null && flag_guild ){
             response.addCookie(new Cookie("User_Guild",guid));
             System.out.print("User Unknown : ");
             System.out.println(guid);
@@ -117,18 +122,43 @@ public class HomeController{
 //            boolean createNewBill = orderService.createNewOrderProduct(order.getId());
 //            System.out.println("Create New Bill : " + createNewBill);
             response.addCookie(new Cookie("OrderId",Integer.toString(order.getId())));
-        }else if(principal == null && !flag_user){
+        }else if(principal == null && !flag_guild){
             System.out.print("User Unknown is checked : ");
             System.out.println(user_guild);
-        }else if(principal != null && !flag_user) {
+        }else if(principal != null && !flag_guild) {
             System.out.print("User : ");
             System.out.println(principal.getName());
-            String userid = orderService.setUserGuild(user_guild,userService.findIdByUsername(principal.getName()));
-            System.out.print("Update userId into Order : ");
-            System.out.println(userid);
+            Order existOrder = orderService.findOrderByUserIdAndStatusid(userService.findIdByUsername(principal.getName()),unpaid);
+            if(existOrder == null){
+                String userid = orderService.setUserGuild(user_guild,userService.findIdByUsername(principal.getName()));
+                System.out.print("Update userId into Order : ");
+                System.out.println(userid);
+            }else {
+                int newOrderId = orderService.findOrderByUserguild(user_guild).getId();
+                int oldOrderId = existOrder.getId();
+                ArrayList<OrderProduct> orderProducts = orderService.getListOrderProductByOrderId(oldOrderId);
+                if(orderProducts == null){
+                    try {
+                        orderService.deleteOrder(oldOrderId);
+                        System.out.println("deleted Order : " + oldOrderId);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    for(OrderProduct o : orderProducts){
+                        o.setOrderid(newOrderId);
+                    }
+                    orderService.saveListOrderProductByOrderId(orderProducts);
+                    orderService.deleteOrder(oldOrderId);
+                    System.out.println("deleted Order : " + oldOrderId);
+                }
+                String userid = orderService.setUserGuild(user_guild,userService.findIdByUsername(principal.getName()));
+                System.out.print("Update userId into Order : ");
+                System.out.println(userid);
+            }
+
             // add orderguild into orderuser
-//            Order existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
-        }else if(principal != null && flag_user){
+        }else if(principal != null && flag_guild){
             String userid = userService.findIdByUsername(principal.getName());
             response.addCookie(new Cookie("User_Id",userid));
 //            response.addCookie(new Cookie("User_Guild",null));

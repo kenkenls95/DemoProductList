@@ -2,21 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="header-css">
     <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" th:href="@{/css/header-footer.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" th:href="@{/css/header-footer.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.7/metisMenu.min.css" rel="stylesheet" />
+    <link th:href="@{/css/admin/sb-admin-2.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/custom.css}" rel="stylesheet" />
 </head>
 <body>
 
 <div th:fragment="header">
-    <div class="container">
+    <div class="container-fluid" style="font-size: 125%; padding: 0px">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -121,33 +131,25 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!--<div class="row">-->
-                                            <div class="order-img">
-                                                <img src="http://img.khoahoc.tv/photos/image/052013/10/trai-cay.jpg" alt="">
-                                            </div>
-                                            <div class="order-detail">
-                                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">-->
-                                                    <div class="order-quantity">
-                                                        <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
-                                                                  <span class="glyphicon glyphicon-minus"></span>
-                                                                </button>
-                                                            </span>
-                                                            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
-                                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                    <div class="row">
+                                        <!--<div th:each="product : ${vm.getListShoppingProducts()}">-->
+                                            <!--<div class="item-product">-->
+                                                <!--<div class="item-product__inner">-->
+                                                    <!--<div class="item-product__image col-md-3">-->
+                                                        <!--<a class="item-product__img__link">-->
+                                                            <!--<img th:src="${product.getImage()}" alt="">-->
+                                                        <!--</a>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="item-product__title col-md-6">-->
+                                                        <!--<span th:text="${product.getName()}"></span>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="item-product__price col-md-3">-->
+                                                        <!--<span th:text="${product.getPrice()}"></span><span> VND</span>-->
+                                                    <!--</div>-->
                                                 <!--</div>-->
-                                                <div class="order-price">
-
-                                                </div>
-                                            </div>
-                                    <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary">Thanh toán</button>

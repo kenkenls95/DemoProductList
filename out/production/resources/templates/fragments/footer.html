@@ -5,44 +5,44 @@
 </head>
 <body>
 <div th:fragment="footer">
-<div class="footer-surround container-fluid">
-    <div class="footer container">
-        <div class="shop-footer row">
-            <div class="footer-logo col-md-3">
-                <img th:src="@{/img/logo-shop.png}" alt="KC Shopping">
-                <p>Số 01, Đại Cồ Việt, Hai Bà Trưng, Hà Nội.</p>
+    <div class="footer-surround container-fluid">
+        <div class="footer container">
+            <div class="shop-footer row">
+                <div class="footer-logo col-md-3">
+                    <img th:src="@{/img/logo-shop.png}" alt="KC Shopping">
+                    <p>Số 01, Đại Cồ Việt, Hai Bà Trưng, Hà Nội.</p>
+                </div>
+                <div class="col-md-2">
+                    <h2>Về KC Shopping</h2>
+                    <ul>
+                        <li><a href="">Giới thiệu về shop</a></li>
+                        <li><a href="">Chính sách giao hàng</a></li>
+                        <li><a href="">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h2>Thanh toán</h2>
+                    <ul class="thanh-toan">
+                        <li><img src="https://i.imgur.com/HQ74KUx.png" alt="visa"></li>
+                        <li><img src="https://i.imgur.com/1bMhJVF.png" alt="card"></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h2>Liên hệ</h2>
+                    <ul>
+                        <li><p>Tel: (+84) 967 664 259</p></li>
+                        <li><p>Email: kcshop@gmail.com</p></li>
+                    </ul>
+                </div>
+                <div class="footer-social col-md-3">
+                    <h2>Theo dõi chúng tôi trên</h2>
+                    <ul>
+                        <li><a href="" class="footer-facebook"><span>Facebook</span></a></li>
+                        <li><a href="" class="footer-twitter"><span>Twitter</span></a></li>
+                        <li><a href="" class="footer-google"><span>Google</span></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-2">
-                <h2>Về KC Shopping</h2>
-                <ul>
-                    <li><a href="">Giới thiệu về shop</a></li>
-                    <li><a href="">Chính sách giao hàng</a></li>
-                    <li><a href="">Hướng dẫn mua hàng</a></li>
-                </ul>
-            </div>
-            <div class="col-md-2">
-                <h2>Thanh toán</h2>
-                <ul class="thanh-toan">
-                    <li><img src="https://i.imgur.com/HQ74KUx.png" alt="visa"></li>
-                    <li><img src="https://i.imgur.com/1bMhJVF.png" alt="card"></li>
-                </ul>
-            </div>
-            <div class="col-md-2">
-                <h2>Liên hệ</h2>
-                <ul>
-                    <li><p>Tel: (+84) 967 664 259</p></li>
-                    <li><p>Email: kcshop@gmail.com</p></li>
-                </ul>
-            </div>
-            <div class="footer-social col-md-3">
-                <h2>Theo dõi chúng tôi trên</h2>
-                <ul>
-                    <li><a href="" class="footer-facebook"><span>Facebook</span></a></li>
-                    <li><a href="" class="footer-twitter"><span>Twitter</span></a></li>
-                    <li><a href="" class="footer-google"><span>Google</span></a></li>
-                </ul>
-            </div>
-        </div>
 
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -58,6 +58,9 @@
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.7/metisMenu.min.js"></script>
+
+
             <script type="text/javascript">
                 if (window.location.hash && window.location.hash == '#_=_') {
                     if (window.history && history.pushState) {
@@ -96,26 +99,26 @@
                 ajax.send();
             </script>
             <script>
-            $(document).ready(function () {
-                $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
-                    if(data.data != null){
-                        $('.user-logo').attr('src',data.data)
+                $(document).ready(function () {
+                    $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
+                        if(data.data != null){
+                            $('.user-logo').attr('src',data.data)
+                        }
+                    });
+                    switch ($('#role').text()){
+                        case "[ROLE_ADMIN]":
+                            $('#role').text("Trang ADMIN");
+                            $('#role').attr('href','/admin');
+                            $('#role-menu').append("<a href='remote'>Quản lý vườn</a>")
+                            $('#role-menu').append("<a href='user'>Thông tin ADMIN</a>")
+                            break;
+                        case "[ROLE_USER]":
+                            $('#role').text("Thông tin khách hàng")
+                            $('#role').attr('href','/user')
+                            $('#role-menu').append("<a href='rules'>Chính sách giao hàng</a>")
+                            break;
                     }
-                });
-            switch ($('#role').text()){
-            case "[ROLE_ADMIN]":
-                $('#role').text("Trang ADMIN");
-                $('#role').attr('href','/admin');
-                $('#role-menu').append("<a href='remote'>Quản lý vườn</a>")
-                $('#role-menu').append("<a href='user'>Thông tin ADMIN</a>")
-            break;
-            case "[ROLE_USER]":
-                    $('#role').text("Thông tin khách hàng")
-                    $('#role').attr('href','/user')
-                    $('#role-menu').append("<a href='rules'>Chính sách giao hàng</a>")
-            break;
-            }
-            })
+                })
             </script>
             <script>
                 $(document).ready(function(){
@@ -153,12 +156,44 @@
 
                 });
             </script>
-        <script>
-            // console.log(document.cookie)
-        </script>
-        </footer>
+             <!--get gio hang-->
+            <script>
+                $(document).ready(function () {
+                    $(".check").on('click',function () {
+                        var linkPost = "/api/order/detail"
+                        var dataProduct = {}
+                        dataProduct.orderId = parseInt(getCookie("OrderId"))
+                        axios.post(linkPost, dataProduct).then(function(res){
+                            if(res.data.success) {
+                                console.table(res.data.data)
+                            }else {
+                                console.log(res.data.message)
+                            }
+                        })
+                    })
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var decodedCookie = decodeURIComponent(document.cookie);
+                        var ca = decodedCookie.split(';');
+                        for(var i = 0; i <ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
+                })
+            </script>
+            </footer>
+        </div>
     </div>
 </div>
+<div th:fragment="js-admin">
+    <script th:src="@{/js/admin/sb-admin-2.js}"></script>
 </div>
 </body>
 </html>

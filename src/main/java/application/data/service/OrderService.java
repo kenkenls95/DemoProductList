@@ -119,4 +119,31 @@ public class OrderService {
     public OrderProduct findOrderProduct (int productid,int orderid){
             return orderProductRepository.findOrderProductByProductidAndOrderid(productid, orderid);
     }
+
+
+    public ArrayList<OrderProduct> getListOrderProductByOrderId(int orderid){
+            return orderProductRepository.getAllByOrderid(orderid);
+    }
+
+
+    public boolean deleteOrder(int orderid){
+        try {
+            orderRepository.delete(orderid);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public boolean saveListOrderProductByOrderId(ArrayList<OrderProduct> orderProducts){
+        try {
+            orderProductRepository.save(orderProducts);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

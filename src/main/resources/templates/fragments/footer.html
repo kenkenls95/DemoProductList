@@ -156,8 +156,37 @@
 
                 });
             </script>
+             <!--get gio hang-->
             <script>
-                // console.log(document.cookie)
+                $(document).ready(function () {
+                    $(".check").on('click',function () {
+                        var linkPost = "/api/order/detail"
+                        var dataProduct = {}
+                        dataProduct.orderId = parseInt(getCookie("OrderId"))
+                        axios.post(linkPost, dataProduct).then(function(res){
+                            if(res.data.success) {
+                                console.table(res.data.data)
+                            }else {
+                                console.log(res.data.message)
+                            }
+                        })
+                    })
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var decodedCookie = decodeURIComponent(document.cookie);
+                        var ca = decodedCookie.split(';');
+                        for(var i = 0; i <ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
+                })
             </script>
             </footer>
         </div>

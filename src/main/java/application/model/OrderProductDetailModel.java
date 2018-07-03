@@ -1,22 +1,33 @@
 package application.model;
 
+import application.extension.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 public class OrderProductDetailModel {
     private int id;
+    private int orderid;
     private int productid;
-    private long orderprice;
+    private int orderprice;
     private int orderquantity;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date created_date;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date updated_date;
 
-    public OrderProductDetailModel(int id, int productid, long orderprice, int orderquantity, Date created_date, Date updated_date) {
+    public OrderProductDetailModel(int id, int productid, int orderprice, int orderquantity, Date created_date, Date updated_date) {
         this.id = id;
         this.productid = productid;
         this.orderprice = orderprice;
         this.orderquantity = orderquantity;
         this.created_date = created_date;
         this.updated_date = updated_date;
+    }
+
+    public OrderProductDetailModel() {
     }
 
     public Date getUpdated_date() {
@@ -35,6 +46,13 @@ public class OrderProductDetailModel {
         this.created_date = created_date;
     }
 
+    public int getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
+    }
 
     public int getId() {
         return id;
@@ -52,11 +70,11 @@ public class OrderProductDetailModel {
         this.productid = productid;
     }
 
-    public long getOrderprice() {
+    public int getOrderprice() {
         return orderprice;
     }
 
-    public void setOrderprice(long orderprice) {
+    public void setOrderprice(int orderprice) {
         this.orderprice = orderprice;
     }
 

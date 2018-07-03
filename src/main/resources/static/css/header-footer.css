@@ -101,7 +101,7 @@ a.footer-google:hover:before {
     margin: 0 auto;
     background: #56acc5;
     padding: 15px;
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/
 }
 .top-search-holder {
     padding-top: 12px;

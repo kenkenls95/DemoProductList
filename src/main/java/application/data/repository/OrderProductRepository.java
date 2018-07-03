@@ -19,4 +19,8 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct,Integ
     OrderProduct findOrderProductByProductidAndOrderid(@Param("productid") int productid,
                                              @Param("orderid") int orderid);
 
+    @Query("select op from tbl_orderproduct op where op.orderid = :orderid")
+    ArrayList<OrderProduct> getAllByOrderid(@Param("orderid") int orderid);
+
+
 }
