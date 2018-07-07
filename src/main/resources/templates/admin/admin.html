@@ -1,214 +1,353 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:include="fragments/header :: header-css">
-    <title>Admin insert products list</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="admin-css">
+    <title>Admin</title>
 
+    <!--<link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="assets/plugins/jquery-metrojs/MetroJs.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/shape-hover/css/demo.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/shape-hover/css/component.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/owl-carousel/owl.carousel.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/owl-carousel/owl.theme.css" />-->
+    <!--<link href="assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen" />-->
+    <!--<link rel="stylesheet" href="assets/plugins/jquery-ricksaw-chart/css/rickshaw.css" type="text/css" media="screen">-->
+    <!--<link rel="stylesheet" href="assets/plugins/Mapplic/mapplic/mapplic.css" type="text/css" media="screen">-->
+    <!--&lt;!&ndash; END PLUGIN CSS &ndash;&gt;-->
+    <!--&lt;!&ndash;<link href="assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />&ndash;&gt;-->
+    <!--&lt;!&ndash;<link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />&ndash;&gt;-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <!--<link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" />-->
+    <!--&lt;!&ndash; END PLUGIN CSS &ndash;&gt;-->
+    <!--<link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />-->
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Webarch - Responsive Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link th:href="@{/css/webarch.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-<div id="wrapper" style="padding-top: 1px;">
-    <div class="content">
-        <div class="content__inner">
-            <div th:fragment="sidebar">
-                <div class="name clearfix">
-                    <ul>
-                        <li>
-                            <a th:href="@{/}" class="logo__shop" style="padding: 10px">
-                                <img alt="logo" th:src="@{/img/logo-shop.png}">
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav" id="side-menu">
-                        <li class="">
-                            <a th:href="@{/admin/admin}">
-                                <i class="fa fa-dashboard fa-fw"></i> Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/customer}">
-                                <i class="fa fa-user fa-fw"></i> Quản lý khách hàng
-                            </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/category}">
-                                <i class="fa fa-list-alt fa-fw"></i> Quản lý danh mục
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level collapse">
-                                <li><a th:href="@{/admin/category}">Danh sách danh mục</a></li>
-                                <li><a th:href="@{/admin/category/add}">Thêm danh mục mới</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/product}">
-                                <i class="fa fa-money fa-fw"></i> Quản lý sản phẩm
-                                <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li><a th:href="@{/admin/product}">Danh sách sản phẩm</a></li>
-                                <li><a th:href="@{/admin/product/add}">Thêm sản phẩm mới</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/order}">
-                                <i class="fa fa-shopping-cart fa-fw"></i> Quản lý đơn hàng
-                            </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/}">
-                                <i class="fa fa-info fa-fw"></i> Thông tin cá nhân
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<div class="swapper">
+    <div class="header navbar navbar-inverse clearfix" th:fragment="header">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="header-seperation">
+                <ul class="nav pull-left notifcation-center visible-xs visible-sm">
+                    <li class="dropdown">
+                        <a href="#main-menu" data-webarch="toggle-left-side">
+                            <i class="material-icons">menu</i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- BEGIN LOGO -->
+                <a th:href="@{/}">
+                    <img alt="logo" th:src="@{/img/logo-shop.png}" width="160" height="auto">
+                    <!--<img src="" class="logo" alt="" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="21" />-->
+                </a>
+                <!-- END LOGO -->
+                <ul class="nav pull-right notifcation-center">
+                    <li class="dropdown hidden-xs hidden-sm">
+                        <a th:href="@{/admin}" class="dropdown-toggle active" data-toggle="">
+                            <i class="material-icons">home</i>
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-xs hidden-sm">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="material-icons">email</i><span class="badge bubble-only"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown visible-xs visible-sm">
+                        <a href="#" data-webarch="toggle-right-side">
+                            <i class="material-icons">chat</i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="value clearfix">
-                <div class="clear" style="font-size: 150%" >
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown" sec:authorize="isAuthenticated()">
-                            <a  href="#" class="dropdown-toggle logout" data-toggle="dropdown">
-                                Xin chào<i><img class="user-logo" src="/link/1528177697-default-user.png" alt=""></i>
-                                <span class="user-name"  sec:authentication="name"></span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a th:href="@{/}">
-                                        <i class="fa fa-globe fa-fw"></i> Visit website</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/logout}">
-                                        <i class="fa fa-sign-out fa-fw"></i> Đăng xuất
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clear">
-                    <section>
-                        <div class="label-success" style="padding: 10px !important; color: #fff;">
-                            <span th:text="${vm.getMessageTotalProducts()}"></span>
-                        </div>
-                        <p style="margin-top: 10px;">
-                            <button class="btn btn-primary" id="btn-new-product">Insert new product</button>
-                        </p>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <div class="header-quick-nav">
 
-                        <div class="table-list-product">
-                            <table class="table table-bordered table-hover" id="myTable">
-                                <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Short desc</th>
-                                    <th>Amount</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr th:each="product : ${vm.getListPagingProducts()}">
-                                    <td>
-                                        <div class="td-image">
-                                            <a th:href="@{'product/detail/' + ${product.getId()}}"><img
-                                                    th:src="${product.getImage()}" alt=""></a>
-                                        </div>
-                                    </td>
-                                    <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span
-                                            th:text="${product.getName()}"></span></a></td>
-                                    <td><span th:text="${product.getCategory().getName()}"></span></td>
-                                    <td><span th:text="${product.getShortDesc()}"></span></td>
-                                    <td><span th:text="${product.getAmount()}"></span></td>
-                                    <td>
-                                        <button class="btn btn-default btn-edit-product"
-                                                th:attr="data-product=${product.getId()}">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-default btn-delete-product"
-                                                th:attr="data-product=${product.getId()}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <p style="margin-top: 10px;">
-                            <a th:href="@{/}" class="btn btn-primary">Back to index</a>
-                        </p>
-                    </section>
-                    <div id="modal-create-product" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Product info</h4>
+                <div id="notification-list" style="display:none">
+                    <div style="width:300px">
+                        <div class="notification-messages info">
+                            <div class="user-profile">
+                                <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                            </div>
+                            <div class="message-wrapper">
+                                <div class="heading">
+                                    David Nester - Commented on your wall
                                 </div>
-                                <div class="modal-body">
-
-                                    <div class="img-select-block margin-bottom-15">
-                                        <label>Product image</label><br/>
-                                        <img id="preview-product-img" th:src="@{/img/default-img.jpg}"/>
-                                        <input type='file' id="input-select-img-product"/>
-                                    </div>
-
-                                    <div class="form-group margin-bottom-15">
-                                        <label>Product name:</label>
-                                        <input type="text" class="form-control" id="input-product-name">
-                                    </div>
-
-                                    <div class="form-group margin-bottom-15">
-                                        <label for="product-category">Category:</label>
-                                        <select class="form-control" id="product-category">
-                                            <option th:each="category : ${vm.getListCategories()}"
-                                                    th:value="${category.getId()}"
-                                                    th:text="${category.getName()}"></option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group margin-bottom-15">
-                                        <label>Product description:</label>
-                                        <textarea type="text" class="form-control" id="input-product-desc"></textarea>
-                                    </div>
-
-                                    <div class="form-group margin-bottom-15">
-                                        <label>Product amount:</label>
-                                        <input type="number" class="form-control" id="input-product-amount"></input>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Product created date:</label>
-                                        <div class='input-group date' id='datepicker-created-date-product'>
-                                            <input type='text' class="form-control"/>
-                                            <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-default btn-save-product">Save product</button>
-
+                                <div class="description">
+                                    Meeting postponed to tomorrow
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <div class="date pull-left">
+                                    A min ago
                                 </div>
                             </div>
-
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="notification-messages danger">
+                            <div class="iconholder">
+                                <i class="icon-warning-sign"></i>
+                            </div>
+                            <div class="message-wrapper">
+                                <div class="heading">
+                                    Server load limited
+                                </div>
+                                <div class="description">
+                                    Database server has reached its daily capicity
+                                </div>
+                                <div class="date pull-left">
+                                    2 mins ago
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="notification-messages success">
+                            <div class="user-profile">
+                                <img src="assets/img/profiles/h.jpg" alt="" data-src="assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
+                            </div>
+                            <div class="message-wrapper">
+                                <div class="heading">
+                                    You haveve got 150 messages
+                                </div>
+                                <div class="description">
+                                    150 newly unread messages in your inbox
+                                </div>
+                                <div class="date pull-left">
+                                    An hour ago
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
+                <!-- END TOP NAVIGATION MENU -->
+                <!-- BEGIN CHAT TOGGLER -->
+                <div class="pull-right">
+                    <div class="chat-toggler sm">
+                        <div class="profile-pic">
+                            <img class="user-logo" src="/link/1528177697-default-user.png" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35" />
+                            <div class="availability-bubble online"></div>
+                        </div>
+                    </div>
+                    <ul class="nav quick-section ">
+                        <li class="quicklinks">
+                            <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
+                                <i class="material-icons">tune</i>
+                            </a>
+                            <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+                                <li>
+                                    <a href="user-profile.html"> My Account</a>
+                                </li>
+                                <li>
+                                    <a href="calender.html">My Calendar</a>
+                                </li>
+                                <li>
+                                    <a href="email.html"> My Inbox&nbsp;&nbsp;
+                                        <span class="badge badge-important animated bounceIn">2</span>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="login.html"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-sidebar clearfix" id="main-menu" th:fragment="sidebar">
+        <!-- BEGIN MINI-PROFILE -->
+        <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
+            <div class="user-info-wrapper sm">
+                <div class="profile-wrapper sm">
+                    <img class="user-logo" src="/link/1528177697-default-user.png" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" width="69" height="69" />
+                    <div class="availability-bubble online"></div>
+                </div>
+                <div class="user-info sm">
+                    <div class="username" sec:authentication="name"></div>
+                    <div class="status">Life goes on...</div>
+                </div>
+            </div>
+            <!-- END MINI-PROFILE -->
+            <!-- BEGIN SIDEBAR MENU -->
+            <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+            <ul>
+                <li class="start  open active "> <a th:href="@{/admin}"><i class="material-icons">home</i> <span class="title">Bảng điều khiển</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/customer}"> <i class="material-icons">panorama_horizontal</i> <span class="title">Quản lí khách hàng</span> <span class="label label-important bubble-only pull-right "></span></a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/category}"> <i class="material-icons">email</i> <span class="title">Quản lí danh mục</span> <span class=" badge badge-disable pull-right ">203</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/admin/product}"> <i class="material-icons">view_stream</i> <span class="title">Quản lí sản phẩm</span> <span class=" arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li> <a href="form_elements.html">Form Elements </a> </li>
+                        <li> <a href="form_validations.html">Form Validations</a> </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a th:href="@{/admin/order}"> <i class="material-icons">playlist_add_check</i> <span class="title">Quản lí đơn hàng</span> <span class=" arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li> <a href="tables.html"> Basic Tables </a> </li>
+                        <li> <a href="datatables.html"> Data Tables </a> </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+            <!-- END SIDEBAR MENU -->
+        </div>
+        <a href="#" class="scrollup">Scroll</a>
+        <!--<div class="footer-widget">-->
+        <!--<div class="progress transparent progress-small no-radius no-margin">-->
+        <!--<div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>-->
+        <!--</div>-->
+        <!--<div class="pull-right">-->
+        <!--<div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>-->
+        <!--<a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="main__content">
+        <section>
+            <div class="label-success" style="padding: 10px !important; color: #fff;">
+                <span th:text="${vm.getMessageTotalProducts()}"></span>
+            </div>
+            <p style="margin-top: 10px;">
+                <button class="btn btn-primary" id="btn-new-product">Insert new product</button>
+            </p>
+
+            <div class="table-list-product">
+                <table class="table table-bordered table-hover" id="myTable">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Short desc</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="product : ${vm.getListPagingProducts()}">
+                        <td>
+                            <div class="td-image">
+                                <a th:href="@{'product/detail/' + ${product.getId()}}"><img
+                                        th:src="${product.getImage()}" alt=""></a>
+                            </div>
+                        </td>
+                        <td><a th:href="@{'product/detail/' + ${product.getId()}}"><span
+                                th:text="${product.getName()}"></span></a></td>
+                        <td><span th:text="${product.getCategory().getName()}"></span></td>
+                        <td><span th:text="${product.getShortDesc()}"></span></td>
+                        <td><span th:text="${product.getAmount()}"></span></td>
+                        <td>
+                            <button class="btn btn-default btn-edit-product"
+                                    th:attr="data-product=${product.getId()}">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-default btn-delete-product"
+                                    th:attr="data-product=${product.getId()}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top: 10px;">
+                <a th:href="@{/}" class="btn btn-primary">Back to index</a>
+            </p>
+        </section>
+    </div>
+</div>
+<div id="modal-create-product" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Product info</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="img-select-block margin-bottom-15">
+                    <label>Product image</label><br/>
+                    <img id="preview-product-img" th:src="@{/img/default-img.jpg}"/>
+                    <input type='file' id="input-select-img-product"/>
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <label>Product name:</label>
+                    <input type="text" class="form-control" id="input-product-name">
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <label for="product-category">Category:</label>
+                    <select class="form-control" id="product-category">
+                        <option th:each="category : ${vm.getListCategories()}"
+                                th:value="${category.getId()}"
+                                th:text="${category.getName()}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <label>Product description:</label>
+                    <textarea type="text" class="form-control" id="input-product-desc"></textarea>
+                </div>
+
+                <div class="form-group margin-bottom-15">
+                    <label>Product amount:</label>
+                    <input type="number" class="form-control" id="input-product-amount"></input>
+                </div>
+
+                <div class="form-group">
+                    <label>Product created date:</label>
+                    <div class='input-group date' id='datepicker-created-date-product'>
+                        <input type='text' class="form-control"/>
+                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                    </div>
+                </div>
+
+                <button class="btn btn-default btn-save-product">Save product</button>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-</div>
-<footer th:include="fragments/footer :: footer"></footer>
 
+<footer th:include="fragments/footer :: js-admin"></footer>
 <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+
 
 </body>
 </html>
