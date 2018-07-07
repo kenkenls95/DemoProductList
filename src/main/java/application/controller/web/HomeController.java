@@ -15,6 +15,7 @@ import application.viewmodel.common.ProductVM;
 import application.viewmodel.homelanding.BannerVM;
 import application.viewmodel.homelanding.HomeLandingVM;
 import application.viewmodel.homelanding.MenuItemVM;
+import org.aspectj.weaver.ast.Or;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,7 +75,6 @@ public class HomeController{
 
     @GetMapping(path="/")
     public String landing(Model model,
-                          @ModelAttribute ProductQuantityModel productQuantityModel,
                           HttpServletResponse response,
                           @RequestHeader("User-Agent") String userAgent,
                           HttpServletRequest request,
@@ -84,14 +84,12 @@ public class HomeController{
         System.out.println("====================");
         System.out.println(userAgent);
         System.out.println("IP: " + request.getRemoteAddr());
-        UUID uuid = UUID.randomUUID();
-        String guid = uuid.toString();
 
         Cookie cookies[] = request.getCookies();
-        boolean flag_user = true;
+        UUID uuid = UUID.randomUUID();
+        String guid = uuid.toString();
         boolean flag_guild = true;
         String user_guild = "";
-        String user_id = "";
 
         if (cookies != null) {
             Arrays.stream(cookies)
@@ -104,12 +102,6 @@ public class HomeController{
                         user_guild = c.getValue();
                     }
                 }
-                if(c.getName().equals("User_Id")){
-                    if(c.getValue() != null){
-                        flag_user = false;
-                        user_id = c.getValue();
-                    }
-                }
             }
         }
 
@@ -119,59 +111,53 @@ public class HomeController{
             System.out.println(guid);
             orderService.createOrderByUserguild(guid);
             Order order = orderService.findOrderByUserguild(guid);
-//            boolean createNewBill = orderService.createNewOrderProduct(order.getId());
-//            System.out.println("Create New Bill : " + createNewBill);
             response.addCookie(new Cookie("OrderId",Integer.toString(order.getId())));
         }else if(principal == null && !flag_guild){
             System.out.print("User Unknown is checked : ");
             System.out.println(user_guild);
         }else if(principal != null && !flag_guild) {
-            System.out.print("User : ");
-            System.out.println(principal.getName());
-            Order existOrder = orderService.findOrderByUserIdAndStatusid(userService.findIdByUsername(principal.getName()),unpaid);
-            if(existOrder == null){
-                String userid = orderService.setUserGuild(user_guild,userService.findIdByUsername(principal.getName()));
-                System.out.print("Update userId into Order : ");
-                System.out.println(userid);
-            }else {
-                int newOrderId = orderService.findOrderByUserguild(user_guild).getId();
-                int oldOrderId = existOrder.getId();
-                ArrayList<OrderProduct> orderProducts = orderService.getListOrderProductByOrderId(oldOrderId);
-                if(orderProducts == null){
-                    try {
-                        orderService.deleteOrder(oldOrderId);
-                        System.out.println("deleted Order : " + oldOrderId);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            String userId = userService.findUserByUsername(principal.getName()).getId();
+            Order order = orderService.findOrderByUserIdAndStatusid(userId,unpaid);
+            int oldOrderId = order.getId();
+            ArrayList<OrderProduct> oldOrderProducts = orderService.getListOrderProductByOrderId(oldOrderId);
+            if(oldOrderProducts != null){
+                Order orderGuild = orderService.findOrderByUserguild(user_guild);
+                int newOrderId = orderGuild.getId();
+                ArrayList<OrderProduct> newOrderProducts = orderService.getListOrderProductByOrderId(newOrderId);
+                for(OrderProduct o : oldOrderProducts){
+                    for(OrderProduct n : newOrderProducts){
+                        if(n.getProductid() == o.getProductid()){
+                            n.setOrderquantity(n.getOrderquantity()+o.getOrderquantity());
+                            orderService.saveOrderProduct(n);
+                            orderService.deleteOrderProduct(o.getId());
+                        }else {
+                            o.setOrderid(newOrderId);
+                            orderService.saveOrderProduct(o);
+                        }
                     }
-                }else {
-                    for(OrderProduct o : orderProducts){
-                        o.setOrderid(newOrderId);
-                    }
-                    orderService.saveListOrderProductByOrderId(orderProducts);
-                    orderService.deleteOrder(oldOrderId);
-                    System.out.println("deleted Order : " + oldOrderId);
                 }
-                String userid = orderService.setUserGuild(user_guild,userService.findIdByUsername(principal.getName()));
-                System.out.print("Update userId into Order : ");
-                System.out.println(userid);
-            }
-
-            // add orderguild into orderuser
-        }else if(principal != null && flag_guild){
-            String userid = userService.findIdByUsername(principal.getName());
-            response.addCookie(new Cookie("User_Id",userid));
-//            response.addCookie(new Cookie("User_Guild",null));
-            Order existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
-            if(existOrder != null){
-                response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
+                String updateUserId = orderService.setUserGuild(user_guild,userId);
+                System.out.println("Update UserId into Order :"+updateUserId);
+                orderService.deleteOrder(oldOrderId);
             }else {
-                if(orderService.createOrderByUserId(userid)){
-                    existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
-                    response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
-                }
+                String updateUserId = orderService.setUserGuild(user_guild,userId);
+                System.out.println("Update UserId into Order :"+updateUserId);
             }
         }
+//        else if(principal != null && flag_guild){
+//            String userid = userService.findIdByUsername(principal.getName());
+//            response.addCookie(new Cookie("User_Id",userid));
+////            response.addCookie(new Cookie("User_Guild",null));
+//            Order existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
+//            if(existOrder != null){
+//                response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
+//            }else {
+//                if(orderService.createOrderByUserId(userid)){
+//                    existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
+//                    response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
+//                }
+//            }
+//        }
 
 
 
@@ -226,6 +212,7 @@ public class HomeController{
         model.addAttribute("vm", vm);
         return "index";
     }
+
 
 
     @GetMapping("/about")

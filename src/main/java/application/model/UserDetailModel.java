@@ -7,6 +7,7 @@ public class UserDetailModel {
     private String username;
     private String fullname;
     private String email;
+    private String phone;
     private String imageurl;
     private String password;
     private String oldpassword;
@@ -14,6 +15,14 @@ public class UserDetailModel {
     private String address;
     private Date createdDate;
     private Date updatedDate;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getOldpassword() {
         return oldpassword;

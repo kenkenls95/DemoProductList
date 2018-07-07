@@ -62,14 +62,14 @@
 .name ul:first-child {
     background: #5fbaed;
     list-style-type: none;
-    padding: 10px 10px;
+    padding: 19px 10px;
 }
 #side-menu li a {
     color: black;
     padding: 20px 15px;
 }
 #side-menu li a:hover {
-    background: #fbf6f6;
+    background: #91fb7f;
 }
 /*.active {*/
     /*background: #5fbaed;*/
@@ -89,7 +89,7 @@
 .name {
     width: 20%;
     min-height: 700px;
-    background: #edede9;
+    background: #fff;
     margin-right: 1%;
     font-size: 12pt;
     /*padding-left: 20px;*/

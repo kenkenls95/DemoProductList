@@ -22,5 +22,6 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct,Integ
     @Query("select op from tbl_orderproduct op where op.orderid = :orderid")
     ArrayList<OrderProduct> getAllByOrderid(@Param("orderid") int orderid);
 
-
+//    @Query("delete  from tbl_orderproduct op where op.productid = :productid")
+//    void deleteByProductid(@Param("productid")int productid);
 }

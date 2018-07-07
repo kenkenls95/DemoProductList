@@ -481,3 +481,7 @@ a.check:before {
     height: 150px;
     left: 15px;
 }
+
+#table-cart p {
+    padding: 5px;
+}

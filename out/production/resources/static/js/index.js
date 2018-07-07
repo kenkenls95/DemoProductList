@@ -48,14 +48,14 @@ $(document).ready(function() {
         dataProduct.orderId = parseInt(orderId);
         dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").text();
         dataProduct.orderQuantity = quantity;
-        console.log(dataProduct)
+        // console.log(dataProduct)
 
 
         axios.post(linkPost, dataProduct).then(function(res){
             NProgress.done();
             if(res.data.success) {
                 swal(
-                    'Good job!',
+                    'Sản phẩm đã được thêm!',
                     res.data.message,
                     'success'
                 )

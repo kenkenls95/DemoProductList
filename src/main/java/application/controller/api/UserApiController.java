@@ -116,6 +116,7 @@ public class UserApiController {
                         existUser.setGender(user.getGender());
                         existUser.setAddress(user.getAddress());
                         existUser.setEmail(user.getEmail());
+                        existUser.setPhone(user.getPhone());
                         existUser.setImageurl(user.getImageurl());
                         existUser.setUpdatedDate(user.getUpdatedDate());
                         existUser.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
@@ -128,6 +129,7 @@ public class UserApiController {
                     existUser.setGender(user.getGender());
                     existUser.setAddress(user.getAddress());
                     existUser.setEmail(user.getEmail());
+                    existUser.setPhone(user.getPhone());
                     existUser.setImageurl(user.getImageurl());
                     existUser.setUpdatedDate(user.getUpdatedDate());
                     userService.updateUser(existUser);
@@ -142,7 +144,12 @@ public class UserApiController {
             result.setSuccess(false);
             result.setMessage(e.getMessage());
         }
+        return result;
+    }
 
+    @PostMapping("/disable/{userId}")
+    public BaseApiResult disableUser(@PathVariable String userId){
+        DataApiResult result = new DataApiResult();
 
         return result;
     }

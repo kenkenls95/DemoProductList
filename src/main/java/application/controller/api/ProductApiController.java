@@ -266,4 +266,8 @@ public class ProductApiController {
         return result;
     }
 
+    @PostMapping("/save")
+    public String saveOrder(){
+        return "redirect:/";
+    }
 }

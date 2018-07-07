@@ -95,4 +95,20 @@ public class OrderApiController {
         return result;
     }
 
+    @PostMapping("/delete-orderproduct")
+    public BaseApiResult delete(@RequestBody OrderProductDeleteModel orderProductDeleteModel){
+        DataApiResult result = new DataApiResult();
+        try {
+            if(orderService.deleteOrderProduct(orderProductDeleteModel.getProductId())){
+                result.setData(null);
+                result.setSuccess(true);
+                result.setMessage("success");
+            }
+        } catch (Exception e) {
+            result.setMessage(e.getMessage());
+            result.setData(null);
+            result.setSuccess(false);
+        }
+        return result;
+    }
 }

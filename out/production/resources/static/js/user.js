@@ -9,6 +9,7 @@ $(document).ready(function () {
             $('#fullname').val(data.data.fullname)
             $('#address').val(data.data.address)
             $('#email').val(data.data.email)
+            $('#phone').val(data.data.phone)
             $('#preview-product-img').attr('src',data.data.imageurl)
             switch (data.data.gender){
                 case "Male":
@@ -48,7 +49,7 @@ $(document).ready(function () {
                                     <td>${user.id}</td>
                                     <td>${user.user.username}</td>
                                     <td>${user.role.description}</td>
-                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button></td>
+                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button> <button class="btn btn-warning btn-ban-role">Chặn</button></td>
                               </tr>  
                             `)
                             $('#tableuser').DataTable();
@@ -92,6 +93,9 @@ $(document).ready(function () {
                                         })
                                     }
                                 })
+                            })
+                            $('.btn-ban-role').on('click',function () {
+
                             })
                         }
                     }

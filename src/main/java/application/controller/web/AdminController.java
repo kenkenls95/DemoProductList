@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -112,5 +113,30 @@ public class AdminController extends BaseController {
         model.addAttribute("vm", vm);
 
         return "admin/admin";
+    }
+
+    @GetMapping("/admin/customer")
+    public String customer(){
+        return "admin/customer_list";
+    }
+
+    @GetMapping("/admin/customer_orders")
+    public String customerOrder(){
+        return "admin/customer_orders";
+    }
+
+    @GetMapping("/admin/category")
+    public String categoryList(){
+        return "admin/category_list";
+    }
+
+    @GetMapping("/admin/order")
+    public String order(){
+        return "admin/order_list";
+    }
+
+    @GetMapping("/admin/product")
+    public String productList(){
+        return "admin/product_list";
     }
 }

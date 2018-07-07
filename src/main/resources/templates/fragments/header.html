@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <link rel="stylesheet" th:href="@{/css/header-footer.css}">
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.7/metisMenu.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
-    <link src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.7/metisMenu.min.css" rel="stylesheet" />
-    <link th:href="@{/css/admin/sb-admin-2.css}" rel="stylesheet" />
-    <link th:href="@{/css/admin/custom.css}" rel="stylesheet" />
+    <!--<link th:href="@{/css/admin/sb-admin-2.css}" rel="stylesheet" />-->
+    <!--<link th:href="@{/css/admin/custom.css}" rel="stylesheet" />-->
 </head>
 <body>
 
@@ -45,17 +45,22 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a th:href="@{/register-user}">Đăng Kí</a></li>
-                        <li><a th:href="@{/login}">Đăng Nhập</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Đăng Nhập</a></li>
                         <li sec:authorize="isAuthenticated()" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i><img class="user-logo" src="/link/1528177697-default-user.png" alt=""></i><span class="user-name" sec:authentication="name"></span> <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
-                                <li id="role-menu"></li>
-                                <!--<li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>-->
-                                <li class="divider"></li>
-                                <li><a th:href="@{/logout}">Log out</a></li>
-                            </ul>
-                        </li>
+                        <a href="#" class="dropdown-toggle logout" data-toggle="dropdown">
+                            <span>  Xin chào </span>
+                            <i><img class="user-logo" src="/link/1528177697-default-user.png" alt=""></i>
+                            <span class="user-name" sec:authentication="name"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a id="role" href="#"><span sec:authentication="authorities"></span></a></li>
+                            <li id="role-menu"></li>
+                            <!--<li><a th:href="@{/rules}">Chinh sách giao hàng</a></li>-->
+                            <li class="divider"></li>
+                            <li><a th:href="@{/logout}">Log out</a></li>
+                        </ul>
+                    </li>
                     </ul>
                     <form action="#" th:action="@{/product/search}" th:object="${product}" method="get" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
@@ -125,34 +130,34 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h2 class="modal-title text-center" id="exampleModalLongTitle">Giỏ hàng</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title text-left" id="exampleModalLongTitle">Giỏ hàng của bạn (<span class="total-cart"></span> sản phẩm )</h2>
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                        <!--<span aria-hidden="true">&times;</span>-->
+                                    <!--</button>-->
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row">
-                                        <!--<div th:each="product : ${vm.getListShoppingProducts()}">-->
-                                            <!--<div class="item-product">-->
-                                                <!--<div class="item-product__inner">-->
-                                                    <!--<div class="item-product__image col-md-3">-->
-                                                        <!--<a class="item-product__img__link">-->
-                                                            <!--<img th:src="${product.getImage()}" alt="">-->
-                                                        <!--</a>-->
-                                                    <!--</div>-->
-                                                    <!--<div class="item-product__title col-md-6">-->
-                                                        <!--<span th:text="${product.getName()}"></span>-->
-                                                    <!--</div>-->
-                                                    <!--<div class="item-product__price col-md-3">-->
-                                                        <!--<span th:text="${product.getPrice()}"></span><span> VND</span>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+                                    <div class="container">
+                                        <div class="row">
+                                            <table id="table-cart">
+                                                <thead>
+                                                    <tr>
+                                                        <th><p>Sản phẩm</p></th>
+                                                        <th></th>
+                                                        <th><p>Số lượng</p></th>
+                                                        <th><p>Đơn giá</p></th>
+                                                        <th><p>Thành tiền</p></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Thanh toán</button>
+                                    <a type="button" class="btn btn-primary btn-checkout">Thanh toán</a>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                 </div>
                             </div>

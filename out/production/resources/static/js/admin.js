@@ -1,6 +1,4 @@
-/**
- * Created by ManhNguyen on 3/1/18.
- */
+
 $(document).ready(function () {
     var dataProduct = {};
 

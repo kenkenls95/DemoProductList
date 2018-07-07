@@ -18,8 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.stream.*;
 
 @Service
 public class UserService {
@@ -56,6 +55,7 @@ public class UserService {
             user.setUpdatedDate(new Date());
             user.setAddress(user.getAddress());
             user.setGender("Male");
+            user.setPhone(user.getPhone());
             if(user.getImageurl() == null){
                 user.setImageurl("/link/1528177697-default-user.png");
             }else{
@@ -91,6 +91,10 @@ public class UserService {
     public String findIdByUsername(String username){
         User user = userRepository.findUserByUsername(username);
         return user.getId();
+    }
+
+    public UserRole getUserRole(String userId){
+        return userRoleRepository.getUserRoleById(userId);
     }
 
     public boolean updateUser(User user) {

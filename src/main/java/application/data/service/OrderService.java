@@ -30,39 +30,45 @@ public class OrderService {
     @Autowired
     private OrderStatusRepository orderStatusRepository;
 
-        public ArrayList<OrderProduct> getAllByOrder(int orderid){
+    public ArrayList<OrderProduct> getAllByOrder(int orderid) {
         return orderProductRepository.getAllByOrder(orderid);
     }
 
-    public ArrayList<Object> getOrderByUser(String id){
+    public ArrayList<Object> getOrderByUser(String id) {
         return orderRepository.getOrderByUser(id);
     }
 
-    public void addNewOrder(Order order){
-             orderRepository.save(order);
+    public void addNewOrder(Order order) {
+        orderRepository.save(order);
     }
 
-    public OrderStatus getOneOrderStatus(int id){
-            return orderStatusRepository.getOne(id);
+    public OrderStatus getOneOrderStatus(int id) {
+        return orderStatusRepository.getOne(id);
     }
 
     //login and add userid into tbl_order
-    public String setUserGuild(String guild,String userid){
-            Order existOrder = orderRepository.findOrderByUserguild(guild);
-            if(existOrder == null ){
-                return null;
-            }else {
-                existOrder.setUserid(userid);
-                orderRepository.save(existOrder);
-                return userid;
+    public String setUserGuild(String guild, String userid) {
+        Order existOrder = orderRepository.findOrderByUserguild(guild);
+        ArrayList<OrderProduct> orderProducts = orderProductRepository.getAllByOrderid(existOrder.getId());
+        if (existOrder == null) {
+            return null;
+        } else {
+            existOrder.setUserid(userid);
+            existOrder.setUserguild(guild);
+            orderRepository.save(existOrder);
+            for (OrderProduct o : orderProducts) {
+                o.setOrderid(existOrder.getId());
             }
+            orderProductRepository.save(orderProducts);
+            return userid;
+        }
     }
 
-    public Order findOrderByUserguild(String guild){
-            return orderRepository.findOrderByUserguild(guild);
+    public Order findOrderByUserguild(String guild) {
+        return orderRepository.findOrderByUserguild(guild);
     }
 
-    public Boolean createNewOrderProduct(int orderid){
+    public Boolean createNewOrderProduct(int orderid) {
         try {
             OrderProduct orderProduct = new OrderProduct();
             orderProduct.setOrderid(orderid);
@@ -74,11 +80,11 @@ public class OrderService {
         }
     }
 
-    public Order findOrderByUserIdAndStatusid(String userid, int id){
-            return orderRepository.findOrderByUserIdAndStatusId(userid,id);
+    public Order findOrderByUserIdAndStatusid(String userid, int id) {
+        return orderRepository.findOrderByUserIdAndStatusId(userid, id);
     }
 
-    public boolean createOrderByUserguild(String guild){
+    public boolean createOrderByUserguild(String guild) {
         try {
             Order order = new Order();
             order.setUserguild(guild);
@@ -92,7 +98,7 @@ public class OrderService {
         return false;
     }
 
-    public boolean createOrderByUserId(String id){
+    public boolean createOrderByUserId(String id) {
         try {
             Order order = new Order();
             order.setUserid(id);
@@ -106,7 +112,7 @@ public class OrderService {
         return false;
     }
 
-    public boolean saveOrderProduct(OrderProduct orderProduct){
+    public boolean saveOrderProduct(OrderProduct orderProduct) {
         try {
             orderProductRepository.save(orderProduct);
             return true;
@@ -116,17 +122,17 @@ public class OrderService {
         return false;
     }
 
-    public OrderProduct findOrderProduct (int productid,int orderid){
-            return orderProductRepository.findOrderProductByProductidAndOrderid(productid, orderid);
+    public OrderProduct findOrderProduct(int productid, int orderid) {
+        return orderProductRepository.findOrderProductByProductidAndOrderid(productid, orderid);
     }
 
 
-    public ArrayList<OrderProduct> getListOrderProductByOrderId(int orderid){
-            return orderProductRepository.getAllByOrderid(orderid);
+    public ArrayList<OrderProduct> getListOrderProductByOrderId(int orderid) {
+        return orderProductRepository.getAllByOrderid(orderid);
     }
 
 
-    public boolean deleteOrder(int orderid){
+    public boolean deleteOrder(int orderid) {
         try {
             orderRepository.delete(orderid);
             return true;
@@ -137,9 +143,19 @@ public class OrderService {
     }
 
 
-    public boolean saveListOrderProductByOrderId(ArrayList<OrderProduct> orderProducts){
+    public boolean saveListOrderProduct(ArrayList<OrderProduct> orderProducts) {
         try {
             orderProductRepository.save(orderProducts);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteOrderProduct(int id) {
+        try {
+            orderProductRepository.delete(id);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
