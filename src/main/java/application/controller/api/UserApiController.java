@@ -65,13 +65,15 @@ public class UserApiController {
     @GetMapping("/img/{userName}")
     public BaseApiResult getImg(@PathVariable String userName){
         DataApiResult result = new DataApiResult();
-
+        ModelMapper modelMapper = new ModelMapper();
         try {
+            User user = userService.findUserByUsername(userName);
+            UserImageModel userImageModel = modelMapper.map(user,UserImageModel.class);
+            result.setData(userImageModel);
             result.setSuccess(true);
-            result.setData(userService.getImage(userName));
             result.setMessage("success");
         } catch (Exception e) {
-            result.setData("");
+            result.setData(null);
             result.setSuccess(false);
             result.setMessage(e.getMessage());
         }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="admin-css">
     <title>Admin</title>
 
@@ -21,17 +22,20 @@
     <!--&lt;!&ndash; END PLUGIN CSS &ndash;&gt;-->
     <!--<link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />-->
 
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8"/>
     <title>Webarch - Responsive Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.7/metisMenu.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link th:href="@{/css/webarch.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/webarch.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
@@ -78,7 +82,8 @@
                     <div style="width:300px">
                         <div class="notification-messages info">
                             <div class="user-profile">
-                                <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                                <img th:src="@{img/img/profiles/d.jpg}" alt="" th:attr="data-src=@{img/img/profiles/d.jpg}"
+                                     data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
                             </div>
                             <div class="message-wrapper">
                                 <div class="heading">
@@ -112,7 +117,8 @@
                         </div>
                         <div class="notification-messages success">
                             <div class="user-profile">
-                                <img src="assets/img/profiles/h.jpg" alt="" data-src="assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
+                                <img src="assets/img/profiles/h.jpg" alt="" data-src="assets/img/profiles/h.jpg"
+                                     data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
                             </div>
                             <div class="message-wrapper">
                                 <div class="heading">
@@ -134,7 +140,9 @@
                 <div class="pull-right">
                     <div class="chat-toggler sm">
                         <div class="profile-pic">
-                            <img class="user-logo" src="/link/1528177697-default-user.png" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35" />
+                            <img class="user-logo" src="/link/1528177697-default-user.png" alt=""
+                                 data-src="assets/img/profiles/avatar_small.jpg"
+                                 data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35"/>
                             <div class="availability-bubble online"></div>
                         </div>
                     </div>
@@ -157,12 +165,11 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="login.html"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
+                                    <a th:href="@{/logout}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log
+                                        Out</a>
                                 </li>
                             </ul>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
@@ -174,7 +181,9 @@
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
             <div class="user-info-wrapper sm">
                 <div class="profile-wrapper sm">
-                    <img class="user-logo" src="/link/1528177697-default-user.png" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" width="69" height="69" />
+                    <img class="user-logo" src="/link/1528177697-default-user.png" alt=""
+                         data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg"
+                         width="69" height="69"/>
                     <div class="availability-bubble online"></div>
                 </div>
                 <div class="user-info sm">
@@ -184,47 +193,46 @@
             </div>
             <!-- END MINI-PROFILE -->
             <!-- BEGIN SIDEBAR MENU -->
-            <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+            <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span>
+            </p>
             <ul>
-                <li class="start  open active "> <a th:href="@{/admin}"><i class="material-icons">home</i> <span class="title">Bảng điều khiển</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+                <li class="start  open active "><a th:href="@{/admin}"><i class="material-icons">home</i> <span
+                        class="title">Bảng điều khiển</span> <span class="selected"></span> <span
+                        class="arrow  open "></span> </a>
                 </li>
                 <li>
-                    <a th:href="@{/admin/customer}"> <i class="material-icons">panorama_horizontal</i> <span class="title">Quản lí khách hàng</span> <span class="label label-important bubble-only pull-right "></span></a>
+                    <a th:href="@{/admin/customer}"> <i class="material-icons">panorama_horizontal</i>
+                        <span class="title">Quản lí khách hàng</span>
+                    </a>
                 </li>
                 <li>
-                    <a th:href="@{/admin/category}"> <i class="material-icons">email</i> <span class="title">Quản lí danh mục</span> <span class=" badge badge-disable pull-right ">203</span>
+                    <a th:href="@{/admin/category}"> <i class="material-icons">email</i>
+                        <span class="title">Quản lí danh mục</span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{/admin/product}"> <i class="material-icons">view_stream</i> <span class="title">Quản lí sản phẩm</span> <span class=" arrow"></span> </a>
+                    <a th:href="@{/admin/product}"> <i class="material-icons">view_stream</i> <span class="title">Quản lí sản phẩm</span>
+                        <span class=" arrow"></span> </a>
                     <ul class="sub-menu">
-                        <li> <a href="form_elements.html">Form Elements </a> </li>
-                        <li> <a href="form_validations.html">Form Validations</a> </li>
+                        <li><a href="form_elements.html">Form Elements </a></li>
+                        <li><a href="form_validations.html">Form Validations</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a th:href="@{/admin/order}"> <i class="material-icons">playlist_add_check</i> <span class="title">Quản lí đơn hàng</span> <span class=" arrow"></span> </a>
+                    <a th:href="@{/admin/order}"> <i class="material-icons">playlist_add_check</i> <span class="title">Quản lí đơn hàng</span>
+                        <span class=" arrow"></span> </a>
                     <ul class="sub-menu">
-                        <li> <a href="tables.html"> Basic Tables </a> </li>
-                        <li> <a href="datatables.html"> Data Tables </a> </li>
+                        <li><a href="tables.html"> Basic Tables </a></li>
+                        <li><a href="datatables.html"> Data Tables </a></li>
                     </ul>
                 </li>
             </ul>
 
             <div class="clearfix"></div>
-            <!-- END SIDEBAR MENU -->
         </div>
         <a href="#" class="scrollup">Scroll</a>
-        <!--<div class="footer-widget">-->
-        <!--<div class="progress transparent progress-small no-radius no-margin">-->
-        <!--<div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>-->
-        <!--</div>-->
-        <!--<div class="pull-right">-->
-        <!--<div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>-->
-        <!--<a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>-->
-        <!--</div>-->
     </div>
 
     <div class="main__content">
@@ -265,11 +273,11 @@
                         <td>
                             <button class="btn btn-default btn-edit-product"
                                     th:attr="data-product=${product.getId()}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <i class="far fa-edit">Sửa</i>
                             </button>
                             <button class="btn btn-default btn-delete-product"
                                     th:attr="data-product=${product.getId()}">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <i class="fa fa-trash" aria-hidden="true">Xóa</i>
                             </button>
                         </td>
                     </tr>
@@ -345,9 +353,7 @@
 </div>
 
 
-<footer th:include="fragments/footer :: js-admin"></footer>
+<div th:include="fragments/footer :: js-admin"></div>
 <script type="text/javascript" th:src="@{/js/admin.js}"></script>
-
-
 </body>
 </html>

@@ -26,6 +26,8 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import static application.constant.StatusOrderConstant.unpaid;
+
 @Controller
 @RequestMapping(path="/product")
 public class ProductController extends BaseController {
@@ -86,6 +88,7 @@ public class ProductController extends BaseController {
         UUID uuid = UUID.randomUUID();
         String guid = uuid.toString();
         String user_guild = "";
+        int cartId = 0;
 
         if (cookies != null) {
             for(Cookie c : cookies){
@@ -94,11 +97,18 @@ public class ProductController extends BaseController {
                         user_guild = c.getValue();
                     }
                 }
+                if(c.getName().equals("OrderId")){
+                    if(c.getValue() != null){
+                        cartId = Integer.parseInt(c.getValue());
+                    }
+                }
             }
         }
 
         try {
             Order order = orderService.findOrderByUserguild(user_guild);
+            System.out.println("====================");
+            System.out.println("Order by User_Guild :"+user_guild);
             if(check(order.getUserid())){
                 model.addAttribute("user" , new User());
             }else {

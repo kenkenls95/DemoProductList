@@ -20,4 +20,8 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     Order findOrderByUserIdAndStatusId(@Param("userid")String userid,
                         @Param("id") int id);
 
+    @Query("select o from tbl_order o where o.userguild = :userguild and o.orderStatus.id = :id")
+    Order findOrderByUserGuildAndStatusId(@Param("userguild")String userguild,
+                                       @Param("id") int id);
+
 }

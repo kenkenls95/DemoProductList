@@ -1,23 +1,21 @@
 package application.controller.api;
 
 import application.constant.Constant;
-import application.data.model.Category;
-import application.data.model.OrderProduct;
-import application.data.model.Product;
+import application.data.model.*;
 import application.data.service.CategoryService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
 import application.model.*;
+import application.service.UserService;
 import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+
+import static application.constant.StatusOrderConstant.not_delivery;
 
 @RestController
 @RequestMapping("/api/product")
@@ -31,6 +29,9 @@ public class ProductApiController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
     private String[] images = {
             "https://images-na.ssl-images-amazon.com/images/I/519rVW4jTIL._SL500_SS135_.jpg",
@@ -267,7 +268,38 @@ public class ProductApiController {
     }
 
     @PostMapping("/save")
-    public String saveOrder(){
-        return "redirect:/";
+    public BaseApiResult saveOrder(@RequestBody UserOrderModel userOrderModel){
+        DataApiResult result = new DataApiResult();
+        ModelMapper modelMapper = new ModelMapper();
+        User user = userService.findUserById(userOrderModel.getId());
+        if(user != null){
+            user.setPhone(userOrderModel.getPhone());
+            user.setAddress(userOrderModel.getAddress());
+            user.setEmail(userOrderModel.getEmail());
+            user.setFullname(userOrderModel.getFullname());
+            userService.updateUser(user);
+            Order order = orderService.findOrder(userOrderModel.getOrderId());
+            order.setOrderStatus(orderService.getOneOrderStatus(not_delivery));
+            orderService.saveOrder(order);
+            result.setMessage("Đã lưu thành công");
+            result.setSuccess(true);
+        }else {
+            if(userService.findUserByEmail(userOrderModel.getEmail()) != null){
+                result.setSuccess(false);
+                result.setData(null);
+                result.setMessage("Tồn tại email");
+            }else {
+                User user1 = modelMapper.map(userOrderModel,User.class);
+                userService.registerNewUser(user1);
+                result.setData(user1);
+            }
+            Order order = orderService.findOrder(userOrderModel.getOrderId());
+            order.setOrderStatus(orderService.getOneOrderStatus(not_delivery));
+            orderService.saveOrder(order);
+            result.setMessage("Đã lưu thành công");
+            result.setSuccess(true);
+        }
+
+        return result;
     }
 }

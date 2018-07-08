@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static application.constant.StatusOrderConstant.not_active;
 import static application.constant.StatusOrderConstant.unpaid;
 
 @Service
@@ -48,24 +49,57 @@ public class OrderService {
 
     //login and add userid into tbl_order
     public String setUserGuild(String guild, String userid) {
-        Order existOrder = orderRepository.findOrderByUserguild(guild);
-        ArrayList<OrderProduct> orderProducts = orderProductRepository.getAllByOrderid(existOrder.getId());
-        if (existOrder == null) {
-            return null;
-        } else {
-            existOrder.setUserid(userid);
-            existOrder.setUserguild(guild);
-            orderRepository.save(existOrder);
-            for (OrderProduct o : orderProducts) {
-                o.setOrderid(existOrder.getId());
-            }
-            orderProductRepository.save(orderProducts);
+        Order newOrder = orderRepository.findOrderByUserGuildAndStatusId(guild,unpaid);
+        Order oldOrder = orderRepository.findOrderByUserIdAndStatusId(userid,unpaid);
+        // ko co hoa don cu
+        if(oldOrder == null){
+            newOrder.setUserid(userid);
+            orderRepository.save(newOrder);
             return userid;
+        }else if (newOrder.getId() != oldOrder.getId() && oldOrder!= null){// co hoa don cu
+            ArrayList<OrderProduct> newOrderProduct = orderProductRepository.getAllByOrderid(newOrder.getId());
+            ArrayList<OrderProduct> oldOrderProduct = orderProductRepository.getAllByOrderid(oldOrder.getId());
+            if(newOrderProduct.size() > 0){ // hoa don moi co sp
+                for(OrderProduct n : newOrderProduct){
+                    for(OrderProduct o : oldOrderProduct){
+                        if(n.getProductid() == o.getProductid()){
+                            n.setOrderquantity(n.getOrderquantity()+o.getOrderquantity());
+                            orderProductRepository.save(n);
+                            orderProductRepository.delete(o.getId());
+                        }
+                    }
+                }
+                oldOrderProduct = orderProductRepository.getAllByOrderid(oldOrder.getId());
+                for(OrderProduct o : oldOrderProduct){
+                    o.setOrderid(newOrder.getId());
+                    orderProductRepository.save(o);
+                }
+                oldOrder.setOrderStatus(orderStatusRepository.getOne(not_active));
+                orderRepository.save(oldOrder);
+                newOrder.setUserid(userid);
+                orderRepository.save(newOrder);
+            }else { // hoa don moi ko co san pham
+                for(OrderProduct o : oldOrderProduct){
+                    o.setOrderid(newOrder.getId());
+                    orderProductRepository.save(o);
+                }
+                newOrder.setUserid(userid);
+                orderRepository.save(newOrder);
+                oldOrder.setOrderStatus(orderStatusRepository.getOne(not_active));
+                orderRepository.save(oldOrder);
+            }
+            return userid;
+        }else {
+            return null;
         }
     }
 
     public Order findOrderByUserguild(String guild) {
         return orderRepository.findOrderByUserguild(guild);
+    }
+
+    public Order findOrderByUserGuildAndStatusId(String guild, int statusid){
+        return orderRepository.findOrderByUserGuildAndStatusId(guild,statusid);
     }
 
     public Boolean createNewOrderProduct(int orderid) {
@@ -83,6 +117,7 @@ public class OrderService {
     public Order findOrderByUserIdAndStatusid(String userid, int id) {
         return orderRepository.findOrderByUserIdAndStatusId(userid, id);
     }
+
 
     public boolean createOrderByUserguild(String guild) {
         try {
@@ -104,6 +139,21 @@ public class OrderService {
             order.setUserid(id);
             order.setCreated_date(new Date());
             order.setOrderStatus(orderStatusRepository.getOne(unpaid));
+            orderRepository.save(order);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public Order findOrder(int orderId){
+        return orderRepository.findOne(orderId);
+    }
+
+    public boolean saveOrder (Order order){
+        try {
             orderRepository.save(order);
             return true;
         } catch (Exception e) {

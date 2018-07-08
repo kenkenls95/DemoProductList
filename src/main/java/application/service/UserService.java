@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.*;
 
 @Service
@@ -50,7 +51,13 @@ public class UserService {
             }
 
             // hash pass
-            user.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
+            UUID uuid = UUID.randomUUID();
+            String pass = uuid.toString();
+            if(user.getPassword() == null){
+                user.setPasswordHashed(pass);
+            }else {
+                user.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
+            }
             user.setCreatedDate(new Date());
             user.setUpdatedDate(new Date());
             user.setAddress(user.getAddress());
@@ -80,9 +87,6 @@ public class UserService {
         }
     }
 
-    public String getImage(String username){
-        return userRepository.getImgByUserName(username);
-    }
 
     public User findOne(int id){
         return userRepository.findOne(id);

@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     var ajax = new XMLHttpRequest();
     var list = []
+    var userId
     ajax.open("GET", "http://"+window.location.host+"/api/product/getallproduct", true);
     ajax.onload = function() {
         list = JSON.parse(ajax.responseText).data
@@ -29,7 +30,9 @@ $(document).ready(function () {
 
         $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
             if(data.data != null){
-                $('.user-logo').attr('src',data.data)
+                $('.user-logo').attr('src',data.data.imageurl)
+                userId = data.data.id
+                console.log(data.data)
             }
         });
         switch ($('#role').text()){
@@ -193,6 +196,7 @@ $(document).ready(function () {
     $('.logout').on('click',function () {
         setCookie("User_Guild",null,0)
         setCookie("OrderId",null,0)
+        setCookie("User_Id",null,0)
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -234,7 +238,6 @@ $(document).ready(function () {
                     `)
                     total += pro.qty * pro.price
                 }
-                console.log(total)
                 $('#total').text(total+"đ")
                 $('#table-checkout').dataTable({
                     "searching": false,

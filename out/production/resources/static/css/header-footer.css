@@ -458,7 +458,7 @@ a.check:before {
 .user-logo {
     width: 25px;
     height: 25px;
-    margin: 5px;
+    margin: 7px;
 }
 @media all and (max-width: 900px){
     .logo {

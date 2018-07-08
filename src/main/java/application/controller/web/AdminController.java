@@ -117,22 +117,18 @@ public class AdminController extends BaseController {
 
     @GetMapping("/admin/customer")
     public String customer(){
-        return "admin/customer_list";
-    }
-
-    @GetMapping("/admin/customer_orders")
-    public String customerOrder(){
-        return "admin/customer_orders";
+        return "admin/manage_customer";
     }
 
     @GetMapping("/admin/category")
     public String categoryList(){
-        return "admin/category_list";
+        return "admin/manage_category";
     }
+
 
     @GetMapping("/admin/order")
     public String order(){
-        return "admin/order_list";
+        return "admin/manage_order";
     }
 
     @GetMapping("/admin/product")
