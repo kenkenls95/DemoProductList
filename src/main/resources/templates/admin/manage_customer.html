@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="admin/admin :: admin-css"></head>
+<head th:include="admin/manage_product :: admin-css"></head>
 <body>
 <div id="wrapper">
 	<div class="content">
 		<div class="content__inner">
 
-			<div th:replace="admin/admin :: header"></div>
-			<div th:replace="admin/admin :: sidebar"></div>
+			<div th:replace="admin/manage_product :: header"></div>
+			<div th:replace="admin/manage_product :: sidebar"></div>
 			<div class="main__content">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<h3>Quản lý tài khoản</h3>
@@ -30,71 +30,6 @@
 	</div>
 </div>
 <div th:include="fragments/footer :: js-admin"></div>
-<!--<script th:src="@{/js/admin/manage_customer.js}"></script>-->
-<script>
-    $(document).ready(function () {
-        axios.get("/api/user/alluser").then(function(res){
-            console.log(res.data.data)
-            for(var user of res.data.data){
-				if(user.user != null){
-                    $('#tableuser > tbody').append(`
-                              <tr>
-                                    <td>${user.id}</td>
-                                    <td>${user.user.username}</td>
-                                    <td>${user.role.description}</td>
-                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button> <button class="btn btn-warning btn-ban-role">Chặn</button></td>
-                              </tr>
-                            `)
-				}
-            }
-            $('#tableuser').DataTable();
-            $('.btn-edit-role').on('click',function () {
-                var id = $(this).data("id")
-                console.log(id)
-                swal({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true
-                }).then(function(result) {
-                    if (result.value) {
-                        NProgress.start();
-                        axios.post("/api/user/update-role/", {
-                            userId : id
-                        }).then(function(res){
-                            NProgress.done();
-                            if(res.data.success) {
-                                swal(
-                                    'Good job!',
-                                    res.data.message,
-                                    'success'
-                                ).then(function() {
-                                    location.reload();
-                                });
-                            } else {
-                                swal(
-                                    'Error',
-                                    res.data.message,
-                                    'error'
-                                );
-                            }
-                        }, function(err){
-                            NProgress.done();
-                            swal(
-                                'Error',
-                                'Some error when saving product',
-                                'error'
-                            );
-                        })
-                    }
-                })
-            })
-            $('.btn-ban-role').on('click',function () {
-            })
-        })
-    })
-
-</script>
-
+<script th:src="@{/js/admin/manage_customer.js}"></script>
 </body>
 </html>

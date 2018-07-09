@@ -2,11 +2,16 @@ package application.controller.web;
 
 
 import application.data.model.Category;
+import application.data.model.Order;
 import application.data.model.Product;
 import application.data.service.CategoryService;
+import application.data.service.OrderService;
 import application.data.service.ProductService;
 import application.model.CategoryDataModel;
+import application.model.OrderDetailModel;
+import application.service.UserService;
 import application.viewmodel.admin.AdminVM;
+import application.viewmodel.admin.OrderVM;
 import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.List;
 
+import static application.constant.StatusOrderConstant.delivered;
+import static application.constant.StatusOrderConstant.not_deliveried;
+import static application.constant.StatusOrderConstant.unpaid;
+
 @Controller
 @RequestMapping(path="/")
 public class AdminController extends BaseController {
@@ -28,6 +37,12 @@ public class AdminController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
 
 //    @RequestMapping(path = "admin", method = RequestMethod.GET)
@@ -85,8 +100,8 @@ public class AdminController extends BaseController {
 //        return "admin";
 //    }
 
-    @RequestMapping(path = "admin", method = RequestMethod.GET)
-    public String admin(Model model) {
+    @RequestMapping(path = "admin/product", method = RequestMethod.GET)
+    public String adminProduct(Model model) {
         AdminVM vm = new AdminVM();
         ModelMapper modelMapper = new ModelMapper();
         long totalProducts = productService.getTotalProducts();
@@ -112,7 +127,12 @@ public class AdminController extends BaseController {
 
         model.addAttribute("vm", vm);
 
-        return "admin/admin";
+        return "admin/manage_product";
+    }
+
+    @GetMapping("/admin/profile")
+    public String profile(){
+        return "admin/profile";
     }
 
     @GetMapping("/admin/customer")
@@ -120,19 +140,52 @@ public class AdminController extends BaseController {
         return "admin/manage_customer";
     }
 
-    @GetMapping("/admin/category")
+    @GetMapping("/admin/email")
     public String categoryList(){
-        return "admin/manage_category";
+        return "manage_email";
     }
 
 
-    @GetMapping("/admin/order")
-    public String order(){
+//    @GetMapping("/admin/order")
+//    public String order(){
+//        return "admin/manage_order";
+//    }
+
+    @GetMapping("/admin/order/deliveried")
+    public String delivery(Model model){
+        setBill(delivered,model,"Hóa đơn đã được thanh toán");
         return "admin/manage_order";
     }
 
-    @GetMapping("/admin/product")
-    public String productList(){
-        return "admin/product_list";
+    @GetMapping("/admin/order/notdeliveried")
+    public String notdelivery(Model model){
+        setBill(not_deliveried,model,"Hóa đơn đang được giao");
+        return "admin/manage_order";
+    }
+
+    @GetMapping("/admin/order/unpaid")
+    public String unpaid(Model model){
+        setBill(unpaid,model,"Hóa đơn chưa được thanh toán");
+        return "admin/manage_order";
+    }
+
+    public Model setBill(int status, Model model,String info){
+        ModelMapper modelMapper = new ModelMapper();
+        ArrayList<Order> orders = orderService.getListOrderByStatusId(status);
+        ArrayList<OrderDetailModel> orderDetailModels =new ArrayList<>();
+        OrderVM orderVM = new OrderVM();
+        if(orders != null){
+            for(Order o : orders){
+                orderDetailModels.add(modelMapper.map(o,OrderDetailModel.class));
+            }
+            orderVM.setInfo(info);
+            orderVM.setObject(orderDetailModels);
+            model.addAttribute("order",orderVM);
+        }else {
+            orderVM.setInfo("Không có hóa đơn nào");
+            orderVM.setObject(null);
+            model.addAttribute("order",orderVM);
+        }
+        return model;
     }
 }

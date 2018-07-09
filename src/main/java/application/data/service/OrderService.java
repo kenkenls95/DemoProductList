@@ -133,6 +133,11 @@ public class OrderService {
         return false;
     }
 
+
+    public ArrayList<Order> getListOrder(){
+        return orderRepository.getListOrder();
+    }
+
     public boolean createOrderByUserId(String id) {
         try {
             Order order = new Order();
@@ -211,5 +216,9 @@ public class OrderService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public ArrayList<Order> getListOrderByStatusId(int statusId){
+        return orderRepository.getListOrderByStatusId(statusId);
     }
 }

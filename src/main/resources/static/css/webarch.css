@@ -26,6 +26,8 @@ html {
   position: absolute;
   top: 60px;
   left: 270px;
+  right: 0px;
+  bottom: 0px;
   /*font-size: 13pt;*/
   display: inline;
   /*color: green;*/

@@ -1,5 +1,6 @@
 package application.controller.api;
 
+import application.data.model.Order;
 import application.data.model.OrderProduct;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+
+import static application.constant.StatusOrderConstant.delivered;
 
 @RestController
 @RequestMapping("/api/order")
@@ -54,7 +57,8 @@ public class OrderApiController {
             ArrayList<OrderProductDetailModel> orderProductDetailModels = new ArrayList<>();
             ArrayList<OrderProductDataModel> orderProductDataModels = new ArrayList<>();
             for(OrderProduct orderProduct : orderProducts){
-                orderProductDetailModels.add(new OrderProductDetailModel(orderProduct.getId(),orderProduct.getProductid(),orderProduct.getOrderprice(),orderProduct.getOrderquantity(),orderProduct.getCreated_date(),orderProduct.getUpdated_date()));
+//                orderProductDetailModels.add(new OrderProductDetailModel(orderProduct.getId(),orderProduct.getProductid(),orderProduct.getOrderprice(),orderProduct.getOrderquantity(),orderProduct.getCreated_date(),orderProduct.getUpdated_date()));
+                orderProductDetailModels.add(modelMapper.map(orderProduct,OrderProductDetailModel.class));
             }
             for(OrderProductDetailModel o : orderProductDetailModels){
                 orderProductDataModels.add(new OrderProductDataModel(modelMapper.map(productService.findById(o.getProductid()),ProductDetailModel.class),o.getOrderprice(),o.getOrderquantity(),o.getCreated_date(),o.getUpdated_date()));
@@ -108,6 +112,58 @@ public class OrderApiController {
             result.setMessage(e.getMessage());
             result.setData(null);
             result.setSuccess(false);
+        }
+        return result;
+    }
+
+    @GetMapping("/status/{orderId}")
+    public BaseApiResult statusOrder(@PathVariable int orderId){
+        DataApiResult result = new DataApiResult();
+        try {
+            Order order = orderService.findOrder(orderId);
+            int status = order.getOrderStatus().getId();
+            switch (status){
+                case 1:
+                    result.setSuccess(true);
+                    result.setMessage("Bạn có muốn xóa hóa đơn ?");
+                    break;
+                case 2:
+                    result.setSuccess(true);
+                    result.setMessage("Hóa đơn đã được thanh toán ?");
+                    break;
+                case 3:
+                    result.setSuccess(true);
+                    result.setMessage("Hóa đơn chưa được thanh toán");
+                    break;
+            }
+        } catch (Exception e) {
+            result.setMessage(e.getMessage());
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    @GetMapping("/update/{orderId}")
+    public BaseApiResult updateOrder(@PathVariable int orderId){
+        DataApiResult result = new DataApiResult();
+        Order order = orderService.findOrder(orderId);
+        int status = order.getOrderStatus().getId();
+        switch (status){
+            case 1:
+                orderService.deleteOrder(order.getId());
+                result.setSuccess(true);
+                result.setMessage("Đã xóa hóa đơn");
+                break;
+            case 2:
+                order.setOrderStatus(orderService.getOneOrderStatus(delivered));
+                orderService.saveOrder(order);
+                result.setSuccess(true);
+                result.setMessage("Hóa đơn đã được thanh toán");
+                break;
+            case 3:
+                result.setSuccess(true);
+                result.setMessage("Khách hàng chưa thanh toán");
+                break;
         }
         return result;
     }

@@ -543,3 +543,10 @@ $(function() {
     // Initialize layouts and plugins
     $.Webarch.init();
 });
+
+// logo
+$.get("http://"+window.location.host+"/api/user/img/"+$(".username").text(), function(data, status){
+    if(data.data != null){
+        $('.user-logo').attr('src',data.data.imageurl)
+    }
+});

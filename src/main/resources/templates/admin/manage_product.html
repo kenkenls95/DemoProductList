@@ -3,25 +3,6 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="admin-css">
     <title>Admin</title>
-
-    <!--<link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />-->
-    <!--<link href="assets/plugins/jquery-metrojs/MetroJs.min.css" rel="stylesheet" type="text/css" />-->
-    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/shape-hover/css/demo.css" />-->
-    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/shape-hover/css/component.css" />-->
-    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/owl-carousel/owl.carousel.css" />-->
-    <!--<link rel="stylesheet" type="text/css" href="assets/plugins/owl-carousel/owl.theme.css" />-->
-    <!--<link href="assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen" />-->
-    <!--<link rel="stylesheet" href="assets/plugins/jquery-ricksaw-chart/css/rickshaw.css" type="text/css" media="screen">-->
-    <!--<link rel="stylesheet" href="assets/plugins/Mapplic/mapplic/mapplic.css" type="text/css" media="screen">-->
-    <!--&lt;!&ndash; END PLUGIN CSS &ndash;&gt;-->
-    <!--&lt;!&ndash;<link href="assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />&ndash;&gt;-->
-    <!--&lt;!&ndash;<link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />&ndash;&gt;-->
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <!--<link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />-->
-    <!--<link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" />-->
-    <!--&lt;!&ndash; END PLUGIN CSS &ndash;&gt;-->
-    <!--<link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />-->
-
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <meta charset="utf-8"/>
     <title>Webarch - Responsive Admin Dashboard</title>
@@ -59,7 +40,7 @@
                 <!-- END LOGO -->
                 <ul class="nav pull-right notifcation-center">
                     <li class="dropdown hidden-xs hidden-sm">
-                        <a th:href="@{/admin}" class="dropdown-toggle active" data-toggle="">
+                        <a th:href="@{/admin/profile}" class="dropdown-toggle active" data-toggle="">
                             <i class="material-icons">home</i>
                         </a>
                     </li>
@@ -153,20 +134,19 @@
                             </a>
                             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                                 <li>
-                                    <a href="user-profile.html"> My Account</a>
+                                    <a th:href="@{/admin/profile}"> Tài khoản của tôi</a>
                                 </li>
                                 <li>
-                                    <a href="calender.html">My Calendar</a>
+                                    <a th:href="@{/}">Trang chủ</a>
                                 </li>
-                                <li>
-                                    <a href="email.html"> My Inbox&nbsp;&nbsp;
-                                        <span class="badge badge-important animated bounceIn">2</span>
-                                    </a>
-                                </li>
+                                <!--<li>-->
+                                    <!--<a href="email.html"> My Inbox&nbsp;&nbsp;-->
+                                        <!--<span class="badge badge-important animated bounceIn">2</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
                                 <li class="divider"></li>
                                 <li>
-                                    <a th:href="@{/logout}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log
-                                        Out</a>
+                                    <a th:href="@{/logout}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Thoát</a>
                                 </li>
                             </ul>
                         </li>
@@ -196,9 +176,14 @@
             <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span>
             </p>
             <ul>
-                <li class="start  open active "><a th:href="@{/admin}"><i class="material-icons">home</i> <span
+                <li class="start  open active "><a><i class="material-icons">home</i> <span
                         class="title">Bảng điều khiển</span> <span class="selected"></span> <span
                         class="arrow  open "></span> </a>
+                </li>
+                <li>
+                    <a  th:href="@{/admin/profile}"><i class="material-icons">perm_identity</i>
+                        <span class="title">Thông tin tài khoản</span>
+                    </a>
                 </li>
                 <li>
                     <a th:href="@{/admin/customer}"> <i class="material-icons">panorama_horizontal</i>
@@ -206,26 +191,27 @@
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/admin/category}"> <i class="material-icons">email</i>
-                        <span class="title">Quản lí danh mục</span>
+                    <a th:href="@{/admin/email}"> <i class="material-icons">email</i>
+                        <span class="title">Quản lí email</span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{/admin/product}"> <i class="material-icons">view_stream</i> <span class="title">Quản lí sản phẩm</span>
+                    <a class="menu-pointer" > <i class="material-icons">view_stream</i> <span class="title">Quản lí sản phẩm</span>
                         <span class=" arrow"></span> </a>
                     <ul class="sub-menu">
-                        <li><a href="form_elements.html">Form Elements </a></li>
-                        <li><a href="form_validations.html">Form Validations</a></li>
+                        <li><a th:href="@{/admin/product}">Danh sách sản phẩm </a></li>
+                        <li><a href="form_validations.html">Danh sách danh mục sản phẩm</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a th:href="@{/admin/order}"> <i class="material-icons">playlist_add_check</i> <span class="title">Quản lí đơn hàng</span>
+                    <a class="menu-pointer" > <i class="material-icons">playlist_add_check</i> <span class="title">Quản lí đơn hàng</span>
                         <span class=" arrow"></span> </a>
                     <ul class="sub-menu">
-                        <li><a href="tables.html"> Basic Tables </a></li>
-                        <li><a href="datatables.html"> Data Tables </a></li>
+                        <li><a th:href="@{/admin/order/deliveried}"> Đơn hàng đã giao </a></li>
+                        <li><a th:href="@{/admin/order/notdeliveried}"> Đơn hàng đang chuyển </a></li>
+                        <li><a th:href="@{/admin/order/unpaid}"> Đơn hàng chưa thanh toán </a></li>
                     </ul>
                 </li>
             </ul>
@@ -351,8 +337,6 @@
         </div>
     </div>
 </div>
-
-
 <div th:include="fragments/footer :: js-admin"></div>
 <script type="text/javascript" th:src="@{/js/admin.js}"></script>
 </body>

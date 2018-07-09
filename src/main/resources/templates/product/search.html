@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Product index</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}"/>
+<body>
+<div th:replace="fragments/header :: header_top"></div>
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container">
+    <h3 > Sản phẩm theo " <span th:text="${vm.getKeyWord()}"></span> "</h3>
+    <div th:if="${vm.getProductDetailModels() != null}" class="row">
+        <div class="container">
+            <div class="row" th:each="product : ${vm.getProductDetailModels()}">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" th:unless="${vm != null}">
+        <h2>Không có sản phẩm nào</h2>
+        <button class="btn btn-default"><a th:href="@{/}">Quay về trang chủ</a></button>
+    </div>
+</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+<script th:src="@{/js/detail.js}"></script>
+
+</body>
+</html>

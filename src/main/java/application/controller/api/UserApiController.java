@@ -1,8 +1,8 @@
 package application.controller.api;
 
-import application.constant.RoleIdConstant;
 import application.data.model.User;
 import application.data.model.UserRole;
+import application.data.service.OrderService;
 import application.model.*;
 import application.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -21,6 +21,25 @@ public class UserApiController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    OrderService orderService;
+
+    @GetMapping("/detail/{userId}")
+    public BaseApiResult getUser(@PathVariable String userId){
+        DataApiResult result = new DataApiResult();
+        try {
+            User user = userService.findUserById(userId);
+            result.setData(user);
+            result.setSuccess(true);
+            result.setMessage("success");
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setData(null);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
 
     @GetMapping("/alluser")
     public BaseApiResult getUserRole(){

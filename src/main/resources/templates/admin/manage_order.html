@@ -1,19 +1,107 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="admin/admin :: admin-css"></head>
+<head th:include="admin/manage_product :: admin-css"></head>
 <body>
 <div id="wrapper">
 	<!--<div id="" style="padding-top: 1px;">-->
 	<div class="content">
 		<div class="content__inner">
 
-			<div th:replace="admin/admin :: header"></div>
-			<div th:replace="admin/admin :: sidebar"></div>
+			<div th:replace="admin/manage_product :: header"></div>
+			<div th:replace="admin/manage_product :: sidebar"></div>
 			<div class="main__content">
-
+				<section>
+					<h3><span th:text="${order.getInfo()}"></span></h3>
+					<table class="table table-bordered table-hover" id="myTable" style="margin-top: 10px">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>Ngày tạo</th>
+							<th>Địa chỉ</th>
+							<th>Chi tiết</th>
+							<th>Hành động</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="o : ${order.getObject()}">
+							<td th:text="${o.getId()}"></td>
+							<td th:text="${o.getCreated_date()}"></td>
+							<td th:text="${o.getAddress()}"></td>
+							<td><button class="btn btn-success btn-detail-bill" th:attr="data-bill=${o.getId()}, data-userid=${o.getUserid()}">Xem chi tiết</button></td>
+							<td><button class="btn btn-warning btn-update-bill" th:attr="data-id=${o.getId()}" >Thay đổi</button></td>
+						</tr>
+						</tbody>
+					</table>
+				</section>
 			</div>
 		</div>
 	</div>
 </div>
+<div id="modal-create-bill" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2  class="modal-title text-center" id="exampleModalLabel">Chi tiết hóa đơn</h2>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group row">
+						<label for="name" class="col-sm-4 col-form-label">Tên Khách Hàng :</label>
+						<div class="col-sm-8">
+							<label id="name"></label>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="diachi" class="col-sm-4 col-form-label">Địa chỉ :</label>
+						<div class="col-sm-8">
+							<label id="diachi"></label>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="diachiemail" class="col-sm-4 col-form-label">Email :</label>
+						<div class="col-sm-8">
+							<label id="diachiemail"></label>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="ngaylap" class="col-sm-4 col-form-label">Ngày lập hóa đơn :</label>
+						<div class="col-sm-8">
+							<label id="ngaylap"></label>
+						</div>
+					</div>
+					<h4 style="margin-top: 30px;"><strong>Chi tiết sản phẩm</strong></h4>
+					<hr>
+					<table class="table table-bordered table-hover" id="table-detail">
+						<thead>
+						<tr>
+							<th>STT</th>
+							<th>Tên Sản Phẩm</th>
+							<th>Số Lượng (Kg)</th>
+							<th>Giá (VND)</th>
+							<th>Thành tiền</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+					<hr>
+					<h4 style="margin-top: 30px;"><strong>Tổng :  </strong><span id="sum"></span>  (VND)</h4>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+			</div>
+		</div>
+
+	</div>
+</div>
+<div th:include="fragments/footer :: js-admin"></div>
+<script th:src="@{/js/admin/manage_order.js}"></script>
 </body>
 </html>

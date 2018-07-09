@@ -1,12 +1,21 @@
 package application.model;
 
+import application.extension.CustomDateDeserializer;
+import application.extension.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 public class OrderProductDataModel {
     private Object product;
     private long orderprice;
     private int orderquantity;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date created_date;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date updated_date;
 
     public OrderProductDataModel(Object product, long orderprice, int orderquantity, Date created_date, Date updated_date) {

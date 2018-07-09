@@ -38,6 +38,9 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    UUID uuid = UUID.randomUUID();
+    String uuId = uuid.toString();
+
     public StatusRegisterUserEnum registerNewUser(User user) {
         logger.info("Start registerNewUser");
         try {
@@ -51,13 +54,13 @@ public class UserService {
             }
 
             // hash pass
-            UUID uuid = UUID.randomUUID();
-            String pass = uuid.toString();
+
             if(user.getPassword() == null){
-                user.setPasswordHashed(pass);
+                user.setPasswordHashed(uuId);
             }else {
                 user.setPasswordHashed(passwordEncoder.encode(user.getPassword()));
             }
+            user.setId(uuId);
             user.setCreatedDate(new Date());
             user.setUpdatedDate(new Date());
             user.setAddress(user.getAddress());
@@ -71,6 +74,7 @@ public class UserService {
 
             // save user
             userRepository.save(user);
+
 
             // insert new role
             UserRole userRole = new UserRole();
@@ -111,6 +115,15 @@ public class UserService {
         return false;
     }
 
+    public boolean saveUser (User user){
+        try {
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
 
     public List<Role> getListRole() {
         return StreamSupport
@@ -158,6 +171,10 @@ public class UserService {
 
     public User findUserById(String id){
         return userRepository.findUserById(id);
+    }
+
+    public User findUser(String id){
+        return userRepository.findOne(Integer.parseInt(id));
     }
 
     public Role findRoleById(int id){

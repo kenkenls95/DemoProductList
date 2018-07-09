@@ -103,3 +103,7 @@
     clear: both;
     display: table;
 }
+
+.menu-pointer {
+    cursor: pointer;
+}

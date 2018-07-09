@@ -38,7 +38,7 @@ $(document).ready(function () {
         switch ($('#role').text()){
             case "[ROLE_ADMIN]":
                 $('#role').text("Trang ADMIN");
-                $('#role').attr('href','/admin');
+                $('#role').attr('href','/admin/profile');
                 break;
             case "[ROLE_USER]":
                 $('#role').text("Thông tin khách hàng")

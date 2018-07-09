@@ -1,21 +1,18 @@
 package application.controller.api;
 
-import application.constant.Constant;
 import application.data.model.*;
 import application.data.service.CategoryService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
 import application.model.*;
 import application.service.UserService;
-import application.viewmodel.common.ProductVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
-import static application.constant.StatusOrderConstant.not_delivery;
+import static application.constant.StatusOrderConstant.not_deliveried;
 
 @RestController
 @RequestMapping("/api/product")
@@ -279,8 +276,11 @@ public class ProductApiController {
             user.setFullname(userOrderModel.getFullname());
             userService.updateUser(user);
             Order order = orderService.findOrder(userOrderModel.getOrderId());
-            order.setOrderStatus(orderService.getOneOrderStatus(not_delivery));
+            order.setOrderStatus(orderService.getOneOrderStatus(not_deliveried));
+            order.setUserid(user.getId());
+            order.setAddress(user.getAddress());
             orderService.saveOrder(order);
+            result.setData(user);
             result.setMessage("Đã lưu thành công");
             result.setSuccess(true);
         }else {
@@ -290,14 +290,18 @@ public class ProductApiController {
                 result.setMessage("Tồn tại email");
             }else {
                 User user1 = modelMapper.map(userOrderModel,User.class);
-                userService.registerNewUser(user1);
+                userService.saveUser(user1);
                 result.setData(user1);
+                result.setMessage("Đã lưu thành công");
+                result.setSuccess(true);
+                result.setData(user1);
+                User user2 = userService.findUserByEmail(user1.getEmail());
+                Order order = orderService.findOrder(userOrderModel.getOrderId());
+                order.setOrderStatus(orderService.getOneOrderStatus(not_deliveried));
+                order.setUserid(user2.getId());
+                order.setAddress(user2.getAddress());
+                orderService.saveOrder(order);
             }
-            Order order = orderService.findOrder(userOrderModel.getOrderId());
-            order.setOrderStatus(orderService.getOneOrderStatus(not_delivery));
-            orderService.saveOrder(order);
-            result.setMessage("Đã lưu thành công");
-            result.setSuccess(true);
         }
 
         return result;

@@ -15,11 +15,7 @@ $(document).ready(function () {
         dataProduct.phone = $("#phone").val()
         dataProduct.address = $('#address').val()
         dataProduct.orderId = getCookie("OrderId")
-        if(dataProduct.id != null){
             var linkPost = "/api/product/save"
-        }else {
-            var linkPost = "/api/product/add-new"
-        }
         axios.post(linkPost, dataProduct).then(function(res){
             if(res.data.success) {
                 swal(
@@ -32,6 +28,12 @@ $(document).ready(function () {
                     setCookie("User_Id",null,0)
                     document.location.href = location.origin
                 });
+            }else {
+                swal(
+                    "Xảy ra lỗi khi lưu hóa đơn",
+                    res.data.message,
+                    'warning'
+                )
             }
         })
     })
