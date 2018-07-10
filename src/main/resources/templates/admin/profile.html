@@ -87,34 +87,6 @@
 </div>
 </div>
 <div th:include="fragments/footer :: js-admin"></div>
-<script>
-    $(document).ready(function () {
-        var dataUser = {};
-        $.get("http://" + window.location.host + "/api/user/" + $(".username").text(), function (data, status) {
-            if (data.data != null) {
-                dataUser.id = data.data.id;
-                dataUser.createdDate = data.data.createdDate
-                dataUser.imageurl = data.data.imageurl
-                $('#username').val(data.data.username)
-                $('#fullname').val(data.data.fullname)
-                $('#address').val(data.data.address)
-                $('#email').val(data.data.email)
-                $('#phone').val(data.data.phone)
-                $('#preview-product-img').attr('src', data.data.imageurl)
-                switch (data.data.gender) {
-                    case "Male":
-                        document.getElementById("male").checked = true;
-                        break;
-                    case "Female":
-                        document.getElementById("female").checked = true;
-                        break;
-                    case "Other":
-                        document.getElementById("other").checked = true;
-                        break;
-                }
-            }
-        })
-    })
-</script>
+<script th:src="@{/js/admin/profile.js}"></script>
 </body>
 </html>

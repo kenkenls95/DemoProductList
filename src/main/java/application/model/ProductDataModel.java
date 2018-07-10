@@ -9,8 +9,18 @@ public class ProductDataModel {
     private String name;
     private String image;
     private String shortDesc;
+    private int price;
     private int amount;
     private int categoryId;
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     @JsonDeserialize(using = CustomDateDeserializer.class)
     private Date createdDate;

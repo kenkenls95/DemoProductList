@@ -12,7 +12,7 @@
     transition: all 0.3s ease;
 }
 .facebook-login {
-    background: #045491;
+    background: #2e6da4;
 }
 .google-login {
     background: #C11F27;
@@ -23,7 +23,9 @@
 #model-box {
     border-radius: 3px;
     /*border: 1px solid #ccf2ff;*/
-    background: #66b0ff;
-    padding-bottom: 70px;
+    background: #e4eee3 ;
+    padding-bottom: 20px;
+    width: 450px;
+    margin-left: 0;
 }
 

@@ -120,14 +120,14 @@ public class UserApiController {
     }
 
     @PostMapping("/update-user/{id}")
-    public BaseApiResult updateUser (@PathVariable int id,
+    public BaseApiResult updateUser (@PathVariable String id,
                                      @RequestBody UserDetailModel user){
 
         DataApiResult result = new DataApiResult();
         try {
             if(!"".equals(user.getUsername()) && !"".equals(user.getFullname())
                     && !"".equals(user.getEmail())) {
-                User existUser = userService.findOne(id);
+                User existUser = userService.findUserById(id);
                 if(existUser == null) {
                     result.setSuccess(false);
                     result.setMessage("Invalid model");

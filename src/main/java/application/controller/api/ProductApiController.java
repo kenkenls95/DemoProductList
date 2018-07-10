@@ -160,7 +160,7 @@ public class ProductApiController {
         DataApiResult result = new DataApiResult();
 
         try {
-            if(!"".equals(product.getName()) && !"".equals(product.getShortDesc()) && !"".equals(product.getImage())) {
+            if(!"".equals(product.getName()) && !"".equals(product.getShortDesc()) && !"".equals(product.getImage()) && !"".equals(product.getPrice())) {
                 ModelMapper modelMapper = new ModelMapper();
                 Product productEntity = modelMapper.map(product, Product.class);
                 productEntity.setCategory(categoryService.getOne(product.getCategoryId()));
@@ -199,6 +199,7 @@ public class ProductApiController {
                     existProduct.setCreatedDate(product.getCreatedDate());
                     existProduct.setShortDesc(product.getShortDesc());
                     existProduct.setAmount(product.getAmount());
+                    existProduct.setPrice(product.getPrice());
                     existProduct.setCategory(categoryService.getOne(product.getCategoryId()));
                     productService.updateProduct(existProduct);
                     result.setSuccess(true);

@@ -125,7 +125,13 @@ $(document).ready(function () {
                 `)
                 $.get("http://"+window.location.host+"/api/order/user/"+ data.data.id, function(res, req){
                     var i = 1;
-                    for(var order of res.data){
+                    var list = [];
+                    var a = res.data;
+                    for(var i=0; i<a.length ;i++) {
+                        if (a[i].orderStatus.id !== 3 && a[i].orderStatus.id !== 4) list.push(a[i]);
+                    }
+
+                    for(var order of list){
                         $('#table > tbody').append(`<tr>
 						<td>${i}</td>
 			            <td>${order.id}</td>
@@ -261,12 +267,7 @@ $(document).ready(function () {
                 'Error',
                 'Some error when saving user',
                 'error'
-            );
+            )
         })
-    });
-
-
-
-
-
+    })
 })

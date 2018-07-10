@@ -82,7 +82,7 @@
                     <tr>
                         <td style="color: red">Tổng cộng </td>
                         <td></td>
-                        <td id="total"></td>
+                        <td id="total" class="price"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -93,6 +93,7 @@
 </div>
 
 <footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: js-index"></div>
 <script th:src="@{/js/checkout.js}"></script>
 </body>
 </html>

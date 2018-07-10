@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-4 col-xs-12 ">
                 <div class="panel panel-success">
-                    <div class="panel-heading">Menu</div>
+                    <div class="panel-heading">Danh mục sản phẩm</div>
                     <div class="panel-body">
                         <div class="list-group">
                             <ul class="left-menu">
@@ -81,7 +81,7 @@
 
             <div class="col-md-9 col-sm-8 col-xs-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">List hot products</div>
+                    <div class="panel-heading">Danh sách sản phẩm nổi bật</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-6" th:each="product : ${vm.getListHotProducts()}">
@@ -107,10 +107,10 @@
                                             <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span class="price" th:text="${product.getPrice()}"></span><span> VND</span>
+                                            <span class="price" th:text="${product.getPrice()}"></span><span></span>
                                         </div>
                                         <div class="item-product__action">
-                                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Add to cart</button>
+                                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Thêm vào giỏ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="panel panel-warning">
-                    <div class="panel-heading">List trend products</div>
+                    <div class="panel-heading">Danh sách sản phẩm</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-6" th:each="product : ${vm.getListTrendProducts()}">
@@ -146,10 +146,10 @@
                                             <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span class="price" th:text="${product.getPrice()}"></span><span> VND</span>
+                                            <span class="price" th:text="${product.getPrice()}"></span><span></span>
                                         </div>
                                         <div class="item-product__action">
-                                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Add to cart</button>
+                                            <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Thêm vào giỏ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -163,117 +163,10 @@
 
 </div>
 
+
+
 <footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: js-index"></div>
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
-<!--<script>-->
-    <!--$(document).ready(function () {-->
-        <!--// console.log(getCookie("OrderId"))-->
-        <!--$(".btn-shopping").click(function () {-->
-            <!--var quantity = 0;-->
-            <!--var id = $(this).data("id");-->
-            <!--var $qty = $(this).closest('.item-product__inner').find('.qty');-->
-            <!--if(id == $(this).val()) {-->
-                <!--if(quantity != 0) {-->
-                    <!--quantity += parseInt($qty.val());-->
-                <!--} else {-->
-                    <!--quantity = parseInt($qty.val());-->
-                <!--}-->
-            <!--}-->
-            <!--else {-->
-                <!--quantity = parseInt($qty.val());-->
-            <!--}-->
-            <!--// update(id,quantity,"Order");-->
-
-            <!--var orderId = getCookie("OrderId")-->
-            <!--var linkPost = "/api/product/update-orderproduct"-->
-            <!--var dataProduct = {}-->
-            <!--dataProduct.id = null;-->
-            <!--dataProduct.productId = id;-->
-            <!--dataProduct.orderId = parseInt(orderId);-->
-            <!--dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").text();-->
-            <!--dataProduct.orderQuantity = quantity;-->
-            <!--console.log(dataProduct)-->
-
-
-            <!--axios.post(linkPost, dataProduct).then(function(res){-->
-                <!--NProgress.done();-->
-                <!--if(res.data.success) {-->
-                    <!--swal(-->
-                        <!--'Good job!',-->
-                        <!--res.data.message,-->
-                        <!--'success'-->
-                    <!--)-->
-                <!--} else {-->
-                    <!--swal(-->
-                        <!--'Error',-->
-                        <!--res.data.message,-->
-                        <!--'error'-->
-                    <!--);-->
-                <!--}-->
-            <!--}, function(err){-->
-                <!--NProgress.done();-->
-                <!--swal(-->
-                    <!--'Error',-->
-                    <!--'Some error when saving product',-->
-                    <!--'error'-->
-                <!--);-->
-            <!--})-->
-        <!--});-->
-        <!--function update(id,qty,cname) {-->
-
-            <!--if(getCookie(cname) == ""){-->
-                <!--var order =[]-->
-                <!--var product ={}-->
-                <!--product.id =id-->
-                <!--product.qty = qty-->
-                <!--order.push(product)-->
-                <!--setCookie(cname,JSON.stringify(order),7)-->
-            <!--}else if(getCookie(cname) != null) {-->
-                <!--var order = JSON.parse(getCookie(cname))-->
-                <!--if(!order){-->
-                    <!--order = []-->
-                <!--}else {-->
-                    <!--order = JSON.parse(getCookie(cname))-->
-                <!--}-->
-                <!--var product = {}-->
-                <!--var flag = true-->
-                <!--product.id = id-->
-                <!--product.qty = qty-->
-                <!--for(var pro of order){-->
-                    <!--if(pro.id === product.id){-->
-                        <!--pro.qty += product.qty-->
-                        <!--flag = false-->
-                    <!--}-->
-                <!--}-->
-                <!--if(flag){-->
-                    <!--order.push(product);-->
-                <!--}-->
-                <!--setCookie(cname,JSON.stringify(order),7)-->
-            <!--}-->
-        <!--}-->
-
-        <!--function getCookie(cname) {-->
-            <!--var name = cname + "=";-->
-            <!--var decodedCookie = decodeURIComponent(document.cookie);-->
-            <!--var ca = decodedCookie.split(';');-->
-            <!--for(var i = 0; i <ca.length; i++) {-->
-                <!--var c = ca[i];-->
-                <!--while (c.charAt(0) == ' ') {-->
-                    <!--c = c.substring(1);-->
-                <!--}-->
-                <!--if (c.indexOf(name) == 0) {-->
-                    <!--return c.substring(name.length, c.length);-->
-                <!--}-->
-            <!--}-->
-            <!--return "";-->
-        <!--}-->
-
-        <!--function setCookie(cname, cvalue) {-->
-            <!--document.cookie = cname + "=" + cvalue + ";";-->
-        <!--}-->
-
-
-    <!--})-->
-<!--</script>-->
 </body>
 </html>

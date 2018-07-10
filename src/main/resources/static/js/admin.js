@@ -39,7 +39,7 @@ $(document).ready(function () {
         $('#input-product-desc').val("");
         $("#input-product-amount").val("");
         $("#product-category").val("1");
-
+        $('#input-product-price').val("")
         $("#modal-create-product").modal();
     });
 
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 $("#input-product-amount").val(res.data.data.amount);
                 $('#preview-product-img').attr('src', dataProduct.image);
                 $("#product-category").val(res.data.data.category.id);
-
+                $('#input-product-price').val(res.data.data.price)
                 var createdDate = moment(res.data.data.createdDate, "YYYY-MM-DD HH:mm:ss");
                 $('#datepicker-created-date-product').data("DateTimePicker").date(createdDate);
                 $("#modal-create-product").modal();
@@ -85,7 +85,7 @@ $(document).ready(function () {
         dataProduct.amount = $("#input-product-amount").val();
         dataProduct.createdDate = createdDate;
         dataProduct.categoryId = $("#product-category").val();
-
+        dataProduct.price = $('#input-product-price').val()
         NProgress.start();
 
         var linkPost = "/api/product/create-product";

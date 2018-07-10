@@ -165,7 +165,7 @@ public class AdminController extends BaseController {
 
     @GetMapping("/admin/order/unpaid")
     public String unpaid(Model model){
-        setBill(unpaid,model,"Hóa đơn chưa được thanh toán");
+        setBill(unpaid,model,"Giỏ hàng chưa thanh toán");
         return "admin/manage_order";
     }
 

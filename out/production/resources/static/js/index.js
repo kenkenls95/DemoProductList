@@ -7,8 +7,6 @@ $(document).ready(function() {
             'success'
         )
     }
-
-    console.log($('.user-name').text())
     $(function () {
         $('.add').on('click',function(){
             var $qty=$(this).closest('p').find('.qty');

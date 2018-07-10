@@ -5,17 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Product index</title>
-    <style>
-        .search__img {
-            float: left;
-            width: 30%;
-        }
-        .search__content {
-            float: left;
-            width: 70%;
-        }
 
-    </style>
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}"/>
 <body>
@@ -27,16 +17,16 @@
     <h3 > Sản phẩm theo " <span th:text="${vm.getKeyWord()}"></span> "</h3>
     <div th:if="${vm.getProductDetailModels() != null}" class="row">
         <div class="container">
-            <div class="row" th:each="product : ${vm.getProductDetailModels()}">
-                <div class="search__img">
+            <div class="row" th:each="product : ${vm.getProductDetailModels()}" id="search__product">
+                <div class="search__img float-left">
                     <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
                         <img th:src="${product.getImage()}" alt="">
                     </a>
                 </div>
-                <div class="search__content">
+                <div class="search__content float-left">
                     <div class="search__content__name">
                         <!--<div class="item-product__title ">-->
-                        <span th:text="${product.getName()}"></span>
+                        <h3 th:text="${product.getName()}"></h3>
                         <!--</div>-->
                     </div>
                     <div class="search__content__desc">
@@ -54,6 +44,7 @@
 </div>
 
 <footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: js-index"></div>
 <script th:src="@{/js/detail.js}"></script>
 
 </body>

@@ -1,26 +1,28 @@
 $(document).ready(function () {
     // auto suggestion
-
-    var ajax = new XMLHttpRequest();
+    var totalProduct
     var list = []
     var userId
-    ajax.open("GET", "http://"+window.location.host+"/api/product/getallproduct", true);
-    ajax.onload = function() {
-        list = JSON.parse(ajax.responseText).data
+    axios.get("/api/product/getallproduct").then(function (res) {
+        list = res.data.data
         var suggest = []
         for(var label of list){
             suggest.push(reName(label))
         }
         function reName(label) {
             var obj = {}
-            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span><span>"+label.price+"</span>"
+            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span><span class='money' style='color: red;margin-left:10px'>"+label.price+"</span>"
             obj.value = label.name
             return obj
         }
         new Awesomplete(document.querySelector("#ajax-example input"),{ list: suggest });
         // get img sp
-    };
-    ajax.send();
+    })
+    // $('.money').change(function () {
+    //     var money = $(this).text()
+    //     var fomat = money.toFixed(3).replace(/(\d)(?=(\d{3})+\.)/g, "1.").toString();
+    //     $(this).text(fomat)
+    // })
 
 
     // set logo user
@@ -112,15 +114,24 @@ $(document).ready(function () {
                                 ${pro.name}
                             </td>
                             <td class="text-center">${pro.qty}</td>
-                            <td class="text-center">${pro.price}đ</td>
-                            <td class="text-center">${pro.qty * pro.price}đ</td>
-                            <td class="text-center"><a href="#" class="btn btn-lg">
-                                                      <span style="color: red" class="glyphicon glyphicon-remove btn-remove-cart"></span>
-                                                    </a>
+                            <td class="text-center price">${pro.price}</td>
+                            <td class="text-center price">${pro.qty * pro.price}</td>
+                            <td class="text-center">
+                            <a href="#" class="btn btn-lg">
+                                <span style="color: red" class="glyphicon glyphicon-remove btn-remove-cart"></span>
+                            </a>
                             </td>
                         </tr>
                         `)
+                        totalProduct += pro.qty
                     }
+                    function format(x) {
+                        x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+                        return x
+                    }
+                    $('.price').each(function () {
+                        $(this).text(format(parseInt($(this).text())))
+                    })
                     $('.total-cart').text(imgProducts.length)
                     $('.btn-checkout').attr('href','/product/order/checkout')
                     $('.btn-remove-cart').on('click',function () {
@@ -165,9 +176,7 @@ $(document).ready(function () {
         }
 
     // xu ly gio hang trong trang checkout
-    // for(var pro of imgProducts){
-    //
-    // }
+
     getImgProducts()
 
         // fix loi khi dang nhap fb
@@ -229,13 +238,20 @@ $(document).ready(function () {
                     $('#table-checkout tbody').append(`
                     <tr class="cart-item">
                         <td class="product-name">${pro.name}</td>
-                        <td class="product-qty">${pro.qty}</td>
-                        <td class="product-price">${pro.price} đ</td>
+                        <td class="product-qty ">${pro.qty}</td>
+                        <td class="product-price price">${pro.price}</td>
                     </tr>
                     `)
                     total += pro.qty * pro.price
                 }
-                $('#total').text(total+"đ")
+                function format(x) {
+                    x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+                    return x
+                }
+                $('#total').text(total)
+                $('.price').each(function () {
+                    $(this).text(format(parseInt($(this).text())))
+                })
                 $('#table-checkout').dataTable({
                     "searching": false,
                     "paging": false,
@@ -300,5 +316,11 @@ $(document).ready(function () {
             );
         })
     });
+
+
+     // so tren gio hang
+
+
+
 
 })

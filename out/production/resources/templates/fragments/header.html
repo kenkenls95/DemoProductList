@@ -24,7 +24,7 @@
 
 <div th:fragment="header">
     <div class="container-fluid" style="font-size: 125%; padding: 0px">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <section id="ajax-example">
                                 <div class="awesomplete">
-                                    <input placeholder="Tìm kiếm" name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
+                                    <input style="width: 300px" placeholder="Tìm kiếm" name="name" class="form-control" type="text" autocomplete="off" aria-owns="awesomplete_list_6" role="combobox">
                                     <ul role="listbox" id="awesomplete_list_6" hidden="">
                                         <li aria-selected="false" id="awesomplete_list_6_item_0"><mark>Ca</mark>nada</li>
                                         <li aria-selected="false" id="awesomplete_list_6_item_1"><mark>Ca</mark>meroon</li>
@@ -121,6 +121,7 @@
                     <!-- Button trigger modal -->
                     <a class="check" data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer">
                     </a>
+                    <span class="number__shopping"></span>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

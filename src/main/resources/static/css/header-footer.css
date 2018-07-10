@@ -1,6 +1,36 @@
 body {
     background-color: #eeeeee;
 }
+#search__product {
+    margin-bottom: 20px;
+}
+.search__img {
+    float: left;
+    width: 30%;
+}
+.search__content {
+    float: left;
+    width: 70%;
+}
+.check {
+    position: relative;
+}
+.number__shopping {
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 30px;
+    height: 30px;
+    background: #d00934;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    --border-radius: 15px;
+    border-radius: 15px;
+    opacity: 50;
+}
 .footer-surround {
     background-color: #fbfbfb;
     padding-top: 50px;
@@ -456,9 +486,10 @@ a.check:before {
 }
 
 .user-logo {
-    width: 25px;
-    height: 25px;
-    margin: 7px;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin:2px;
 }
 @media all and (max-width: 900px){
     .logo {

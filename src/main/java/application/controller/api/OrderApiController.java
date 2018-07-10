@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 import static application.constant.StatusOrderConstant.delivered;
+import static application.constant.StatusOrderConstant.not_deliveried;
 
 @RestController
 @RequestMapping("/api/order")
