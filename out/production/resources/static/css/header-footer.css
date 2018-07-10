@@ -486,9 +486,10 @@ a.check:before {
 }
 
 .user-logo {
-    width: 25px;
-    height: 25px;
-    margin: 7px;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin:2px;
 }
 @media all and (max-width: 900px){
     .logo {

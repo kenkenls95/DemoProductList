@@ -130,6 +130,11 @@ public class AdminController extends BaseController {
         return "admin/manage_product";
     }
 
+    @GetMapping("/admin/chat")
+    public String socket(){
+        return "/admin/socket/index";
+    }
+
     @GetMapping("/admin/profile")
     public String profile(){
         return "admin/profile";
@@ -144,12 +149,6 @@ public class AdminController extends BaseController {
     public String categoryList(){
         return "manage_email";
     }
-
-
-//    @GetMapping("/admin/order")
-//    public String order(){
-//        return "admin/manage_order";
-//    }
 
     @GetMapping("/admin/order/deliveried")
     public String delivery(Model model){
@@ -188,4 +187,6 @@ public class AdminController extends BaseController {
         }
         return model;
     }
+
+
 }

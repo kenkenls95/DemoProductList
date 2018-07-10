@@ -70,6 +70,8 @@ $(document).ready(function () {
         dataUser.updatedDate = new Date().toJSON()
         dataUser.oldpassword = $('#old-password').val()
         dataUser.password = $('#new-password').val()
+        dataUser.imageurl = $('#preview-product-img').attr('src')
+        console.log(dataUser)
         if(document.getElementById("male").checked){
             dataUser.gender = "Male"
         }
