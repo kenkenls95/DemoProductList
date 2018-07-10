@@ -36,17 +36,17 @@
                         <span>Thương hiệu: <a href=""><span th:text="${vm.getName()}"></span></a> | <a th:href="@{'~/category/detail/' + ${vm.getCategory().getId()}}">Xem thêm sản phẩm <span th:text="${vm.getCategory().getName()}"></span></a></span>
                     </div>
                     <div class="product-prize">
-                        <span class="prize-true">50.000 đ</span>
+                        <span class="prize-true" th:text="${vm.getPrice() +'đ'}"></span>
                         <span class="prize-sale">100.000 đ</span> -50%
                     </div>
-                    <div class="product-custom">
+                    <div class="product-custom item-product__inner">
                         <span>Số lượng (vui lòng chọn số sản phẩm)</span>
                         <p>
                             <a id="minus1" class="minus"><i class="fa fa-minus"></i></a>
                             <input th:max="${vm.getAmount()}"  id="qty1" type="text" value="1" class="qty"/>
                             <a id="add1" class="add"><i class="fa fa-plus"></i></a>
                         </p>
-                        <a href="" class="add-cart">Thêm vào giỏ hàng</a><a href="" class="guide">Hướng dẫn mua hàng</a>
+                        <a class="add-cart btn-shopping" th:attr="data-id=${vm.getId()}">Thêm vào giỏ hàng</a><a href="" class="guide">Hướng dẫn mua hàng</a>
                     </div>
                 </div>
                 <div class="no-padding col-md-3">

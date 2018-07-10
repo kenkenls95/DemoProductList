@@ -1,6 +1,14 @@
 
 $(document).ready(function() {
+    if($('.user-name').text() != ""){
+        swal(
+            'Xin chào '+$('.user-name').text()+' đã đến với KCShop',
+            "",
+            'success'
+        )
+    }
 
+    console.log($('.user-name').text())
     $(function () {
         $('.add').on('click',function(){
             var $qty=$(this).closest('p').find('.qty');
@@ -24,57 +32,7 @@ $(document).ready(function() {
     });
 
 
-    $(".btn-shopping").click(function () {
-        var quantity = 0;
-        var id = $(this).data("id");
-        var $qty = $(this).closest('.item-product__inner').find('.qty');
-        if(id == $(this).val()) {
-            if(quantity != 0) {
-                quantity += parseInt($qty.val());
-            } else {
-                quantity = parseInt($qty.val());
-            }
-        }
-        else {
-            quantity = parseInt($qty.val());
-        }
-        // update(id,quantity,"Order");
 
-        var orderId = getCookie("OrderId")
-        var linkPost = "/api/product/update-orderproduct"
-        var dataProduct = {}
-        dataProduct.id = null;
-        dataProduct.productId = id;
-        dataProduct.orderId = parseInt(orderId);
-        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").text();
-        dataProduct.orderQuantity = quantity;
-        // console.log(dataProduct)
-
-
-        axios.post(linkPost, dataProduct).then(function(res){
-            NProgress.done();
-            if(res.data.success) {
-                swal(
-                    'Sản phẩm đã được thêm!',
-                    res.data.message,
-                    'success'
-                )
-            } else {
-                swal(
-                    'Error',
-                    res.data.message,
-                    'error'
-                );
-            }
-        }, function(err){
-            NProgress.done();
-            swal(
-                'Error',
-                'Some error when saving product',
-                'error'
-            );
-        })
-    });
     function update(id,qty,cname) {
 
         if(getCookie(cname) == ""){

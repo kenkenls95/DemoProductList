@@ -4,6 +4,15 @@ public class ProductSearchModel {
     private int id;
     private String name;
     private String image;
+    private String price;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public int getId() {
         return id;

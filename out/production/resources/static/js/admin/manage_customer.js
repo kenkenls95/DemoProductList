@@ -58,4 +58,20 @@ $(document).ready(function () {
         $('.btn-ban-role').on('click',function () {
         })
     })
+
+    $("#input-select-img-product").change(function() {
+        readURL(this);
+        var formData = new FormData();
+        NProgress.start();
+        formData.append('file', $("#input-select-img-product")[0].files[0]);
+        axios.post("/api/upload/upload-image", formData).then(function(res){
+            NProgress.done();
+            if(res.data.success) {
+                $('#preview-product-img').attr('src', res.data.link);
+                dataUser.imageurl =  res.data.link
+            }
+        }, function(err){
+            NProgress.done();
+        })
+    });
 })

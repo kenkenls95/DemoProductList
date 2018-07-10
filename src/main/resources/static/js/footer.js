@@ -4,26 +4,45 @@ $(document).ready(function () {
     var ajax = new XMLHttpRequest();
     var list = []
     var userId
-    ajax.open("GET", "http://"+window.location.host+"/api/product/getallproduct", true);
-    ajax.onload = function() {
-        list = JSON.parse(ajax.responseText).data
+    axios.get("/api/product/getallproduct").then(function (res) {
+        list = res.data.data
         var suggest = []
         for(var label of list){
             suggest.push(reName(label))
         }
         function reName(label) {
             var obj = {}
-            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span>"
+            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span><span class='money' style='color: red;margin-left:10px'>"+label.price+"</span>"
             obj.value = label.name
             return obj
         }
         new Awesomplete(document.querySelector("#ajax-example input"),{ list: suggest });
         // get img sp
-
-
-
-    };
-    ajax.send();
+    }).then(function (value) {
+        $('.money').change(function () {
+            var money = $(this).text()
+            var fomat = money.toFixed(3).replace(/(\d)(?=(\d{3})+\.)/g, "1.").toString();
+            $(this).text(fomat)
+        })
+        console.log($('.money').length)
+    })
+    // ajax.open("GET", "http://"+window.location.host+"/api/product/getallproduct", true);
+    // ajax.onload = function() {
+    //     list = JSON.parse(ajax.responseText).data
+    //     var suggest = []
+    //     for(var label of list){
+    //         suggest.push(reName(label))
+    //     }
+    //     function reName(label) {
+    //         var obj = {}
+    //         obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span><span class='money' style='color: red;margin-left:10px'>"+label.price+"</span>"
+    //         obj.value = label.name
+    //         return obj
+    //     }
+    //     new Awesomplete(document.querySelector("#ajax-example input"),{ list: suggest });
+    //     // get img sp
+    // };
+    // ajax.send();
 
 
     // set logo user
@@ -32,7 +51,7 @@ $(document).ready(function () {
             if(data.data != null){
                 $('.user-logo').attr('src',data.data.imageurl)
                 userId = data.data.id
-                console.log(data.data)
+                // console.log(data.data)
             }
         });
         switch ($('#role').text()){
@@ -250,5 +269,63 @@ $(document).ready(function () {
             }
         })
     }
+
+
+    $(".btn-shopping").click(function () {
+        var quantity = 0;
+        var id = $(this).data("id");
+        var $qty = $(this).closest('.item-product__inner').find('.qty');
+        if(id == $(this).val()) {
+            if(quantity != 0) {
+                quantity += parseInt($qty.val());
+            } else {
+                quantity = parseInt($qty.val());
+            }
+        }
+        else {
+            quantity = parseInt($qty.val());
+        }
+        // update(id,quantity,"Order");
+
+        var orderId = getCookie("OrderId")
+        var linkPost = "/api/product/update-orderproduct"
+        var dataProduct = {}
+        dataProduct.id = null;
+        dataProduct.productId = id;
+        dataProduct.orderId = parseInt(orderId);
+        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").text();
+        dataProduct.orderQuantity = quantity;
+        // console.log(dataProduct)
+
+
+        axios.post(linkPost, dataProduct).then(function(res){
+            NProgress.done();
+            if(res.data.success) {
+                swal(
+                    'Sản phẩm đã được thêm!',
+                    res.data.message,
+                    'success'
+                )
+            } else {
+                swal(
+                    'Error',
+                    res.data.message,
+                    'error'
+                );
+            }
+        }, function(err){
+            NProgress.done();
+            swal(
+                'Error',
+                'Some error when saving product',
+                'error'
+            );
+        })
+    });
+
+
+        // fix money
+
+
 
 })
