@@ -296,3 +296,11 @@ button.accent {
         font-size: 1.1em;
     }
 }
+
+/*.message-content {*/
+    /*cursor: pointer;*/
+/*}*/
+
+.massage-content-detail {
+    display: none;
+}

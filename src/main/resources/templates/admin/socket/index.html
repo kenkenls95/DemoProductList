@@ -36,7 +36,7 @@
                             <h2>Quản trị trò chuyện</h2>
                         </div>
                         <div class="connecting">
-                            Connecting...
+                            Đang kết nối...
                         </div>
                         <ul id="messageArea">
 
@@ -44,8 +44,8 @@
                         <form id="messageForm" name="messageForm" nameForm="messageForm">
                             <div class="form-group">
                                 <div class="input-group clearfix">
-                                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                                    <button type="submit" class="primary">Send</button>
+                                    <input type="text" id="message" placeholder="Nhập tin nhắn..." autocomplete="off" class="form-control"/>
+                                    <button type="submit" class="primary btn-send">Send</button>
                                 </div>
                             </div>
                         </form>
@@ -60,5 +60,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script th:src="@{/js/socket/chat.js}"></script>
+<script th:src="@{/js/socket/eventchat.js}"></script>
 </body>
 </html>

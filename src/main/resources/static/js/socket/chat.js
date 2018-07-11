@@ -97,10 +97,14 @@ function onMessageReceived(payload) {
     }
 
     var textElement = document.createElement('p');
+    textElement.classList.add("message-content")
     var messageText = document.createTextNode(message.content);
+    var detailMessage = document.createElement('p')
+    detailMessage.classList.add("massage-content-detail")
     textElement.appendChild(messageText);
 
     messageElement.appendChild(textElement);
+    messageElement.appendChild(detailMessage)
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;

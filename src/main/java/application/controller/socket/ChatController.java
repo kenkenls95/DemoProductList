@@ -1,14 +1,26 @@
 package application.controller.socket;
 
 import application.data.model.ChatMessage;
+import application.data.model.User;
+import application.data.service.ChatService;
+import application.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
+
 @Controller
 public class ChatController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ChatService chatService;
 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
@@ -21,7 +33,7 @@ public class ChatController {
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getUsername());
         return chatMessage;
     }
 

@@ -10,15 +10,15 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
-
+console.log()
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
 function connect(event) {
-    username = document.querySelector('#name').value.trim();
-
+    // username = document.querySelector('#name').value.trim();
+    username = $('.username').text()
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -97,10 +97,14 @@ function onMessageReceived(payload) {
     }
 
     var textElement = document.createElement('p');
+    textElement.classList.add("message-content")
     var messageText = document.createTextNode(message.content);
+    var detailMessage = document.createElement('p')
+    detailMessage.classList.add("massage-content-detail")
     textElement.appendChild(messageText);
 
     messageElement.appendChild(textElement);
+    messageElement.appendChild(detailMessage)
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
