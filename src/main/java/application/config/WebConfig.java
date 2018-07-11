@@ -1,7 +1,7 @@
 package application.config;
 
 import application.data.service.CategoryService;
-import application.data.service.ChatService;
+import application.data.service.MessageService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
@@ -64,8 +64,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public ChatService getChatService(){
-        return new ChatService();
+    public MessageService getMessageService(){
+        return new MessageService();
     }
 
 

@@ -234,6 +234,7 @@ button.accent {
     text-align: center;
     padding: 15px;
     border-bottom: 1px solid #ececec;
+    margin-bottom: 20px;
 }
 
 .chat-header h2 {
@@ -303,4 +304,43 @@ button.accent {
 
 .massage-content-detail {
     display: none;
+}
+
+.btn-show-message {
+    cursor: pointer;
+    position: absolute;
+    top:9%;
+    left: 45%;
+}
+
+.message-content {
+    cursor: pointer;
+    width: 150px;
+}
+
+.inner-chat {
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.inner-chat::after {
+    position: absolute;
+    content: "--------------------------------------------Tin cũ--------------------------------------------";
+    color: #84827b;
+    bottom: 0%;
+    left: 10%;
+
+}
+
+.message-date {
+    padding: 5px 5px;
+    background: #5d5d5d;
+    color: white !important;
+    border-radius: 5px;
+    display: none;
+    width: 200px;
+}
+
+.message-content:hover .message-date {
+    display: block;
 }

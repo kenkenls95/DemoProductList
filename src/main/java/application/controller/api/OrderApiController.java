@@ -168,4 +168,24 @@ public class OrderApiController {
         }
         return result;
     }
+
+    @GetMapping("/detail/qty/{orderid}")
+    public BaseApiResult getQty(@PathVariable int orderid){
+        DataApiResult result =new DataApiResult();
+        int total = 0;
+        try {
+            ArrayList<OrderProduct> orderProducts = orderService.getListOrderProductByOrderId(orderid);
+
+            for(OrderProduct o : orderProducts){
+                total += o.getOrderquantity();
+            }
+            result.setSuccess(true);
+            result.setData(total);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
 }
+

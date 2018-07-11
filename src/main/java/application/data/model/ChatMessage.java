@@ -1,16 +1,16 @@
 package application.data.model;
 
-import javax.persistence.*;
+import application.extension.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
-@Entity(name = "tbl_chatmessage")
 public class ChatMessage {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String userid;
     private String content;
-    private String username;
+    private String sender;
+    private String email;
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date date;
     private MessageType type;
 
@@ -26,6 +26,22 @@ public class ChatMessage {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public MessageType getType() {
@@ -44,27 +60,11 @@ public class ChatMessage {
         this.content = content;
     }
 
-    public int getId() {
-        return id;
+    public String getSender() {
+        return sender;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 }

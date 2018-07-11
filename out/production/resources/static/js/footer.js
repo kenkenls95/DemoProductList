@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    updateQty(getCookie("OrderId"))
+
     // auto suggestion
     var totalProduct
     var list = []
@@ -11,7 +13,12 @@ $(document).ready(function () {
         }
         function reName(label) {
             var obj = {}
-            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span style='font-size: 90%'>"+label.name+"</span><span class='money' style='color: red;margin-left:10px'>"+label.price+"</span>"
+            var money = format(parseInt(label.price))
+            function format(x) {
+                x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+                return x
+            }
+            obj.label = "<img style='height: 50px;width: 50px' src='"+label.image+"'/> "+"<span class='name-products' style='font-size: 90%'>"+label.name+"</span><span class='money'>"+money+"</span>"
             obj.value = label.name
             return obj
         }
@@ -48,6 +55,7 @@ $(document).ready(function () {
 
 
     // gio hang
+
 
         var quantitiy=0;
         $('.quantity-right-plus').click(function(e){
@@ -102,7 +110,7 @@ $(document).ready(function () {
                             }
                         }
                     }
-                    console.table(imgProducts)
+                    // console.table(imgProducts)
                     $("#table-cart > tbody").html("")
                     for(var pro of imgProducts){
                         $("#table-cart > tbody").append(`
@@ -114,8 +122,8 @@ $(document).ready(function () {
                                 ${pro.name}
                             </td>
                             <td class="text-center">${pro.qty}</td>
-                            <td class="text-center price">${pro.price}</td>
-                            <td class="text-center price">${pro.qty * pro.price}</td>
+                            <td class="text-center price-cart">${pro.price}</td>
+                            <td class="text-center price-cart">${pro.qty * pro.price}</td>
                             <td class="text-center">
                             <a href="#" class="btn btn-lg">
                                 <span style="color: red" class="glyphicon glyphicon-remove btn-remove-cart"></span>
@@ -129,7 +137,7 @@ $(document).ready(function () {
                         x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
                         return x
                     }
-                    $('.price').each(function () {
+                    $('.price-cart').each(function () {
                         $(this).text(format(parseInt($(this).text())))
                     })
                     $('.total-cart').text(imgProducts.length)
@@ -262,6 +270,7 @@ $(document).ready(function () {
                 console.log(res.data.message)
             }
         })
+        updateQty(getCookie("OrderId"))
     }
 
 
@@ -287,12 +296,12 @@ $(document).ready(function () {
         dataProduct.id = null;
         dataProduct.productId = id;
         dataProduct.orderId = parseInt(orderId);
-        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").text();
+        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").attr("data-price");
         dataProduct.orderQuantity = quantity;
         // console.log(dataProduct)
 
 
-        axios.post(linkPost, dataProduct).then(function(res){
+        axios.post("/api/product/update-orderproduct", dataProduct).then(function(res){
             NProgress.done();
             if(res.data.success) {
                 swal(
@@ -315,11 +324,20 @@ $(document).ready(function () {
                 'error'
             );
         })
+        updateQty(getCookie("OrderId"))
     });
 
 
-     // so tren gio hang
 
+
+     // so tren gio hang
+    function updateQty(orderId) {
+        axios.get("/api/order/detail/qty/" + orderId).then(function (res) {
+            if(res.data.success){
+                $('.number__shopping').text(res.data.data)
+            }
+        })
+    }
 
 
 

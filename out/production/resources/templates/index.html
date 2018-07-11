@@ -107,7 +107,7 @@
                                             <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span class="price" th:text="${product.getPrice()}"></span><span></span>
+                                            <span class="price" th:attr="data-price=${product.getPrice()}" th:text="${product.getPrice()}"></span><span></span>
                                         </div>
                                         <div class="item-product__action">
                                             <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Thêm vào giỏ</button>
@@ -146,7 +146,7 @@
                                             <!--<span th:text="${product.getAmount()}"></span>-->
                                         </div>
                                         <div class="item-product__price">
-                                            <span class="price" th:text="${product.getPrice()}"></span><span></span>
+                                            <span class="price" th:attr="data-price=${product.getPrice()}" th:text="${product.getPrice()}"></span><span></span>
                                         </div>
                                         <div class="item-product__action">
                                             <button class="btn btn-success btn-shopping" th:attr="data-id=${product.getId()}">Thêm vào giỏ</button>
@@ -162,7 +162,7 @@
     </div>
 
 </div>
-
+<div th:replace="fragments/footer :: chat-box"></div>
 
 
 <footer th:include="fragments/footer :: footer"></footer>

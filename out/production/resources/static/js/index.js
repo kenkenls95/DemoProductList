@@ -1,12 +1,12 @@
 
 $(document).ready(function() {
-    if($('.user-name').text() != ""){
-        swal(
-            'Xin chào '+$('.user-name').text()+' đã đến với KCShop',
-            "",
-            'success'
-        )
-    }
+    // if($('.user-name').text() != ""){
+    //     swal(
+    //         'Xin chào '+$('.user-name').text()+' đã đến với KCShop',
+    //         "",
+    //         'success'
+    //     )
+    // }
     $(function () {
         $('.add').on('click',function(){
             var $qty=$(this).closest('p').find('.qty');

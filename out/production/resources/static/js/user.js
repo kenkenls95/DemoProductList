@@ -214,10 +214,19 @@ $(document).ready(function () {
         if($("#username").val() === "" || $("#fullname").val() === "" || dataUser.imageurl === undefined || $("#address").val() === ""||$("#email").val() === ""
          ) {
             swal(
-                'Error',
-                'You need to fill all values',
+                "Xẩy ra lỗi",
+                'Bạn phải điền đủ thông tin',
                 'error'
             );
+            return;
+        }
+
+        if($('#re-new-password').val() !== $('#new-password').val()){
+            swal(
+                "Xẩy ra lỗi",
+                "Mật khẩu mới không trùng",
+                'error'
+            )
             return;
         }
 

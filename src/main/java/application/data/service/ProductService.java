@@ -3,7 +3,6 @@ package application.data.service;
 import application.data.model.PaginableItemList;
 import application.data.model.Product;
 import application.data.repository.ProductRepository;
-import application.model.ProductDetailModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Service
 public class ProductService {

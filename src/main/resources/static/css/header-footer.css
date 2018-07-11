@@ -516,3 +516,52 @@ a.check:before {
 #table-cart p {
     padding: 5px;
 }
+
+.overlay {
+    width: 300px;
+    height: 30px;
+    box-shadow: 0 0 8px black;
+    background: white;
+    position: fixed;
+    cursor: pointer;
+    bottom: 0;
+    right: 20px;
+    z-index: 101;
+    overflow: hidden;
+}
+.overlay a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 5px;
+    background: #cd4d43;
+    font-size: 14pt;
+    /*font-family: "Times New Roman";*/
+}
+#contact {
+    display: inline-block;
+    background: white;
+}
+#contact span {
+    background: silver;
+}
+form input {
+    padding: 5px 10px;
+    margin-top: 20px;
+}
+#contact span:hover {
+    background: red;
+}
+
+.money {
+    color: red;
+    position: absolute;
+    left: 25%;
+    bottom: 0%;
+}
+
+.name-products {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+}

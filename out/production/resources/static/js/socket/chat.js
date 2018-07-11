@@ -1,3 +1,6 @@
+// username = document.querySelector('#name').value.trim();
+username = $('.username').text()
+
 'use strict';
 
 var usernamePage = document.querySelector('#username-page');
@@ -7,10 +10,11 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+// var inner_messageArena = document.querySelector('#inner-messageArena')
 
 var stompClient = null;
 var username = null;
-console.log()
+
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -19,6 +23,7 @@ var colors = [
 function connect(event) {
     // username = document.querySelector('#name').value.trim();
     username = $('.username').text()
+
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -59,6 +64,8 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
+            date : null,
+            email : null,
             type: 'CHAT'
         };
 
@@ -91,6 +98,8 @@ function onMessageReceived(payload) {
         messageElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
+        usernameElement.classList.add('user-name')
+        usernameElement.setAttribute("data-id",message.id)
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
@@ -98,13 +107,15 @@ function onMessageReceived(payload) {
 
     var textElement = document.createElement('p');
     textElement.classList.add("message-content")
+    var spanDate = document.createElement('span')
+    spanDate.classList.add('message-date')
+    var newDate = message.date.split(" ")
+    spanDate.appendChild(document.createTextNode(newDate[0] +" lúc "+ newDate[1]))
     var messageText = document.createTextNode(message.content);
-    var detailMessage = document.createElement('p')
-    detailMessage.classList.add("massage-content-detail")
     textElement.appendChild(messageText);
+    textElement.appendChild(spanDate)
 
     messageElement.appendChild(textElement);
-    messageElement.appendChild(detailMessage)
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
