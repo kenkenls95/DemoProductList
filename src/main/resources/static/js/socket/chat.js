@@ -1,6 +1,3 @@
-// username = document.querySelector('#name').value.trim();
-username = $('.username').text()
-
 'use strict';
 
 var usernamePage = document.querySelector('#username-page');

@@ -48,7 +48,38 @@ public class ChatController {
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        chatMessage.setDate(new Date());
         return chatMessage;
     }
+
+
+    @MessageMapping("/chat.sendMessageClient")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessageClient(@Payload ChatMessage chatMessage) {
+//        User user = userService.findUserByUsername(chatMessage.getSender());
+//        Message message = new Message();
+//        message.setUserid(user.getId());
+//        message.setUsername(chatMessage.getSender());
+//        message.setContent(chatMessage.getContent());
+//        message.setDate(new Date());
+//        message.setReply(false);
+//        message.setReplyid(0);
+//        message.setEmail(user.getEmail());
+//        messageService.addNewChat(message);
+//        chatMessage.setId(messageService.getLastMessageId());
+//        chatMessage.setDate(new Date());
+        return chatMessage;
+    }
+
+    @MessageMapping("/chat.addUserClient")
+    @SendTo("/topic/public")
+    public ChatMessage addUserClient(@Payload ChatMessage chatMessage,
+                               SimpMessageHeaderAccessor headerAccessor) {
+        // Add username in web socket session
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        return chatMessage;
+    }
+
+
 
 }

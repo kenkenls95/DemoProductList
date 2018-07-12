@@ -3,14 +3,12 @@ $(document).ready(function () {
 
     axios.get("/api/chat/lastid").then(function (res) {
         id = res.data.data
-        console.log(id)
         updateChat(id)
     })
 
     $('.btn-show-message').on('click',function () {
         var chat = $(this).parent().children("#messageArea").children('.inner-chat').children(".chat-message")
         var lastMessageId = chat.children('.user-name').data('id')
-        console.log(chat)
         updateChat(lastMessageId)
     })
 

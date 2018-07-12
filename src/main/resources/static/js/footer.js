@@ -299,8 +299,6 @@ $(document).ready(function () {
         dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").attr("data-price");
         dataProduct.orderQuantity = quantity;
         // console.log(dataProduct)
-
-
         axios.post("/api/product/update-orderproduct", dataProduct).then(function(res){
             NProgress.done();
             if(res.data.success) {
@@ -309,6 +307,7 @@ $(document).ready(function () {
                     res.data.message,
                     'success'
                 )
+                updateQty(getCookie("OrderId"))
             } else {
                 swal(
                     'Error',
@@ -324,7 +323,6 @@ $(document).ready(function () {
                 'error'
             );
         })
-        updateQty(getCookie("OrderId"))
     });
 
 
@@ -338,6 +336,18 @@ $(document).ready(function () {
             }
         })
     }
+
+    // dang ki
+    $('.btn-register').on('click',function () {
+        if($('#username').val() === "" || $('#fullname').val() === "" || $('#password').val() === "" || $('#email').val() === "" || $('#phone').val() === "" || $('#address').val() === ""){
+            swal (
+                'Lỗi',
+                'Bạn phải điền đủ thông tin',
+                'error'
+            )
+            return;
+        }
+    })
 
 
 
