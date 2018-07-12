@@ -138,11 +138,12 @@ public class OrderService {
         return orderRepository.getListOrder();
     }
 
-    public boolean createOrderByUserId(String id) {
+    public boolean createOrderByUserIdAndUser_guild(String id,String guild) {
         try {
             Order order = new Order();
             order.setUserid(id);
             order.setCreated_date(new Date());
+            order.setUserguild(guild);
             order.setOrderStatus(orderStatusRepository.getOne(unpaid));
             orderRepository.save(order);
             return true;

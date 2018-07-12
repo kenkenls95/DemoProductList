@@ -8,7 +8,7 @@ $(document).ready(function () {
                                     <td>${user.id}</td>
                                     <td>${user.user.username}</td>
                                     <td>${user.role.description}</td>
-                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button> <button class="btn btn-warning btn-ban-role">Chặn</button></td>
+                                    <td><button class="btn btn-default btn-edit-role" data-id="${user.user.id}">Sửa</button> <button class="btn btn-warning btn-ban-role" data-id="${user.user.id}">${user.status}</button></td>
                               </tr>
                             `)
             }
@@ -18,8 +18,8 @@ $(document).ready(function () {
             var id = $(this).data("id")
             console.log(id)
             swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Bạn có chắc ?',
+                text: "",
                 type: 'warning',
                 showCancelButton: true
             }).then(function(result) {
@@ -56,6 +56,21 @@ $(document).ready(function () {
             })
         })
         $('.btn-ban-role').on('click',function () {
+            var id = $(this).data('id')
+            axios.get("/api/user/disable/" + id).then(function (value) {
+                console.log(value.data)
+                if(value.data.success){
+                    swal (
+                        "Thành công",
+                        value.data.message,
+                        'success'
+                    ).then(function (value1) {
+                        location.reload()
+                    })
+                }else {
+                    console.log(value.data.message)
+                }
+            })
         })
     })
     function readURL(input) {

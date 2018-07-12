@@ -117,7 +117,7 @@ body {
   display: block;
 }
 .prize-sale {
-  color: #999;
+  color: #999 !important;
   text-decoration: line-through;
 }
 .product-custom {
@@ -232,4 +232,8 @@ a.google:before {
 }
 .share-button a:hover:before {
   background: rgba(0,0,0,.6);
+}
+.search__img img {
+    /*border-radius: 5px;*/
+    border: 1px solid orangered;
 }

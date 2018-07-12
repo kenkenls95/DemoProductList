@@ -32,7 +32,7 @@
                 <div class="item-product__inner">
                     <div class="item-product__image">
                         <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
-                            <img th:src="${product.getImage()}" alt="">
+                            <img style="border: 0 !important;" th:src="${product.getImage()}" alt="">
                         </a>
                     </div>
                     <div class="item-product__title ">

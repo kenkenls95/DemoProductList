@@ -4,13 +4,16 @@ body {
 #search__product {
     margin-bottom: 20px;
 }
-.search__img {
-    float: left;
-    width: 30%;
+#search__content {
+    padding: 0 40px;
 }
-.search__content {
-    float: left;
-    width: 70%;
+.search__title {
+    color: black;
+    font-size: 18pt;
+    text-decoration: none;
+}
+.search__title:hover {
+    color: black;
 }
 .check {
     position: relative;
@@ -130,7 +133,7 @@ a.footer-google:hover:before {
 .surrounding-header {
     margin: 0 auto;
     background: #56acc5;
-    padding: 15px;
+    /*padding: 15px;*/
     /*margin-bottom: 25px;*/
 }
 .top-search-holder {
@@ -564,4 +567,8 @@ form input {
     position: absolute;
     top: 15%;
     left: 25%;
+}
+
+.btn-shopping {
+    cursor: pointer;
 }

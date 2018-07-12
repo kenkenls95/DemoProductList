@@ -70,10 +70,6 @@ public class CategoryApiController {
         try {
             ModelMapper modelMapper = new ModelMapper();
             CategoryProductModel categoryProductModel = modelMapper.map(existCat, CategoryProductModel.class);
-//            for(Product product : categoryProductModel.getProducts()){
-//                productDetailModels.add(modelMapper.map(product,ProductDetailModel.class));
-//            }
-//            categoryProductModel.setProducts(productDetailModels);
             result.setMessage("success");
             result.setData(categoryProductModel);
             result.setSuccess(true);

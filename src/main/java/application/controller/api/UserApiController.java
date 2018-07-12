@@ -1,5 +1,7 @@
 package application.controller.api;
 
+import application.constant.RoleIdConstant;
+import application.constant.StatusRoleConstant;
 import application.data.model.User;
 import application.data.model.UserRole;
 import application.data.service.OrderService;
@@ -49,7 +51,13 @@ public class UserApiController {
             ArrayList<UserRoleDataModel> userRoleDataModels = new ArrayList<>();
             userRoles = userService.getUserRole();
             for(UserRole u : userRoles){
-                userRoleDataModels.add(new UserRoleDataModel(u.getId(),userService.findUserById(u.getUserId()),userService.findRoleById(u.getRoleId())));
+                String status;
+                if(u.getStatus() == 0){
+                    status = "Bỏ chặn";
+                }else {
+                    status = "Chặn";
+                }
+                userRoleDataModels.add(new UserRoleDataModel(u.getId(),userService.findUserById(u.getUserId()),userService.findRoleById(u.getRoleId()),status));
             }
             result.setData(userRoleDataModels);
             result.setMessage("success");
@@ -168,10 +176,26 @@ public class UserApiController {
         return result;
     }
 
-    @PostMapping("/disable/{userId}")
+    @GetMapping("/disable/{userId}")
     public BaseApiResult disableUser(@PathVariable String userId){
         DataApiResult result = new DataApiResult();
-
+        try {
+            UserRole userRole = userService.getUserRole(userId);
+            if(userRole.getStatus() == StatusRoleConstant.ActiveStatus){
+                userRole.setStatus(StatusRoleConstant.NonActiveStatus);
+                result.setMessage("Đã chặn user");
+                result.setData(false);
+            }else {
+                userRole.setStatus(StatusRoleConstant.ActiveStatus);
+                result.setMessage("Đã bỏ chặn user");
+                result.setData(true);
+            }
+            userService.saveUserRole(userRole);
+            result.setSuccess(true);
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
         return result;
     }
 }

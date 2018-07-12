@@ -131,16 +131,18 @@ public class HomeController{
             String updateUserId = orderService.setUserGuild(user_guild,userId);
             System.out.println("Update UserId into Order :"+updateUserId);
             response.addCookie(new Cookie("User_Id", userId));
-        } else if(principal != null && flag_guild){
+        }
+        else if(principal != null && flag_guild){
             String userid = userService.findIdByUsername(principal.getName());
             response.addCookie(new Cookie("User_Id",userid));
             Order existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
             if(existOrder != null){
                 response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
             }else {
-                if(orderService.createOrderByUserId(userid)){
+                if(orderService.createOrderByUserIdAndUser_guild(userid,guid)){
                     existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
                     response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
+                    response.addCookie(new Cookie("User_Guild",guid));
                 }
             }
         }

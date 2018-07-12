@@ -16,21 +16,25 @@
 <div class="container">
     <h3 > Sản phẩm theo " <span th:text="${vm.getKeyWord()}"></span> "</h3>
     <div th:if="${vm.getProductDetailModels() != null}" class="row">
-        <div class="container">
-            <div class="row" th:each="product : ${vm.getProductDetailModels()}" id="search__product">
-                <div class="search__img float-left">
-                    <a class="item-product__img__link" th:href="@{'~/product/detail/' + ${product.getId()}}">
-                        <img th:src="${product.getImage()}" alt="">
-                    </a>
-                </div>
-                <div class="search__content float-left">
-                    <div class="search__content__name">
-                        <!--<div class="item-product__title ">-->
-                        <h3 th:text="${product.getName()}"></h3>
-                        <!--</div>-->
-                    </div>
-                    <div class="search__content__desc">
-                        <span th:text="${product.getShortDesc()}"></span>
+        <!--<div class="container">-->
+            <div class="row" >
+                <div class="col-md-6" th:each="product : ${vm.getProductDetailModels()}" id="search__product">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a class="item-product__img__link search__img" th:href="@{'~/product/detail/' + ${product.getId()}}">
+                                <img th:src="${product.getImage()}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-7" id="search__content">
+                            <div class="search__content__name">
+                                <!--<div class="item-product__title ">-->
+                                <a class="search__title" th:href="@{'~/product/detail/' + ${product.getId()}}" th:text="${product.getName()}"></a>
+                                <!--</div>-->
+                            </div>
+                            <div class="search__content__desc">
+                                <span th:text="${product.getShortDesc()}"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

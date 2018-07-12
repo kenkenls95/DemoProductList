@@ -131,8 +131,13 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/admin/chat")
-    public String socket(){
-        return "/admin/socket/index";
+    public String adminChat(){
+        return "/admin/socket/admin-chat";
+    }
+
+    @GetMapping("/admin/chat/user")
+    public String userChat(){
+        return "/admin/socket/user-chat";
     }
 
     @GetMapping("/admin/profile")
@@ -145,9 +150,16 @@ public class AdminController extends BaseController {
         return "admin/manage_customer";
     }
 
-    @GetMapping("/admin/email")
-    public String categoryList(){
-        return "manage_email";
+    @GetMapping("/admin/category")
+    public String category(Model model){
+        ModelMapper modelMapper = new ModelMapper();
+        List<Category> categories = categoryService.getListAllCategories();
+        List<CategoryDataModel> categoryDataModels = new ArrayList<>();
+        for(Category c : categories){
+            categoryDataModels.add(modelMapper.map(c,CategoryDataModel.class));
+        }
+        model.addAttribute("vm",categoryDataModels);
+        return "/admin/manage_category";
     }
 
     @GetMapping("/admin/order/deliveried")

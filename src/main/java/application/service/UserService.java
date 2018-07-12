@@ -105,6 +105,16 @@ public class UserService {
         return userRoleRepository.getUserRoleById(userId);
     }
 
+    public boolean saveUserRole(UserRole userRole){
+        try {
+            userRoleRepository.save(userRole);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean updateUser(User user) {
         try {
             userRepository.save(user);

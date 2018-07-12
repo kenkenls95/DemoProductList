@@ -25,33 +25,26 @@ $(document).ready(function () {
         new Awesomplete(document.querySelector("#ajax-example input"),{ list: suggest });
         // get img sp
     })
-    // $('.money').change(function () {
-    //     var money = $(this).text()
-    //     var fomat = money.toFixed(3).replace(/(\d)(?=(\d{3})+\.)/g, "1.").toString();
-    //     $(this).text(fomat)
-    // })
 
 
     // set logo user
-
-        $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
-            if(data.data != null){
-                $('.user-logo').attr('src',data.data.imageurl)
-                userId = data.data.id
-                // console.log(data.data)
-            }
-        });
-        switch ($('#role').text()){
-            case "[ROLE_ADMIN]":
-                $('#role').text("Trang ADMIN");
-                $('#role').attr('href','/admin/profile');
-                break;
-            case "[ROLE_USER]":
-                $('#role').text("Thông tin khách hàng")
-                $('#role').attr('href','/user')
-                $('#role-menu').append("<a href='rules'>Chính sách giao hàng</a>")
-                break;
+    $.get("http://"+window.location.host+"/api/user/img/"+$(".user-name").text(), function(data, status){
+        if(data.data != null){
+            $('.user-logo').attr('src',data.data.imageurl)
+            userId = data.data.id
         }
+    });
+    switch ($('#role').text()){
+        case "[ROLE_ADMIN]":
+            $('#role').text("Trang ADMIN");
+            $('#role').attr('href','/admin/profile');
+            break;
+        case "[ROLE_USER]":
+            $('#role').text("Thông tin khách hàng")
+            $('#role').attr('href','/user')
+            $('#role-menu').append("<a href='rules'>Chính sách giao hàng</a>")
+            break;
+    }
 
 
     // gio hang
@@ -296,9 +289,9 @@ $(document).ready(function () {
         dataProduct.id = null;
         dataProduct.productId = id;
         dataProduct.orderId = parseInt(orderId);
-        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").attr("data-price");
+        dataProduct.orderPrice = $(this).parent().parent().children(".item-product__price").children(".price").data('price');
         dataProduct.orderQuantity = quantity;
-        // console.log(dataProduct)
+        console.log(dataProduct)
         axios.post("/api/product/update-orderproduct", dataProduct).then(function(res){
             NProgress.done();
             if(res.data.success) {
@@ -345,7 +338,7 @@ $(document).ready(function () {
                 'Bạn phải điền đủ thông tin',
                 'error'
             )
-            return;
+            return false;
         }
     })
 

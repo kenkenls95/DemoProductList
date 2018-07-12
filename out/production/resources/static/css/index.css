@@ -244,3 +244,10 @@ a.minus, a.add {
 .sub-menu li a {
     margin-left: 15px;
 }
+#qty1 {
+    padding: 0 10px;
+    width: 50px;
+}
+.logout {
+    color: #f4563c !important;
+}

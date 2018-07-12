@@ -19,7 +19,7 @@
                 <div class="padding-top col-md-4">
                     <div class="mySlides">
                         <div class="numbertext">1 / 5</div>
-                        <img th:src="${vm.getImage()}" style="width:100%">
+                        <img th:src="${vm.getImage()}" style="width:100%; border: 1px solid orangered;">
                     </div>
                     <a class="prev" onclick="plusSlides(-1)">❮</a>
                     <a class="next" onclick="plusSlides(1)">❯</a>
@@ -35,9 +35,9 @@
                     <div class="product-brand">
                         <span>Thương hiệu: <a href=""><span th:text="${vm.getName()}"></span></a> | <a th:href="@{'~/category/detail/' + ${vm.getCategory().getId()}}">Xem thêm sản phẩm <span th:text="${vm.getCategory().getName()}"></span></a></span>
                     </div>
-                    <div class="product-prize">
-                        <span class="prize-true" th:text="${vm.getPrice() +'đ'}"></span>
-                        <span class="prize-sale">100.000 đ</span> -50%
+                    <div class="product-prize item-product__price">
+                        <span class="prize-true price" th:attr="data-price=${vm.getPrice()}" th:text="${vm.getPrice()}"></span>
+                        <span class="prize-sale price" th:text="${vm.getPrice() *2}"></span> -50%
                     </div>
                     <div class="product-custom item-product__inner">
                         <span>Số lượng (vui lòng chọn số sản phẩm)</span>
@@ -63,7 +63,7 @@
                                 <div class="info">
                                     <i class="fa fa-star-o"></i><span>Giao hàng tiêu chuẩn <br><font style="font-size: 11px;color: #999;">Nhận vào Thứ năm 24 - Thứ ba 29 tháng 5</font></span>
                                 </div>
-                                <p>50.000 đ</p>
+                                <p class="price" th:text="${vm.getPrice()}"></p>
                             </li>
                             <li>
                                 <div class="info">

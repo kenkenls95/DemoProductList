@@ -28,4 +28,7 @@
     width: 450px;
     margin-left: 0;
 }
+#particles-js {
+    height: 700px !important;
+}
 
