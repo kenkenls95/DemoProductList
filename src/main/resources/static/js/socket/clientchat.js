@@ -7,7 +7,6 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-// var inner_messageArena = document.querySelector('#inner-messageArena')
 
 var stompClient = null;
 var username = null;
@@ -18,8 +17,7 @@ var colors = [
 ];
 
 function connect(event) {
-    // username = document.querySelector('#name').value.trim();
-    username = $('.username').text()
+    username = document.querySelector('#name').value.trim();
 
     if(username) {
         usernamePage.classList.add('hidden');
@@ -61,8 +59,6 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            date : null,
-            email : null,
             type: 'CHAT'
         };
 
@@ -95,22 +91,14 @@ function onMessageReceived(payload) {
         messageElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
-        usernameElement.classList.add('user-name')
-        usernameElement.setAttribute("data-id",message.id)
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
 
     var textElement = document.createElement('p');
-    textElement.classList.add("message-content")
-    var spanDate = document.createElement('span')
-    spanDate.classList.add('message-date')
-    var newDate = message.date.split(" ")
-    spanDate.appendChild(document.createTextNode(newDate[0] +" lúc "+ newDate[1]))
     var messageText = document.createTextNode(message.content);
     textElement.appendChild(messageText);
-    textElement.appendChild(spanDate)
 
     messageElement.appendChild(textElement);
 

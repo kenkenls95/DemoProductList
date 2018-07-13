@@ -290,6 +290,10 @@ public class HomeController{
         return categoryDetailModels;
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 
 
 
