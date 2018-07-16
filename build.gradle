@@ -94,7 +94,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner
 //    compile group: 'com.github.jsimone', name: 'webapp-runner', version: '7.0.22.1'
-
+//    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
     // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
 //    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.23'
 
