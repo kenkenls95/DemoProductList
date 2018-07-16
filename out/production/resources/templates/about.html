@@ -1,23 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="fragments/header :: header-css"/>
+<head th:include="fragments/header :: header-css">ư
 </head>
 <body>
-
-<div th:replace="fragments/header :: header"/>
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container">
 
-    <div class="starter-template">
-        <h1>Hoa qua</h1>
+    <div class="starter-template text-center" style="margin-top: 200px">
+        <h1>Website bán hàng hoa quả</h1>
         <h3>Author: KIENVT</h3>
+        <h3>Email : vikienls95@gmail.com</h3>
     </div>
 
 </div>
 <!-- /.container -->
 
-<div th:replace="fragments/footer :: footer"/>
+<footer th:include="fragments/footer :: footer"></footer>
 <div th:replace="fragments/footer :: js-index"></div>
 
 </body>

@@ -4,10 +4,31 @@ import java.util.Date;
 
 public class OrderProductApiModel {
     private int productId;
+    private ProductDetailModel productDetailModel;
     private int orderQuantity;
     private int orderPrice;
     private Date createdDate;
     private int orderId;
+
+    public OrderProductApiModel(int productId, ProductDetailModel productDetailModel, int orderQuantity, int orderPrice, Date createdDate, int orderId) {
+        this.productId = productId;
+        this.productDetailModel = productDetailModel;
+        this.orderQuantity = orderQuantity;
+        this.orderPrice = orderPrice;
+        this.createdDate = createdDate;
+        this.orderId = orderId;
+    }
+
+    public OrderProductApiModel() {
+    }
+
+    public ProductDetailModel getProductDetailModel() {
+        return productDetailModel;
+    }
+
+    public void setProductDetailModel(ProductDetailModel productDetailModel) {
+        this.productDetailModel = productDetailModel;
+    }
 
     public int getProductId() {
         return productId;

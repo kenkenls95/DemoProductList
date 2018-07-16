@@ -84,7 +84,38 @@
             </div>
     </div>
     <div class="row" id="content">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h3>Lịch sử mua hàng</h3>
 
+            <div th:if="${vm} != null">
+                <table class="table table-bordered table-hover" id="table" style="margin-top: 15px;">
+                    <thead>
+                    <tr>
+                        <th>Số hóa đơn</th>
+                        <th>Ngày tạo</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Xem chi tiết</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${vm}">
+                        <td th:text="${order.getId()}"></td>
+                        <td th:text="${order.getCreatedDate()}"></td>
+                        <td th:text="${order.getAddress()}"></td>
+                        <td th:text="${order.getOrderStatus().getName()}"></td>
+                        <td><button type="button" class="btn-detail-bill btn-success btn" th:attr="data-bill=${order.getId()}">
+                            Xem chi tiết
+                        </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:unless="${vm} != null">
+                <h2>Không có hóa đơn nào !</h2>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -142,7 +173,7 @@
                         </tbody>
                     </table>
                     <hr>
-                    <h4 style="margin-top: 30px;"><strong>Tổng :  </strong><span id="sum"></span>  (VND)</h4>
+                    <h4 style="margin-top: 30px;"><strong>Tổng :  </strong><span id="sum" class="price"></span></h4>
                 </form>
             </div>
             <div class="modal-footer">

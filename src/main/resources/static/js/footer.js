@@ -176,9 +176,6 @@ $(document).ready(function () {
             return "";
         }
 
-    // xu ly gio hang trong trang checkout
-
-    getImgProducts()
 
         // fix loi khi dang nhap fb
 
@@ -212,59 +209,19 @@ $(document).ready(function () {
         }
     })
 
-    function getImgProducts() {
-        var linkPost = "/api/order/detail"
-        var dataProduct = {}
-        var imgProducts = []
-        dataProduct.orderId = parseInt(getCookie("OrderId"))
-        axios.post(linkPost, dataProduct).then(function(res){
-            if(res.data.success) {
-                var products = res.data.data
-                for(var product of products){
-                    for(var pro of list){
-                        if(pro.id == product.productid){
-                            var p = {}
-                            p.orderid = product.id
-                            p.name = pro.name
-                            p.image = pro.image;
-                            p.qty = product.orderquantity
-                            p.price = product.orderprice
-                            imgProducts.push(p)
-                        }
-                    }
-                }
-                $('.total-cart').text(imgProducts.length)
-                var total = 0
-                for(var pro of imgProducts){
-                    $('#table-checkout tbody').append(`
-                    <tr class="cart-item">
-                        <td class="product-name">${pro.name}</td>
-                        <td class="product-qty ">${pro.qty}</td>
-                        <td class="product-price price">${pro.price}</td>
-                    </tr>
-                    `)
-                    total += pro.qty * pro.price
-                }
-                function format(x) {
-                    x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
-                    return x
-                }
-                $('#total').text(total)
-                $('.price').each(function () {
-                    $(this).text(format(parseInt($(this).text())))
-                })
-                $('#table-checkout').dataTable({
-                    "searching": false,
-                    "paging": false,
-                    "lengthChange": false
-                })
-                $('#table-checkout_info').text("")
-            }else {
-                console.log(res.data.message)
-            }
-        })
-        updateQty(getCookie("OrderId"))
+    function format(x) {
+        x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+        return x
     }
+    $('.price').each(function () {
+        $(this).text(format(parseInt($(this).text())))
+    })
+    $('#table-checkout').dataTable({
+        "searching": false,
+        "paging": false,
+        "lengthChange": false
+    })
+    $('#table-checkout_info').text("")
 
 
     $(".btn-shopping").click(function () {
@@ -295,11 +252,25 @@ $(document).ready(function () {
         axios.post("/api/product/update-orderproduct", dataProduct).then(function(res){
             NProgress.done();
             if(res.data.success) {
-                swal(
-                    'Sản phẩm đã được thêm!',
-                    res.data.message,
-                    'success'
-                )
+                Command: toastr["success"]("Sản phẩm đã được thêm")
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
                 updateQty(getCookie("OrderId"))
             } else {
                 swal(
@@ -326,6 +297,7 @@ $(document).ready(function () {
         axios.get("/api/order/detail/qty/" + orderId).then(function (res) {
             if(res.data.success){
                 $('.number__shopping').text(res.data.data)
+                $('.total').text(res.data.data)
             }
         })
     }

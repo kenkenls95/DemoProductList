@@ -1,14 +1,17 @@
 package application.controller.web;
 
 import application.data.model.Order;
+import application.data.model.OrderProduct;
 import application.data.model.Product;
 import application.data.model.User;
 import application.data.service.CategoryService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
+import application.model.OrderProductCheckOutModel;
 import application.model.ProductDetailModel;
 import application.model.ProductName;
 import application.service.UserService;
+import application.viewmodel.productindex.CheckOutVM;
 import application.viewmodel.productindex.ProductSearchVM;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +86,8 @@ public class ProductController extends BaseController {
                            HttpServletResponse response,
                            HttpServletRequest request,
                            final Principal principal){
-
+        CheckOutVM checkOutVM =  new CheckOutVM();
+        ModelMapper modelMapper = new ModelMapper();
         Cookie cookies[] = request.getCookies();
         UUID uuid = UUID.randomUUID();
         String guid = uuid.toString();
@@ -109,12 +113,23 @@ public class ProductController extends BaseController {
             Order order = orderService.findOrderByUserguild(user_guild);
             System.out.println("====================");
             System.out.println("Order by User_Guild :"+user_guild);
+            ArrayList<OrderProduct> orderProducts = orderService.getListOrderProductByOrderId(order.getId());
+            ArrayList<OrderProductCheckOutModel> orderProductCheckOutModels =  new ArrayList<>();
+            int total = 0;
+            for(OrderProduct o : orderProducts){
+                ProductDetailModel productDetailModel = modelMapper.map(productService.findOne(o.getProductid()),ProductDetailModel.class);
+                orderProductCheckOutModels.add(new OrderProductCheckOutModel(o.getId(),productDetailModel.getImage(),productDetailModel.getName(),o.getOrderprice(),o.getOrderquantity()));
+                total += o.getOrderquantity()*o.getOrderprice();
+            }
+            checkOutVM.setOrderProductApiModels(orderProductCheckOutModels);
+            checkOutVM.setTotal(total);
             if(check(order.getUserid())){
                 model.addAttribute("user" , new User());
             }else {
                 User existUser = userService.findUserById(order.getUserid());
                 model.addAttribute("user" , existUser);
             }
+            model.addAttribute("vm",checkOutVM);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }

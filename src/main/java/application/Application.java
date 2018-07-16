@@ -9,15 +9,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.Resource;
 
-/**
- * Created by ManhNguyen on 10/11/17.
- */
 @SpringBootApplication
 @ComponentScan
 @EnableJpaRepositories(basePackages = "application")
+@EnableScheduling
 public class Application {
 
     private static final Logger logger = LogManager.getLogger(Application.class);

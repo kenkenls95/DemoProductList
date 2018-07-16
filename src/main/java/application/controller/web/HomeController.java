@@ -138,6 +138,7 @@ public class HomeController{
             Order existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
             if(existOrder != null){
                 response.addCookie(new Cookie("OrderId",Integer.toString(existOrder.getId())));
+                response.addCookie(new Cookie("User_Guild",existOrder.getUserguild()));
             }else {
                 if(orderService.createOrderByUserIdAndUser_guild(userid,guid)){
                     existOrder = orderService.findOrderByUserIdAndStatusid(userid,unpaid);
@@ -201,7 +202,10 @@ public class HomeController{
         return "index";
     }
 
-
+    @GetMapping("/contact")
+    public String contact(){
+        return "/contact";
+    }
 
     @GetMapping("/about")
     public String about() {
@@ -248,6 +252,11 @@ public class HomeController{
         return "garden/soil";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "/admin/socket/user-chat";
+    }
+
 
     public ArrayList<CategoryInfor> getCategories(){
         ModelMapper modelMapper = new ModelMapper();
@@ -288,11 +297,6 @@ public class HomeController{
             categoryDetailModels.add(modelMapper.map(cat,CategoryDetailModel.class));
         }
         return categoryDetailModels;
-    }
-
-    @GetMapping("/test")
-    public String test(){
-        return "test";
     }
 
 

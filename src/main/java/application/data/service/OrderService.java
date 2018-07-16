@@ -134,10 +134,6 @@ public class OrderService {
     }
 
 
-    public ArrayList<Order> getListOrder(){
-        return orderRepository.getListOrder();
-    }
-
     public boolean createOrderByUserIdAndUser_guild(String id,String guild) {
         try {
             Order order = new Order();
@@ -152,6 +148,7 @@ public class OrderService {
         }
         return false;
     }
+
 
 
     public Order findOrder(int orderId){
@@ -199,15 +196,7 @@ public class OrderService {
     }
 
 
-    public boolean saveListOrderProduct(ArrayList<OrderProduct> orderProducts) {
-        try {
-            orderProductRepository.save(orderProducts);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+
 
     public boolean deleteOrderProduct(int id) {
         try {

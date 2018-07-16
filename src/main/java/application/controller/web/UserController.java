@@ -5,8 +5,10 @@ import application.constant.StatusRegisterUserEnum;
 import application.data.model.Order;
 import application.data.model.User;
 import application.data.service.OrderService;
+import application.model.OrderModel;
 import application.service.UserService;
 import com.google.gson.Gson;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class UserController{
@@ -55,12 +58,39 @@ public class UserController{
                        @RequestHeader("User-Agent") String userAgent,
                        HttpServletRequest request,
                        final Principal principal){
+        ModelMapper modelMapper = new ModelMapper();
+        try {
+            if(principal != null){
+                User user = userService.findUserByUsername(principal.getName());
+                Order order = orderService.findOrderByUserIdAndStatusid(user.getId(),StatusOrderConstant.unpaid);
+                response.addCookie(new Cookie("OrderId", Integer.toString(order.getId())));
+                response.addCookie(new Cookie("User_Id",user.getId()));
+                response.addCookie(new Cookie("User_Guild",order.getUserguild()));
+                ArrayList<Object> objects = new ArrayList<>();
+                ArrayList<OrderModel> orderModels = new ArrayList<>();
+                objects = orderService.getOrderByUser(user.getId());
+                for(Object o : objects){
+                    orderModels.add(modelMapper.map(o,OrderModel.class));
+                }
+                ArrayList<OrderModel> orderModels1 = new ArrayList<>();
+                for(OrderModel o : orderModels){
+                    if(o.getOrderStatus().getId() != 3 && o.getOrderStatus().getId() != 4){
+                        orderModels1.add(o);
+                    }
+                }
+                if(orderModels1.size() > 0){
+                    model.addAttribute("vm",orderModels1);
+                }else {
+                    model.addAttribute("vm",null);
+                }
+            }else {
 
-        if(principal != null){
-            User user = userService.findUserByUsername(principal.getName());
-            Order order = orderService.findOrderByUserIdAndStatusid(user.getId(),StatusOrderConstant.unpaid);
-            response.addCookie(new Cookie("OrderId", Integer.toString(order.getId())));
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
+
+
         return "/user";
     }
 

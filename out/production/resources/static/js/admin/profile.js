@@ -100,12 +100,12 @@ $(document).ready(function () {
             NProgress.done();
             if(res.data.success) {
                 swal(
-                    'Good job!',
-                    res.data.message,
+                    'Thành công!',
+                    'Tài khoản sẽ bị đăng xuất',
                     'success'
                 ).then(function() {
                     // location.reload();
-                    window.location.replace('http://localhost:8080/logout');
+                    document.location.href = location.origin
                 });
             } else {
                 swal(

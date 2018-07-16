@@ -4,11 +4,13 @@ package application.controller.web;
 import application.data.model.Category;
 import application.data.model.Order;
 import application.data.model.Product;
+import application.data.model.UserRole;
 import application.data.service.CategoryService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
 import application.model.CategoryDataModel;
 import application.model.OrderDetailModel;
+import application.model.UserRoleDataModel;
 import application.service.UserService;
 import application.viewmodel.admin.AdminVM;
 import application.viewmodel.admin.OrderVM;
@@ -146,7 +148,24 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/admin/customer")
-    public String customer(){
+    public String customer(Model model){
+        try {
+            ArrayList<UserRole> userRoles = new ArrayList<>();
+            ArrayList<UserRoleDataModel> userRoleDataModels = new ArrayList<>();
+            userRoles = userService.getUserRole();
+            for(UserRole u : userRoles){
+                String status = "";
+                if(u.getStatus() == 0){
+                    status = "Bỏ chặn";
+                }else {
+                    status = "Chặn";
+                }
+                userRoleDataModels.add(new UserRoleDataModel(u.getId(),userService.findUserById(u.getUserId()),userService.findRoleById(u.getRoleId()),status));
+            }
+            model.addAttribute("vm",userRoleDataModels);
+        } catch (Exception e) {
+
+        }
         return "admin/manage_customer";
     }
 

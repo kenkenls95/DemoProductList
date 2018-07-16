@@ -21,7 +21,14 @@
 						</tr>
 						</thead>
 						<tbody>
-
+						<tr th:each="u : ${vm}">
+							<td th:text="${u.getId()}"></td>
+							<td th:text="${u.getUser().getUsername()}"></td>
+							<td th:text="${u.getRole().getDescription()}"></td>
+							<td><button class="btn btn-default btn-edit-role" th:attr="data-id=${u.getUser().getId()}">Sửa</button>
+								<button class="btn btn-warning btn-ban-role" th:attr="data-id=${u.getUser().getId()}" th:text="${u.getStatus()}"></button>
+							</td>
+						</tr>
 						</tbody>
 					</table>
 				</div>

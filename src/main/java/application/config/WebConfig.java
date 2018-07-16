@@ -4,6 +4,7 @@ import application.data.service.CategoryService;
 import application.data.service.MessageService;
 import application.data.service.OrderService;
 import application.data.service.ProductService;
+import application.jobs.ScheduledTasks;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,6 +68,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public MessageService getMessageService(){
         return new MessageService();
     }
+
+//    @Bean
+//    public ScheduledTasks getScheduledTasks(){
+//        return new ScheduledTasks();
+//    }
 
 
     @Bean(name = "passwordEncoder")
