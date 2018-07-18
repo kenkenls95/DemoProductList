@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="admin/layout :: head"></head>-->
+<head th:include="admin/admin :: admin-css"></head>
+<body>
+<div id="wrapper">
+	<div class="content">
+		<div class="content__inner">
+
+			<div th:replace="admin/admin :: header"></div>
+			<div th:replace="admin/admin :: sidebar"></div>
+			<div class="main__content">
+
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

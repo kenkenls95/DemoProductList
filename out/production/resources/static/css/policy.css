@@ -1,0 +1,54 @@
+.policy {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.policy h2 {
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.policy h3 {
+    font-size: 19px;
+    font-weight: 700;
+}
+.policy h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+.policy h5 {
+    font-weight: 700;
+}
+.table>thead>tr>th {
+    border-left: solid #EEEEEE 1.0pt;
+    border-bottom: solid #EEEEEE 1.5pt;
+    border-right: solid #EEEEEE 1.0pt;
+    background: #128A9E;
+    padding: 6.0pt 6.0pt 6.0pt 6.0pt;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+}
+.table>tbody>tr>td {
+    border: solid #EEEEEE 1.0pt;
+    border-top: none;
+    padding: 6.0pt 18.0pt 6.0pt 18.0pt;
+}
+.ghi-chu {
+    font-style: italic;
+    font-size: 13px;
+    text-transform: none;
+}
+.bold {
+    font-weight: 700;
+}
+.distance-1 {
+    margin-left: 20px;
+}
+.distance-2 {
+    margin-left: 40px;
+}
+.policy p {
+    margin-bottom: 15px;
+}

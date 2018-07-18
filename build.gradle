@@ -22,10 +22,7 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')
-
-
     compile("org.springframework.boot:spring-boot-starter-web")
-
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
 
@@ -115,7 +112,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.0.0.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-reactor-netty
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-reactor-netty', version: '2.0.0.M2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-reactor-netty', version: '2.0.2.RELEASE'
+
 
     // https://mvnrepository.com/artifact/org.springframework/spring-websocket
     compile group: 'org.springframework', name: 'spring-websocket', version: '4.2.4.RELEASE'

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/manage_product :: admin-css"></head>
+<body>
+	<div id="wrapper">
+		<div class="content">
+			<div class="content__inner">
+
+				<div th:replace="admin/manage_product :: header"></div>
+				<div th:replace="admin/manage_product :: sidebar"></div>
+				<div class="main__content">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:include="fragments/footer :: js-admin"></div>
+	<script th:src="@{/js/format_money.js}"></script>
+</body>
+</html>

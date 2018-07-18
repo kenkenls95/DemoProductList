@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thanh toán</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<link rel="stylesheet" th:href="@{/css/checkout.css}">
+<style>
+</style>
+<body>
+<div th:replace="fragments/header :: header_top"></div>
+<div th:replace="fragments/header :: header"></div>
+<div class="container" id="title-bar">
+    <div class="row">
+        <ul data-role="navbar" id="checkoutProgress" class="steps-3 row">
+            <li class="col-xs-6 active">
+                <div class="checkout-steps__container" id="left">
+                    <span class="step-icon"><i class="adr-icon icon-check"></i></span>
+                    <span class="step-index">1</span>
+                    <a><span class="hidden-xs"> Thông tin khách hàng</span><span class="visible-xs">Đăng nhập</span></a>
+
+                    <!-- <div style="text-align: center; margin: 30px auto"> -->
+                </div>
+            </li>
+            <li class="col-xs-6">
+                <div class="checkout-steps__container" id="right">
+                    <span class="arrow-down"></span>
+                    <span class="step-icon"><i class="adr-icon icon-check"></i></span>
+                    <span class="step-index">2</span>
+                    <a><span class="hidden-xs"> Thanh toán</span><span class="visible-xs">Thanh toán</span></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 box">
+            <h2 class="text-center">Thông tin Khách Hàng </h2>
+            <form th:object="${user}" >
+                <fieldset>
+                    <div class="form-group">
+                        <label for="fullname">Tên đầy đủ :</label>
+                        <input type="text" class="form-control" id="fullname" th:field="*{fullname}" name="fullname"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email :</label>
+                        <input type="email" class="form-control" id="email" th:field="*{email}" name="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại :</label>
+                        <input type="text" class="form-control" id="phone" th:field="*{phone}" name="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ :</label>
+                        <input type="text" class="form-control" id="address" th:field="*{address}" name="address"/>
+                    </div>
+                </fieldset>
+            </form>
+            <button class="btn btn-lg btn-primary btn-block btn-save-order">Tiếp tục thanh toán</button>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="box-product">
+                <h2>Đơn hàng (<span class="total"></span> sản phẩm)</h2>
+                <table id="table-checkout">
+                    <thead>
+                    <tr>
+                        <th class="title-checkout ">Sản Phẩm</th>
+                        <th class="title-checkout ">Số lượng</th>
+                        <th class="title-checkout ">Tổng Cộng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="cart-item" th:each="pro : ${vm.getOrderProductApiModels()}">
+                        <td class="product-name" th:text="${pro.getName()}"></td>
+                        <td class="product-qty " th:text="${pro.getOrderQuantity()}"></td>
+                        <td class="product-price price" th:text="${pro.getOrderPrice() * pro.getOrderQuantity()}"></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td style="color: red">Tổng cộng </td>
+                        <td></td>
+                        <td id="total" class="price" th:text="${vm.getTotal()}"></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: js-index"></div>
+<script th:src="@{/js/checkout.js}"></script>
+</body>
+</html>

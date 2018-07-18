@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/manage_product :: admin-css"></head>
+<body>
+<div id="wrapper">
+    <div class="content">
+        <div class="content__inner">
+
+            <div th:replace="admin/manage_product :: header"></div>
+            <div th:replace="admin/manage_product :: sidebar"></div>
+            <div class="main__content">
+                <div class="container" style="width: 100%">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Thông tin tài khoản</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3" align="center">
+                                            <img id="preview-product-img" alt="User Pic" src="/link/1528177697-default-user.png" class="img-circle img-responsive">
+                                            <input type='file' id="input-select-img-product" />
+                                        </div>
+
+                                        <div class=" col-md-9 col-lg-9 ">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Tên đăng nhập:</td>
+                                                    <td><input class="form-control"  type="text" id="username"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tên đầy đủ:</td>
+                                                    <td><input class="form-control"  type="text" id="fullname"></td>
+                                                </tr>
+                                                <tr>
+                                                <tr>
+                                                    <td>Giới tính:</td>
+                                                    <td>
+                                                        <form>
+                                                            <input id="male" type="radio" name="gender" value="male"> Male<br>
+                                                            <input id="female" type="radio" name="gender" value="female"> Female<br>
+                                                            <input id="other" type="radio" name="gender" value="other"> Other
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Địa chỉ:</td>
+                                                    <td><input  class="form-control" type="text" id="address"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email:</td>
+                                                    <td><input  class="form-control" type="text" id="email"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Số điện thoại:</td>
+                                                    <td><input  class="form-control" type="text" id="phone"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mật khẩu cũ:</td>
+                                                    <td><input  class="form-control" type="password" id="old-password"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mật khẩu mới:</td>
+                                                    <td><input  class="form-control" type="password" id="new-password"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nhập lại mật khẩu mới:</td>
+                                                    <td><input  class="form-control" type="password" id="re-new-password"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button class="btn btn-default btn-save-user">Lưu thông tin</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="fragments/footer :: js-admin"></div>
+<script th:src="@{/js/admin/profile.js}"></script>
+</body>
+</html>

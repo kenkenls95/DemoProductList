@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header-css">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Product index</title>
+
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}"/>
+<body>
+<div th:replace="fragments/header :: header_top"></div>
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container">
+    <h3 > Sản phẩm theo " <span th:text="${vm.getKeyWord()}"></span> "</h3>
+    <div th:if="${vm.getProductDetailModels() != null}" class="row">
+        <!--<div class="container">-->
+            <div class="row" >
+                <div class="col-md-6" th:each="product : ${vm.getProductDetailModels()}" id="search__product">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a class="item-product__img__link search__img" th:href="@{'~/product/detail/' + ${product.getId()}}">
+                                <img th:src="${product.getImage()}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-7" id="search__content">
+                            <div class="search__content__name">
+                                <!--<div class="item-product__title ">-->
+                                <a class="search__title" th:href="@{'~/product/detail/' + ${product.getId()}}" th:text="${product.getName()}"></a>
+                                <!--</div>-->
+                            </div>
+                            <div class="search__content__desc">
+                                <span th:text="${product.getShortDesc()}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" th:unless="${vm.getProductDetailModels() != null}">
+        <h2>Không có sản phẩm nào</h2>
+        <button class="btn btn-default"><a th:href="@{/}">Quay về trang chủ</a></button>
+    </div>
+</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: js-index"></div>
+<script th:src="@{/js/detail.js}"></script>
+
+</body>
+</html>

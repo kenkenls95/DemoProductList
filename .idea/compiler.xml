@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="demo_product_list_main" target="1.8" />
       <module name="demo_product_list_test" target="1.8" />
+      <module name="DemoProductList_main" target="1.8" />
+      <module name="DemoProductList_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

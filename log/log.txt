@@ -1856,3 +1856,16 @@
 2018-Jul-16 18:19:34 PM [restartedMain] DEBUG application.config.WebConfig - run addResourceHandlers
 2018-Jul-16 18:45:02 PM [restartedMain] DEBUG application.config.WebConfig - run defaultTemplateResolver
 2018-Jul-16 18:45:03 PM [restartedMain] DEBUG application.config.WebConfig - run addResourceHandlers
+2018-Jul-18 22:40:50 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Included patterns for restart : []
+2018-Jul-18 22:40:50 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter/target/classes/, /spring-boot-autoconfigure/target/classes/, /spring-boot-starter-[\w-]+/, /spring-boot/target/classes/, /spring-boot-actuator/target/classes/, /spring-boot-devtools/target/classes/]
+2018-Jul-18 22:40:50 PM [main] DEBUG org.springframework.boot.devtools.restart.ChangeableUrls - Matching URLs for reloading : [file:/D:/datn/DemoProductList/out/production/classes/, file:/D:/datn/DemoProductList/out/production/resources/]
+2018-Jul-18 22:41:02 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Included patterns for restart : []
+2018-Jul-18 22:41:02 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter/target/classes/, /spring-boot-autoconfigure/target/classes/, /spring-boot-starter-[\w-]+/, /spring-boot/target/classes/, /spring-boot-actuator/target/classes/, /spring-boot-devtools/target/classes/]
+2018-Jul-18 22:41:02 PM [main] DEBUG org.springframework.boot.devtools.restart.ChangeableUrls - Matching URLs for reloading : [file:/D:/datn/DemoProductList/out/production/classes/, file:/D:/datn/DemoProductList/out/production/resources/]
+2018-Jul-18 22:42:05 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Included patterns for restart : []
+2018-Jul-18 22:42:05 PM [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter/target/classes/, /spring-boot-autoconfigure/target/classes/, /spring-boot-starter-[\w-]+/, /spring-boot/target/classes/, /spring-boot-actuator/target/classes/, /spring-boot-devtools/target/classes/]
+2018-Jul-18 22:42:05 PM [main] DEBUG org.springframework.boot.devtools.restart.ChangeableUrls - Matching URLs for reloading : [file:/D:/datn/DemoProductList/out/production/classes/, file:/D:/datn/DemoProductList/out/production/resources/]
+2018-Jul-18 22:48:43 PM [restartedMain] DEBUG application.config.WebConfig - run defaultTemplateResolver
+2018-Jul-18 22:48:44 PM [restartedMain] DEBUG application.config.WebConfig - run addResourceHandlers
+2018-Jul-18 22:55:25 PM [restartedMain] DEBUG application.config.WebConfig - run defaultTemplateResolver
+2018-Jul-18 22:55:25 PM [restartedMain] DEBUG application.config.WebConfig - run addResourceHandlers
